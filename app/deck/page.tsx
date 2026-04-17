@@ -6,7 +6,7 @@ import { ArrowRight, FileText, Briefcase, Cog, Layers, Mail } from 'lucide-react
 export const metadata: Metadata = {
   title: 'Deck',
   description:
-    'The ipxs.digital studio deck. Our operating model, capabilities, and selected work.',
+    'The ipxs.digital studio deck. Our operating model, capabilities, and selected case studies.',
 }
 
 const deckSections = [
@@ -18,8 +18,8 @@ const deckSections = [
   },
   {
     id: 'work',
-    title: 'Selected Work',
-    description: 'Case studies and project highlights across verticals.',
+    title: 'Selected Case Studies',
+    description: 'Case studies across entertainment and technology verticals.',
     icon: Layers,
   },
   {
@@ -56,7 +56,7 @@ export default function DeckPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             A comprehensive look at ipxs.digital. Our positioning, capabilities, operating model, 
-            and selected work. For partners, collaborators, and prospective clients.
+            and selected case studies. For partners, collaborators, and prospective clients.
           </p>
         </div>
       </section>
@@ -110,7 +110,7 @@ export default function DeckPage() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full px-8">
-                <Link href="/work">View Work</Link>
+                <Link href="/work">View Case Studies</Link>
               </Button>
             </div>
           </div>

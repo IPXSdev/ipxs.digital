@@ -164,8 +164,6 @@ export function DNAChain({ worlds, activeIndex, onNodeClick }: DNAChainProps) {
                 ? 'border-accent bg-accent/20 shadow-[0_0_20px_rgba(255,200,100,0.4)]'
                 : 'border-muted-foreground/30 bg-background/50 hover:border-muted-foreground hover:bg-muted/20'
             )}
-            data-cursor="Enter"
-            data-cursor-magnetic
             aria-label={`Go to ${world.title}`}
           >
             <span
