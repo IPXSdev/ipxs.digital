@@ -1,7 +1,8 @@
 import Link from 'next/link'
+import { team } from '@/content/team'
 
 const footerLinks = [
-  { href: '/work', label: 'Work' },
+  { href: '/work', label: 'Case Studies' },
   { href: '/services', label: 'Services' },
   { href: '/deck', label: 'Deck' },
   { href: '/resume', label: 'Resume' },
@@ -14,7 +15,6 @@ export function Footer() {
     <footer className="border-t border-border/50 bg-background">
       <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
-          {/* Brand */}
           <div className="flex flex-col gap-4">
             <Link
               href="/"
@@ -28,7 +28,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Navigation */}
           <div className="flex flex-wrap gap-x-12 gap-y-4">
             {footerLinks.map((link) => (
               <Link
@@ -42,18 +41,25 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-16 flex flex-col gap-4 border-t border-border/50 pt-8 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>
-            Powered by{' '}
-            <span className="font-serif italic text-foreground">ipxs</span>
-            <span>.digital</span>
-          </p>
-          <p>
-            Founded by{' '}
-            <span className="text-foreground">Darion R. Harris</span>{' '}
-            <span className="text-muted-foreground/70">(LightGod)</span>
-          </p>
+        <div className="mt-16 flex flex-col gap-4 border-t border-border/50 pt-8 text-xs text-muted-foreground md:flex-row md:items-start md:justify-between">
+          <div className="space-y-1">
+            <p>
+              Powered by <span className="font-serif italic text-foreground">ipxs</span>
+              <span>.digital</span>
+            </p>
+            <p>
+              Founded by <span className="text-foreground">Darion R. Harris</span>{' '}
+              <span className="text-muted-foreground/70">(LightGod)</span>
+            </p>
+          </div>
+          <div className="space-y-1 text-left md:text-right">
+            <p className="uppercase tracking-[0.14em]">Team</p>
+            {team.map((member) => (
+              <p key={member.name}>
+                <span className="text-foreground">{member.name}</span>, {member.role}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
