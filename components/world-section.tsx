@@ -67,7 +67,6 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
             isActive ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-80'
           )}
         >
-        <div className="relative mx-auto max-w-6xl">
           <div className="mb-8 flex items-center gap-4">
             <span className="font-mono text-sm text-accent">{number}</span>
             <div className="h-px flex-1 max-w-16 bg-border" />
