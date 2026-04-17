@@ -53,7 +53,6 @@ export function PortalMenu() {
           isOpen && 'border-accent bg-card'
         )}
         aria-label={isOpen ? 'Close portal menu' : 'Open portal menu'}
-        data-cursor="Open"
       >
         {isOpen ? (
           <X className="h-5 w-5" />
@@ -92,7 +91,6 @@ export function PortalMenu() {
                 style={{
                   transitionDelay: isOpen ? `${index * 50}ms` : '0ms',
                 }}
-                data-cursor="Enter"
               >
                 <span className="font-mono text-sm text-accent">{world.number}</span>
                 <span className="flex-1 text-lg font-medium transition-colors group-hover:text-accent md:text-xl">

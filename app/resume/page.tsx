@@ -28,13 +28,13 @@ const selectedWork = [
   {
     title: 'Major Label Campaigns',
     role: 'Creative Director',
-    period: 'Selected Projects',
+    period: 'Selected Case Studies',
     description: 'Visual systems and motion campaigns for platinum-certified releases.',
   },
   {
     title: 'Institutional Platforms',
     role: 'Technical Lead',
-    period: 'Selected Projects',
+    period: 'Selected Case Studies',
     description: 'Board-ready dashboards and investor platforms for fund managers.',
   },
 ]
@@ -119,13 +119,13 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* Selected Work */}
+      {/* Selected Case Studies */}
       <section className="border-b border-border/50 py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-3">
             <div>
               <h2 className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                Selected Work
+                Selected Case Studies
               </h2>
             </div>
             <div className="lg:col-span-2">
