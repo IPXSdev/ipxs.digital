@@ -22,6 +22,16 @@ interface WorldSectionProps {
   isActive?: boolean
 }
 
+// Per world gradients for distinct identity, lightweight and fast
+const worldGradients: Record<string, string> = {
+  'music-release-systems': 'from-fuchsia-500/10 via-background to-background',
+  'motion-social-ads': 'from-cyan-400/10 via-background to-background',
+  commercials: 'from-amber-400/10 via-background to-background',
+  'pitch-deck-architecture': 'from-violet-500/10 via-background to-background',
+  'websites-mvp-platforms': 'from-emerald-400/10 via-background to-background',
+  'institutional-investor-systems': 'from-sky-400/10 via-background to-background',
+}
+
 const posterDataUri =
   'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23111111"/><stop offset="100%" stop-color="%23222222"/></linearGradient></defs><rect width="800" height="600" fill="url(%23g)"/></svg>'
 
@@ -32,7 +42,7 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
         ref={ref}
         id={id}
         data-world={id}
-        className="relative flex min-h-screen snap-start flex-col justify-center px-4 py-24 md:px-8 lg:pl-32"
+        className="relative flex min-h-screen snap-start flex-col justify-center overflow-hidden px-4 py-24 md:px-8 lg:pl-32"
       >
         <div
           className={cn(
@@ -42,7 +52,21 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto max-w-6xl">
+        <div
+          className={cn(
+            'pointer-events-none absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-700',
+            worldGradients[id] ?? 'from-accent/5 via-background to-background',
+            isActive && 'opacity-100'
+          )}
+          aria-hidden="true"
+        />
+
+        <div
+          className={cn(
+            'relative mx-auto max-w-6xl transition-all duration-700',
+            isActive ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-80'
+          )}
+        >
           <div className="mb-8 flex items-center gap-4">
             <span className="font-mono text-sm text-accent">{number}</span>
             <div className="h-px flex-1 max-w-16 bg-border" />
@@ -79,6 +103,7 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
                 <h3 className="mb-2 text-base font-medium leading-snug transition-colors group-hover:text-accent">
                   {caseStudy.title}
                 </h3>
+
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {caseStudy.outcome}
                 </p>
