@@ -23,8 +23,8 @@ export function CaseStudyCard({
   return (
     <article
       className={cn(
-        'group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all duration-300',
-        'hover:border-muted-foreground/30 hover:bg-secondary/50',
+        'gradient-border sheen-hover group relative flex flex-col overflow-hidden rounded-lg transition-all duration-300',
+        'hover:-translate-y-0.5 hover:neon-glow-soft',
         className
       )}
     >

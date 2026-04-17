@@ -6,39 +6,33 @@ import { WorldSection } from '@/components/world-section'
 import { ProgressIndicator } from '@/components/progress-indicator'
 import { usePortal } from '@/components/portal-overlay'
 import { useLenis } from '@/components/lenis-provider'
-
-interface CaseStudy {
-  id: string
-  title: string
-  category: string
-  outcome: string
-}
-
-interface World {
-  id: string
-  number: string
-  title: string
-  outcome: string
-  caseStudies: CaseStudy[]
-}
+import type { getWorldsWithCaseStudies } from '@/content/case-studies'
 
 interface WorkWorldsClientProps {
-  worlds: World[]
+  worlds: ReturnType<typeof getWorldsWithCaseStudies>
 }
 
 export function WorkWorldsClient({ worlds }: WorkWorldsClientProps) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const sectionRefs = useRef<(HTMLElement | null)[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
   const { triggerPortal } = usePortal()
   const { scrollTo } = useLenis()
 
-  // Track active section based on scroll position
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const updateMotionPreference = () => setPrefersReducedMotion(mediaQuery.matches)
+
+    updateMotionPreference()
+    mediaQuery.addEventListener('change', updateMotionPreference)
+
+    return () => mediaQuery.removeEventListener('change', updateMotionPreference)
+  }, [])
+
   useEffect(() => {
     const handleScroll = () => {
       const viewportHeight = window.innerHeight
-
-      // Find which section is most visible
       let closestIndex = 0
       let closestDistance = Infinity
 
@@ -60,53 +54,54 @@ export function WorkWorldsClient({ worlds }: WorkWorldsClientProps) {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Initial check
+    handleScroll()
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Handle DNA node click with portal transition
   const handleNodeClick = useCallback(
     (index: number) => {
       const section = sectionRefs.current[index]
-      if (section) {
-        triggerPortal(() => {
-          scrollTo(section, { offset: -100, duration: 0.5 })
-          setActiveIndex(index)
-        })
+      if (!section) return
+
+      if (prefersReducedMotion) {
+        scrollTo(section, { offset: -100, duration: 0 })
+        setActiveIndex(index)
+        return
       }
+
+      triggerPortal(() => {
+        scrollTo(section, { offset: -100, duration: 0.5 })
+        setActiveIndex(index)
+      })
     },
-    [triggerPortal, scrollTo]
+    [prefersReducedMotion, scrollTo, triggerPortal]
   )
 
   return (
     <div ref={containerRef} className="relative">
-      {/* Page header */}
       <div className="flex min-h-[40vh] items-end px-4 pb-16 pt-32 md:px-8 lg:pl-32">
         <div className="mx-auto w-full max-w-6xl">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
             Case Studies
           </p>
           <h1 className="max-w-4xl font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
-            Work That Speaks for Itself
+            Six Worlds, One Standard
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Explore our case studies across six categories. Each world represents a distinct discipline where we deliver premium creative output.
+            Scroll through six case study worlds. Each world maps to a core ipxs.digital discipline and opens into detailed execution records.
           </p>
         </div>
       </div>
 
-      {/* DNA Chain navigation */}
       <DNAChain
         worlds={worlds.map((w) => ({ id: w.id, number: w.number, title: w.title }))}
         activeIndex={activeIndex}
         onNodeClick={handleNodeClick}
       />
 
-      {/* Progress indicator */}
       <ProgressIndicator current={activeIndex + 1} total={worlds.length} />
 
-      {/* Soft snap scroll container */}
       <div className="snap-y snap-proximity">
         {worlds.map((world, index) => (
           <WorldSection

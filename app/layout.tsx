@@ -1,29 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { LenisProvider } from '@/components/lenis-provider'
 import { FilmGrain } from '@/components/film-grain'
-import { CustomCursor } from '@/components/custom-cursor'
+import { AuroraBackground } from '@/components/aurora-background'
 import { PortalOverlay } from '@/components/portal-overlay'
 import { PortalMenu } from '@/components/portal-menu'
 import './globals.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-})
-
-const geistMono = Geist_Mono({
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
-})
 
 export const metadata: Metadata = {
   title: {
@@ -78,12 +62,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${geistMono.variable} bg-background`}>
-      <body className="font-sans antialiased min-h-screen flex flex-col">
+    <html lang="en" className="bg-background">
+      <body className="relative font-sans antialiased min-h-screen flex flex-col">
+        <AuroraBackground />
         <LenisProvider>
           <PortalOverlay>
             <FilmGrain />
-            <CustomCursor />
             <Navigation />
             <PortalMenu />
             <main className="flex-1">{children}</main>

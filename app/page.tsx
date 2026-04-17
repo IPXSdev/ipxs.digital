@@ -64,7 +64,7 @@ export default function HomePage() {
         
         {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.06]"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
@@ -80,9 +80,9 @@ export default function HomePage() {
             </p>
 
             {/* Headline */}
-            <h1 className="max-w-4xl font-serif text-4xl font-medium leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
-              <span className="block">Storytelling That Delivers.</span>
-              <span className="block text-muted-foreground">Design That Wins.</span>
+            <h1 className="max-w-4xl font-serif text-4xl font-medium leading-[1.08] tracking-tight md:text-6xl lg:text-7xl">
+              <span className="block gradient-text">Storytelling That Delivers.</span>
+              <span className="block text-foreground/80">Design That Wins.</span>
             </h1>
 
             {/* Subhead */}
@@ -102,13 +102,13 @@ export default function HomePage() {
 
             {/* CTAs */}
             <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full px-8">
+              <Button asChild size="lg" className="gradient-border neon-glow-soft rounded-full px-8 text-foreground">
                 <Link href="/work">
                   View Case Studies
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8">
+              <Button asChild variant="outline" size="lg" className="rounded-full border-accent/40 bg-card/40 px-8 text-foreground hover:bg-card/70">
                 <Link href="/contact">Start a Project</Link>
               </Button>
             </div>
