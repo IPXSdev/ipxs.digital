@@ -22,6 +22,7 @@ interface WorldSectionProps {
   isActive?: boolean
 }
 
+// Per world gradients for distinct identity, lightweight and fast
 const worldGradients: Record<string, string> = {
   'music-release-systems': 'from-fuchsia-500/10 via-background to-background',
   'motion-social-ads': 'from-cyan-400/10 via-background to-background',
@@ -50,6 +51,7 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
           )}
           aria-hidden="true"
         />
+
         <div
           className={cn(
             'pointer-events-none absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-700',
@@ -101,6 +103,7 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
                 <h3 className="mb-2 text-base font-medium leading-snug transition-colors group-hover:text-accent">
                   {caseStudy.title}
                 </h3>
+
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {caseStudy.outcome}
                 </p>
