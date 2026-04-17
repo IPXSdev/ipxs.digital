@@ -116,6 +116,7 @@ export function WorkWorldsClient({ worlds }: WorkWorldsClientProps) {
             }}
             {...world}
             isActive={index === activeIndex}
+            worldIndex={index}
           />
         ))}
       </div>

@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { usePortal } from './portal-overlay'
-import { useLenis } from './lenis-provider'
 
 interface World {
   id: string
@@ -20,14 +18,15 @@ interface DNAChainProps {
 export function DNAChain({ worlds, activeIndex, onNodeClick }: DNAChainProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   useEffect(() => {
     setIsMobile(window.matchMedia('(max-width: 768px)').matches)
-    
+
     const handleResize = () => {
       setIsMobile(window.matchMedia('(max-width: 768px)').matches)
     }
-    
+
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
@@ -58,18 +57,45 @@ export function DNAChain({ worlds, activeIndex, onNodeClick }: DNAChainProps) {
 
       const centerX = rect.width / 2
       const nodeSpacing = rect.height / (worlds.length + 1)
-      const amplitude = 8
-      const frequency = 0.02
+      const amplitude = 10
+      const frequency = 0.018
 
-      // Draw connecting strands
+      // Draw primary helix strand with gradient
+      const gradient1 = ctx.createLinearGradient(0, 0, 0, rect.height)
+      gradient1.addColorStop(0, 'rgba(255, 200, 100, 0.05)')
+      gradient1.addColorStop(0.5, 'rgba(255, 200, 100, 0.15)')
+      gradient1.addColorStop(1, 'rgba(255, 200, 100, 0.05)')
+
       ctx.beginPath()
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'
+      ctx.strokeStyle = gradient1
+      ctx.lineWidth = 1.5
+
+      for (let y = 0; y < rect.height; y += 1) {
+        const wave = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.015) * amplitude
+        const x = centerX + wave
+
+        if (y === 0) {
+          ctx.moveTo(x, y)
+        } else {
+          ctx.lineTo(x, y)
+        }
+      }
+      ctx.stroke()
+
+      // Draw secondary helix strand
+      const gradient2 = ctx.createLinearGradient(0, 0, 0, rect.height)
+      gradient2.addColorStop(0, 'rgba(255, 255, 255, 0.02)')
+      gradient2.addColorStop(0.5, 'rgba(255, 255, 255, 0.08)')
+      gradient2.addColorStop(1, 'rgba(255, 255, 255, 0.02)')
+
+      ctx.beginPath()
+      ctx.strokeStyle = gradient2
       ctx.lineWidth = 1
 
-      for (let y = 0; y < rect.height; y += 2) {
-        const wave = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.02) * amplitude
+      for (let y = 0; y < rect.height; y += 1) {
+        const wave = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.015 + Math.PI) * amplitude
         const x = centerX + wave
-        
+
         if (y === 0) {
           ctx.moveTo(x, y)
         } else {
@@ -78,31 +104,21 @@ export function DNAChain({ worlds, activeIndex, onNodeClick }: DNAChainProps) {
       }
       ctx.stroke()
 
-      // Draw second helix strand
-      ctx.beginPath()
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'
-      
-      for (let y = 0; y < rect.height; y += 2) {
-        const wave = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.02 + Math.PI) * amplitude
-        const x = centerX + wave
-        
-        if (y === 0) {
-          ctx.moveTo(x, y)
-        } else {
-          ctx.lineTo(x, y)
-        }
-      }
-      ctx.stroke()
-
-      // Draw cross connections
+      // Draw cross connections at node positions
       for (let i = 0; i < worlds.length; i++) {
         const y = nodeSpacing * (i + 1)
-        const wave1 = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.02) * amplitude
-        const wave2 = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.02 + Math.PI) * amplitude
-        
+        const wave1 = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.015) * amplitude
+        const wave2 = prefersReducedMotion ? 0 : Math.sin(y * frequency + time * 0.015 + Math.PI) * amplitude
+        const isActive = i === activeIndex
+        const isHovered = i === hoveredIndex
+
         ctx.beginPath()
-        ctx.strokeStyle = i === activeIndex ? 'rgba(255, 200, 100, 0.3)' : 'rgba(255, 255, 255, 0.05)'
-        ctx.lineWidth = 1
+        ctx.strokeStyle = isActive
+          ? 'rgba(255, 200, 100, 0.5)'
+          : isHovered
+            ? 'rgba(255, 200, 100, 0.3)'
+            : 'rgba(255, 255, 255, 0.08)'
+        ctx.lineWidth = isActive ? 2 : 1
         ctx.moveTo(centerX + wave1, y)
         ctx.lineTo(centerX + wave2, y)
         ctx.stroke()
@@ -120,69 +136,87 @@ export function DNAChain({ worlds, activeIndex, onNodeClick }: DNAChainProps) {
       window.removeEventListener('resize', resize)
       cancelAnimationFrame(animationId)
     }
-  }, [worlds.length, activeIndex, isMobile])
+  }, [worlds.length, activeIndex, hoveredIndex, isMobile])
 
   if (isMobile) {
-    // Simplified mobile version - horizontal dots at bottom
+    // Enhanced mobile version with pill shape
     return (
-      <div className="fixed bottom-8 left-1/2 z-50 flex -translate-x-1/2 gap-3">
+      <div className="fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full border border-border/50 bg-background/80 px-4 py-3 backdrop-blur-md">
         {worlds.map((world, index) => (
           <button
             key={world.id}
             onClick={() => onNodeClick(index)}
             className={cn(
-              'h-3 w-3 rounded-full border transition-all duration-300',
+              'relative h-2.5 w-2.5 rounded-full transition-all duration-300',
               index === activeIndex
-                ? 'scale-125 border-accent bg-accent shadow-[0_0_12px_rgba(255,200,100,0.5)]'
-                : 'border-muted-foreground/30 bg-transparent hover:border-muted-foreground'
+                ? 'scale-150 bg-accent shadow-[0_0_12px_rgba(255,200,100,0.6)]'
+                : 'bg-muted-foreground/40 hover:bg-muted-foreground/60'
             )}
             aria-label={`Go to ${world.title}`}
-          />
+          >
+            {index === activeIndex && (
+              <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-40" />
+            )}
+          </button>
         ))}
       </div>
     )
   }
 
   return (
-    <div className="fixed left-8 top-1/2 z-50 hidden h-[60vh] w-12 -translate-y-1/2 md:block lg:left-12">
+    <div className="fixed left-8 top-1/2 z-50 hidden h-[65vh] w-16 -translate-y-1/2 md:block lg:left-12">
       {/* Canvas for DNA helix animation */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 h-full w-full"
-        aria-hidden="true"
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
 
       {/* Interactive nodes */}
-      <div className="relative flex h-full flex-col justify-between py-8">
-        {worlds.map((world, index) => (
-          <button
-            key={world.id}
-            onClick={() => onNodeClick(index)}
-            className={cn(
-              'group relative flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300',
-              index === activeIndex
-                ? 'border-accent bg-accent/20 shadow-[0_0_20px_rgba(255,200,100,0.4)]'
-                : 'border-muted-foreground/30 bg-background/50 hover:border-muted-foreground hover:bg-muted/20'
-            )}
-            data-cursor="Enter"
-            data-cursor-magnetic
-            aria-label={`Go to ${world.title}`}
-          >
-            <span
+      <div className="relative flex h-full flex-col justify-between py-6">
+        {worlds.map((world, index) => {
+          const isActive = index === activeIndex
+          const isHovered = index === hoveredIndex
+
+          return (
+            <button
+              key={world.id}
+              onClick={() => onNodeClick(index)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
               className={cn(
-                'text-xs font-mono transition-colors',
-                index === activeIndex ? 'text-accent' : 'text-muted-foreground group-hover:text-foreground'
+                'group relative flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all duration-300',
+                isActive
+                  ? 'border-accent bg-accent/20 shadow-[0_0_25px_rgba(255,200,100,0.4),0_0_50px_rgba(255,200,100,0.2)]'
+                  : 'border-border/50 bg-background/80 backdrop-blur-sm hover:border-accent/50 hover:bg-card/50'
               )}
+              data-cursor="Enter"
+              data-cursor-magnetic
+              aria-label={`Go to ${world.title}`}
             >
-              {world.number}
-            </span>
-            
-            {/* Tooltip */}
-            <span className="absolute left-full ml-4 whitespace-nowrap rounded bg-card px-2 py-1 text-xs text-foreground opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
-              {world.title}
-            </span>
-          </button>
-        ))}
+              {/* Inner glow ring for active */}
+              {isActive && (
+                <span className="absolute inset-1 rounded-full border border-accent/30 bg-accent/10" />
+              )}
+
+              <span
+                className={cn(
+                  'relative font-mono text-xs font-medium transition-colors',
+                  isActive ? 'text-accent' : 'text-muted-foreground group-hover:text-foreground'
+                )}
+              >
+                {world.number}
+              </span>
+
+              {/* Tooltip with enhanced styling */}
+              <span
+                className={cn(
+                  'absolute left-full ml-5 flex items-center gap-2 whitespace-nowrap rounded-lg border border-border/50 bg-card/95 px-3 py-2 text-xs shadow-xl backdrop-blur-sm transition-all duration-200',
+                  isHovered ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0 pointer-events-none'
+                )}
+              >
+                <span className="font-mono text-accent">{world.number}</span>
+                <span className="font-medium text-foreground">{world.title}</span>
+              </span>
+            </button>
+          )
+        })}
       </div>
     </div>
   )
