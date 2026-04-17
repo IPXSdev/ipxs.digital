@@ -62,7 +62,6 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
                 key={caseStudy.id}
                 href={`/work/${caseStudy.slug}`}
                 className="group relative overflow-hidden rounded-lg border border-border/50 bg-card/50 p-5 transition-all duration-300 hover:border-accent/30 hover:bg-card"
-                data-cursor="Enter"
               >
                 <img
                   src={posterDataUri}

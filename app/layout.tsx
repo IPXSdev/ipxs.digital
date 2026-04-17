@@ -5,7 +5,6 @@ import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import { LenisProvider } from '@/components/lenis-provider'
 import { FilmGrain } from '@/components/film-grain'
-import { CustomCursor } from '@/components/custom-cursor'
 import { PortalOverlay } from '@/components/portal-overlay'
 import { PortalMenu } from '@/components/portal-menu'
 import './globals.css'
@@ -83,7 +82,6 @@ export default function RootLayout({
         <LenisProvider>
           <PortalOverlay>
             <FilmGrain />
-            <CustomCursor />
             <Navigation />
             <PortalMenu />
             <main className="flex-1">{children}</main>
