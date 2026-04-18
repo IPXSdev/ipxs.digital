@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server'
-import { supabaseAnonFetch } from '@/lib/supabase-rest'
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -57,6 +56,16 @@ function validatePayload(payload: ContactSubmission) {
 
 export async function POST(request: Request) {
   try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return NextResponse.json(
+        { error: 'Contact form is not configured.' },
+        { status: 500 },
+      )
+    }
+
     const payload = (await request.json()) as ContactSubmission
     const referer = request.headers.get('referer') || ''
 
@@ -69,18 +78,31 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: validated.error }, { status: 400 })
     }
 
-    const response = await supabaseAnonFetch('contact_submissions', {
+    const response = await fetch(`${supabaseUrl}/rest/v1/contact_submissions`, {
       method: 'POST',
       headers: {
+        apikey: supabaseAnonKey,
+        Authorization: `Bearer ${supabaseAnonKey}`,
+        'Content-Type': 'application/json',
         Prefer: 'return=minimal',
       },
       body: JSON.stringify(validated.value),
+      cache: 'no-store',
     })
 
     if (!response.ok) {
-      const details = await response.text()
+      let details: unknown = null
+      try {
+        details = await response.json()
+      } catch {
+        details = await response.text()
+      }
+
       return NextResponse.json(
-        { error: 'Unable to submit your message right now.', details },
+        {
+          error: 'Unable to submit your message right now.',
+          details,
+        },
         { status: 500 },
       )
     }
