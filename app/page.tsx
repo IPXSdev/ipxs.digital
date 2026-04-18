@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
+import { DropSection } from '@/components/drop-section'
 
 const pillars = [
   {
@@ -240,6 +241,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <DropSection />
 
       {/* CTA Band */}
       <section className="py-24 lg:py-32">

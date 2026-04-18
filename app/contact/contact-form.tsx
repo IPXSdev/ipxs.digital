@@ -41,6 +41,8 @@ export function ContactForm() {
     const name = String(formData.get('name') ?? '').trim()
     const email = String(formData.get('email') ?? '').trim()
     const message = String(formData.get('message') ?? '').trim()
+    const phone = String(formData.get('phone') ?? '').trim()
+    const company = String(formData.get('company') ?? '').trim()
 
     if (!name || !email || !message || !projectType) {
       setError('Please complete all required fields before submitting.')
@@ -59,7 +61,10 @@ export function ContactForm() {
           name,
           email,
           message,
+          phone,
+          company,
           projectType,
+          inquiryType: projectType,
           subject: `Website inquiry (${projectType})`,
           sourcePage: window.location.pathname,
         }),
@@ -125,6 +130,26 @@ export function ContactForm() {
           />
         </Field>
 
+
+        <Field>
+          <FieldLabel htmlFor="company">Company (Optional)</FieldLabel>
+          <Input
+            id="company"
+            name="company"
+            placeholder="Your company"
+            className="rounded-lg bg-card"
+          />
+        </Field>
+
+        <Field>
+          <FieldLabel htmlFor="phone">Phone (Optional)</FieldLabel>
+          <Input
+            id="phone"
+            name="phone"
+            placeholder="(555) 555-5555"
+            className="rounded-lg bg-card"
+          />
+        </Field>
         <Field>
           <FieldLabel htmlFor="project-type">Project Type</FieldLabel>
           <Select value={projectType} onValueChange={setProjectType} required>
