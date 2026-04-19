@@ -1,26 +1,49 @@
+'use client'
+
 export function AuroraBackground() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden aurora-mesh"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      <div className="aurora-blob absolute -left-24 top-[-7rem] h-80 w-80 rounded-full bg-[oklch(0.72_0.16_220/0.18)] blur-3xl mix-blend-multiply" />
-      <div className="aurora-blob absolute right-[-4rem] top-[8%] h-[22rem] w-[22rem] rounded-full bg-[oklch(0.63_0.18_285/0.15)] blur-3xl mix-blend-multiply" />
-      <div className="aurora-blob absolute left-[28%] top-[48%] h-72 w-72 rounded-full bg-[oklch(0.67_0.2_332/0.12)] blur-3xl mix-blend-multiply" />
-      <div className="aurora-blob absolute bottom-[-8rem] right-[20%] h-96 w-96 rounded-full bg-[oklch(0.72_0.16_220/0.1)] blur-3xl mix-blend-multiply" />
+      {/* Base light gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
+      
+      {/* Aurora blobs with subtle neon colors for light mode */}
+      <div className="aurora-blob absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[oklch(0.55_0.22_220/0.06)] blur-[100px]" />
+      <div className="aurora-blob absolute -right-24 top-[10%] h-[400px] w-[400px] rounded-full bg-[oklch(0.50_0.24_285/0.05)] blur-[100px]" />
+      <div className="aurora-blob absolute left-[20%] top-[45%] h-[350px] w-[350px] rounded-full bg-[oklch(0.55_0.26_340/0.04)] blur-[100px]" />
+      <div className="aurora-blob absolute -bottom-32 right-[25%] h-[450px] w-[450px] rounded-full bg-[oklch(0.52_0.18_188/0.04)] blur-[100px]" />
+      <div className="aurora-blob absolute bottom-[20%] -left-16 h-[300px] w-[300px] rounded-full bg-[oklch(0.50_0.24_285/0.03)] blur-[100px]" />
+
       <style>{`
         @media (prefers-reduced-motion: no-preference) {
           .aurora-blob {
-            animation: auroraFloat 24s ease-in-out infinite;
+            animation: auroraFloat 28s ease-in-out infinite;
           }
-          .aurora-blob:nth-child(2) { animation-delay: -5s; }
-          .aurora-blob:nth-child(3) { animation-delay: -10s; }
-          .aurora-blob:nth-child(4) { animation-delay: -15s; }
-          .aurora-blob:nth-child(5) { animation-delay: -19s; }
+          .aurora-blob:nth-child(2) { animation-delay: -4s; animation-duration: 32s; }
+          .aurora-blob:nth-child(3) { animation-delay: -8s; animation-duration: 26s; }
+          .aurora-blob:nth-child(4) { animation-delay: -12s; animation-duration: 30s; }
+          .aurora-blob:nth-child(5) { animation-delay: -16s; animation-duration: 24s; }
+          .aurora-blob:nth-child(6) { animation-delay: -20s; animation-duration: 34s; }
         }
         @keyframes auroraFloat {
-          0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-          50% { transform: translate3d(0, -12px, 0) scale(1.03); }
+          0%, 100% { 
+            transform: translate3d(0, 0, 0) scale(1); 
+            opacity: 1;
+          }
+          25% { 
+            transform: translate3d(15px, -20px, 0) scale(1.05); 
+            opacity: 0.9;
+          }
+          50% { 
+            transform: translate3d(-10px, -30px, 0) scale(0.98); 
+            opacity: 1;
+          }
+          75% { 
+            transform: translate3d(-20px, -10px, 0) scale(1.02); 
+            opacity: 0.95;
+          }
         }
       `}</style>
     </div>
