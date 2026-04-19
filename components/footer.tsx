@@ -1,63 +1,66 @@
 import Link from 'next/link'
-import { team } from '@/content/team'
+import { cn } from '@/lib/utils'
 
-const footerLinks = [
+const primaryLinks = [
   { href: '/work', label: 'Case Studies' },
   { href: '/services', label: 'Services' },
-  { href: '/deck', label: 'Deck' },
-  { href: '/resume', label: 'Resume' },
   { href: '/lab', label: 'Lab' },
   { href: '/contact', label: 'Contact' },
 ]
 
+const secondaryLinks = [
+  { href: '/deck', label: 'Deck' },
+  { href: '/resume', label: 'Resume' },
+]
+
 export function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="border-t border-border/50 bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex flex-col gap-4">
+    <footer className="border-t border-border/40 bg-background/70 backdrop-blur">
+      <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-12 md:items-start">
+          <div className="md:col-span-5">
             <Link
               href="/"
-              className="text-xl font-medium tracking-tight transition-opacity hover:opacity-70"
+              className={cn(
+                'text-base font-semibold tracking-tight',
+                'text-foreground hover:text-foreground/90'
+              )}
             >
-              <span className="font-serif italic">ipxs</span>
-              <span className="text-muted-foreground">.digital</span>
+              ipxs.digital
             </Link>
-            <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-md text-sm text-muted-foreground">
               Entertainment Creative Technology Studio building AI-powered release ecosystems.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-x-12 gap-y-4">
-            {footerLinks.map((link) => (
+          <nav className="md:col-span-7 md:flex md:justify-end" aria-label="Footer">
+            <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+              {primaryLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-border/30 pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <div>© {year} ipxs.digital</div>
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            {secondaryLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="hover:text-foreground transition-colors"
               >
                 {link.label}
               </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16 flex flex-col gap-4 border-t border-border/50 pt-8 text-xs text-muted-foreground md:flex-row md:items-start md:justify-between">
-          <div className="space-y-1">
-            <p>
-              Powered by <span className="font-serif italic text-foreground">ipxs</span>
-              <span>.digital</span>
-            </p>
-            <p>
-              Founded by <span className="text-foreground">Darion R. Harris</span>{' '}
-              <span className="text-muted-foreground/70">(LightGod)</span>
-            </p>
-          </div>
-          <div className="space-y-1 text-left md:text-right">
-            <p className="uppercase tracking-[0.14em]">Team</p>
-            {team.map((member) => (
-              <p key={member.name}>
-                <span className="text-foreground">{member.name}</span>, {member.role}
-              </p>
             ))}
           </div>
         </div>

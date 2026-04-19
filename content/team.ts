@@ -8,8 +8,4 @@ export const team: TeamMember[] = [
     name: 'Darion R. Harris (LightGod)',
     role: 'Founder and Lead Creative Technologist',
   },
-  {
-    name: 'Codex',
-    role: 'Engineering Support',
-  },
 ]
