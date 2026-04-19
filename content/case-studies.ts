@@ -38,6 +38,8 @@ export interface CaseStudy {
   slug: string
   title: string
   category: CaseStudyCategory
+  poster: string
+  cover: string
   outcomeLine: string
   deliverables: string[]
   pipelineSteps: PipelineStep[]
@@ -111,6 +113,8 @@ export const caseStudies: CaseStudy[] = [
     slug: 'atlas-debut-release-system',
     title: 'Atlas Debut Release System',
     category: 'Music Release Systems',
+    poster: '/case-studies/atlas-debut-release-system/poster.svg',
+    cover: '/case-studies/atlas-debut-release-system/cover.svg',
     outcomeLine: 'Unified visual rollout that supported a breakout release window with consistent platform execution.',
     deliverables: ['Cover art suite', 'Visualizer cutdowns', 'Social rollout templates', 'Release calendar kit'],
     pipelineSteps: defaultPipeline,
@@ -120,8 +124,8 @@ export const caseStudies: CaseStudy[] = [
       { label: 'YouTube', url: '#' },
     ],
     media: [
-      { id: 'atlas-cover', type: 'image', src: null, poster: null, alt: 'Atlas cover art concept', caption: 'Primary cover direction for launch week.' },
-      { id: 'atlas-visualizer', type: 'video', src: null, poster: null, alt: 'Atlas visualizer preview', caption: 'Visualizer treatment for social and streaming placements.' },
+      { id: 'atlas-cover', type: 'image', src: '/case-studies/atlas-debut-release-system/cover.svg', poster: '/case-studies/atlas-debut-release-system/poster.svg', alt: 'Atlas cover art concept', caption: 'Primary cover direction for launch week.' },
+      { id: 'atlas-visualizer', type: 'video', src: null, poster: '/case-studies/atlas-debut-release-system/poster.svg', alt: 'Atlas visualizer preview', caption: 'Visualizer treatment for social and streaming placements.' },
     ],
     credits: defaultCredits,
   },
@@ -130,6 +134,8 @@ export const caseStudies: CaseStudy[] = [
     slug: 'northstar-tour-motion-campaign',
     title: 'Northstar Tour Motion Campaign',
     category: 'Motion and Social Ads',
+    poster: '/case-studies/northstar-tour-motion-campaign/poster.svg',
+    cover: '/case-studies/northstar-tour-motion-campaign/cover.svg',
     outcomeLine: 'Cross-platform campaign package that increased ticket intent through short-form creative sequencing.',
     deliverables: ['Motion ad set', 'Story edits', 'Countdown package', 'Retargeting variants'],
     pipelineSteps: defaultPipeline,
@@ -138,8 +144,8 @@ export const caseStudies: CaseStudy[] = [
       { label: 'TikTok', url: '#' },
     ],
     media: [
-      { id: 'northstar-trailer', type: 'video', src: null, poster: null, alt: 'Northstar campaign trailer', caption: 'Click to play campaign trailer cut.' },
-      { id: 'northstar-grid', type: 'image', src: null, poster: null, alt: 'Northstar ad grid', caption: 'Social ad variants for launch phase.' },
+      { id: 'northstar-trailer', type: 'video', src: null, poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar campaign trailer', caption: 'Click to play campaign trailer cut.' },
+      { id: 'northstar-grid', type: 'image', src: '/case-studies/northstar-tour-motion-campaign/cover.svg', poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar ad grid', caption: 'Social ad variants for launch phase.' },
     ],
     credits: defaultCredits,
   },
@@ -148,13 +154,15 @@ export const caseStudies: CaseStudy[] = [
     slug: 'pulse-brand-commercial',
     title: 'Pulse Brand Commercial',
     category: 'Commercials',
+    poster: '/case-studies/pulse-brand-commercial/poster.svg',
+    cover: '/case-studies/pulse-brand-commercial/cover.svg',
     outcomeLine: 'Hero commercial and cutdowns that clarified product value while preserving premium brand tone.',
     deliverables: ['60-second hero spot', '15-second cutdowns', 'Platform safe-title versions'],
     pipelineSteps: defaultPipeline,
     proofLinks: [{ label: 'YouTube', url: '#' }],
     media: [
-      { id: 'pulse-hero', type: 'video', src: null, poster: null, alt: 'Pulse hero commercial', caption: 'Main commercial edit, click to play.' },
-      { id: 'pulse-stills', type: 'image', src: null, poster: null, alt: 'Pulse still frames', caption: 'Stills from narrative and product sequences.' },
+      { id: 'pulse-hero', type: 'video', src: null, poster: '/case-studies/pulse-brand-commercial/poster.svg', alt: 'Pulse hero commercial', caption: 'Main commercial edit, click to play.' },
+      { id: 'pulse-stills', type: 'image', src: '/case-studies/pulse-brand-commercial/cover.svg', poster: '/case-studies/pulse-brand-commercial/poster.svg', alt: 'Pulse still frames', caption: 'Stills from narrative and product sequences.' },
     ],
     credits: defaultCredits,
   },
@@ -163,12 +171,14 @@ export const caseStudies: CaseStudy[] = [
     slug: 'aurora-series-a-deck',
     title: 'Aurora Series A Deck System',
     category: 'Pitch Deck Architecture',
+    poster: '/case-studies/aurora-series-a-deck/poster.svg',
+    cover: '/case-studies/aurora-series-a-deck/cover.svg',
     outcomeLine: 'Structured investor narrative and visual system for a high-stakes raise process.',
     deliverables: ['Core investor deck', 'Data room narrative map', 'Partner Q and A support slides'],
     pipelineSteps: defaultPipeline,
     proofLinks: [{ label: 'Executive Summary', url: '#' }],
     media: [
-      { id: 'aurora-deck', type: 'image', src: null, poster: null, alt: 'Aurora deck spread', caption: 'Selected story architecture and visual language slides.' },
+      { id: 'aurora-deck', type: 'image', src: '/case-studies/aurora-series-a-deck/cover.svg', poster: '/case-studies/aurora-series-a-deck/poster.svg', alt: 'Aurora deck spread', caption: 'Selected story architecture and visual language slides.' },
     ],
     credits: defaultCredits,
   },
@@ -177,13 +187,15 @@ export const caseStudies: CaseStudy[] = [
     slug: 'nova-artist-platform',
     title: 'Nova Artist Platform MVP',
     category: 'Websites and MVP Platforms',
+    poster: '/case-studies/nova-artist-platform/poster.svg',
+    cover: '/case-studies/nova-artist-platform/cover.svg',
     outcomeLine: 'Launch-ready web platform unifying brand story, music discovery, and conversion pathways.',
     deliverables: ['Experience map', 'MVP frontend', 'CMS content model', 'Analytics instrumentation'],
     pipelineSteps: defaultPipeline,
     proofLinks: [{ label: 'Live Site', url: '#' }],
     media: [
-      { id: 'nova-home', type: 'image', src: null, poster: null, alt: 'Nova platform homepage', caption: 'Homepage and release hub modules.' },
-      { id: 'nova-demo', type: 'video', src: null, poster: null, alt: 'Nova platform demo', caption: 'Guided walkthrough of key MVP flows.' },
+      { id: 'nova-home', type: 'image', src: '/case-studies/nova-artist-platform/cover.svg', poster: '/case-studies/nova-artist-platform/poster.svg', alt: 'Nova platform homepage', caption: 'Homepage and release hub modules.' },
+      { id: 'nova-demo', type: 'video', src: null, poster: '/case-studies/nova-artist-platform/poster.svg', alt: 'Nova platform demo', caption: 'Guided walkthrough of key MVP flows.' },
     ],
     credits: defaultCredits,
   },
@@ -192,12 +204,14 @@ export const caseStudies: CaseStudy[] = [
     slug: 'lumen-investor-portal',
     title: 'Lumen Investor Portal',
     category: 'Institutional and Investor Systems',
+    poster: '/case-studies/lumen-investor-portal/poster.svg',
+    cover: '/case-studies/lumen-investor-portal/cover.svg',
     outcomeLine: 'Secure reporting and communication interface for recurring investor updates and governance workflows.',
     deliverables: ['Portal information architecture', 'Reporting templates', 'Access control UX', 'Quarterly update modules'],
     pipelineSteps: defaultPipeline,
     proofLinks: [{ label: 'Portal Preview', url: '#' }],
     media: [
-      { id: 'lumen-dashboard', type: 'image', src: null, poster: null, alt: 'Lumen dashboard', caption: 'Portfolio and performance dashboard states.' },
+      { id: 'lumen-dashboard', type: 'image', src: '/case-studies/lumen-investor-portal/cover.svg', poster: '/case-studies/lumen-investor-portal/poster.svg', alt: 'Lumen dashboard', caption: 'Portfolio and performance dashboard states.' },
     ],
     credits: defaultCredits,
   },
@@ -217,6 +231,7 @@ export function getWorldsWithCaseStudies() {
         slug: caseStudy.slug,
         title: caseStudy.title,
         category: caseStudy.category,
+        poster: caseStudy.poster,
         outcome: caseStudy.outcomeLine,
       })),
   }))

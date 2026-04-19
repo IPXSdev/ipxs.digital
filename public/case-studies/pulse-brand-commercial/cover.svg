@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Pulse Brand Commercial cover</title>
+  <desc id="desc">Placeholder artwork for Pulse Brand Commercial in Commercials</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5fbff"/>
+      <stop offset="50%" stop-color="#f8f4ff"/>
+      <stop offset="100%" stop-color="#fff5fb"/>
+    </linearGradient>
+    <radialGradient id="c1" cx="18%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#63dbff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#63dbff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="c2" cx="82%" cy="18%" r="56%">
+      <stop offset="0%" stop-color="#8b66ff" stop-opacity="0.48"/>
+      <stop offset="100%" stop-color="#8b66ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="c3" cx="54%" cy="86%" r="52%">
+      <stop offset="0%" stop-color="#ff5cc7" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#ff5cc7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="7"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.055"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  <rect width="100%" height="100%" fill="url(#c1)"/>
+  <rect width="100%" height="100%" fill="url(#c2)"/>
+  <rect width="100%" height="100%" fill="url(#c3)"/>
+  <g opacity="0.5">
+    <circle cx="74%" cy="74%" r="22%" fill="#ffffff" fill-opacity="0.26"/>
+    <circle cx="18%" cy="72%" r="16%" fill="#ffffff" fill-opacity="0.2"/>
+  </g>
+  <rect width="100%" height="100%" filter="url(#grain)"/>
+  <text x="8%" y="420" fill="#121523" font-family="Inter, Avenir Next, Segoe UI, sans-serif" font-size="68" font-weight="700" letter-spacing="-0.02em"><tspan x="8%" dy="0">Pulse Brand Commercial</tspan></text>
+  <text x="8%" y="790" fill="#2f3757" font-family="Inter, Avenir Next, Segoe UI, sans-serif" font-size="28" font-weight="500">Commercials</text>
+  <rect x="8%" y="812" width="84" height="6" rx="3" fill="#6b8cff" fill-opacity="0.5"/>
+</svg>
