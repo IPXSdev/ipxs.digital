@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
+import { DropSection } from '@/components/drop-section'
 
 const pillars = [
   {
@@ -58,9 +59,9 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
         
         {/* Subtle grid pattern */}
         <div
@@ -80,7 +81,7 @@ export default function HomePage() {
             </p>
 
             {/* Headline */}
-            <h1 className="max-w-4xl font-serif text-4xl font-medium leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="max-w-4xl font-serif text-4xl font-medium leading-[1.2] tracking-tight md:text-6xl md:leading-[1.15] lg:text-7xl text-balance">
               <span className="block">Storytelling That Delivers.</span>
               <span className="block text-muted-foreground">Design That Wins.</span>
             </h1>
@@ -102,13 +103,13 @@ export default function HomePage() {
 
             {/* CTAs */}
             <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full px-8">
+              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/work">
                   View Case Studies
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8">
+              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/contact">Start a Project</Link>
               </Button>
             </div>
@@ -124,13 +125,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="flex flex-col items-center gap-2 text-muted-foreground/50">
-            <span className="text-xs uppercase tracking-widest">Scroll</span>
-            <div className="h-8 w-px bg-gradient-to-b from-muted-foreground/50 to-transparent" />
-          </div>
-        </div>
+        {/* Scroll indicator removed */}
       </section>
 
       {/* What We Build Section */}
@@ -149,7 +144,7 @@ export default function HomePage() {
             {pillars.map((pillar) => (
               <article
                 key={pillar.title}
-                className="group flex flex-col gap-6 rounded-lg border border-border bg-card p-8 transition-all duration-300 hover:border-muted-foreground/30 hover:bg-secondary/50"
+                className="group sheen-hover gradient-border neon-glow-hover flex flex-col gap-6 rounded-lg bg-card/80 p-8 transition-all duration-300 hover:bg-secondary/55"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-secondary transition-colors group-hover:border-muted-foreground/30">
                   <pillar.icon className="h-5 w-5 text-foreground" />
@@ -241,6 +236,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <DropSection />
+
       {/* CTA Band */}
       <section className="py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -249,13 +246,13 @@ export default function HomePage() {
               {"Let's build your next release, campaign, or platform."}
             </h2>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full px-8">
+              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/contact">
                   Start a Project
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8">
+              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/deck">View the Deck</Link>
               </Button>
             </div>

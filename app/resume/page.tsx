@@ -57,7 +57,7 @@ export default function ResumePage() {
               <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 Resume
               </p>
-              <h1 className="font-serif text-4xl font-medium leading-tight md:text-5xl">
+              <h1 className="font-serif page-header-title font-medium gradient-text-neon">
                 Darion R. Harris
               </h1>
               <p className="mt-2 text-lg text-muted-foreground">
