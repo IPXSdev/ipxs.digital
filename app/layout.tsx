@@ -66,13 +66,15 @@ export default function RootLayout({
       <body className="relative min-h-screen flex flex-col antialiased">
         <AuroraBackground />
         <LenisProvider>
-          <PortalOverlay>
+          <div className="relative z-10">
+            <PortalOverlay>
             <FilmGrain />
             <Navigation />
             <PortalMenu />
             <main className="flex-1">{children}</main>
             <Footer />
-          </PortalOverlay>
+            </PortalOverlay>
+          </div>
         </LenisProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

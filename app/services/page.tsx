@@ -105,7 +105,7 @@ export default function ServicesPage() {
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
             Services
           </p>
-          <h1 className="max-w-3xl font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
+          <h1 className="max-w-3xl font-serif page-header-title font-medium gradient-text-neon">
             What We Build
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">

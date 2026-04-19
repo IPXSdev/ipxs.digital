@@ -61,7 +61,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {caseStudy.category}
           </span>
 
-          <h1 className="mb-6 max-w-4xl font-serif text-4xl font-medium leading-tight md:text-5xl lg:text-6xl">
+          <h1 className="mb-6 max-w-4xl font-serif page-header-title font-medium gradient-text-neon">
             {caseStudy.title}
           </h1>
 

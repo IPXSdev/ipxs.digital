@@ -61,7 +61,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-secondary/15" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
         
         {/* Subtle grid pattern */}
         <div
@@ -81,7 +81,7 @@ export default function HomePage() {
             </p>
 
             {/* Headline */}
-            <h1 className="max-w-4xl font-serif text-4xl font-medium leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="headline-display max-w-4xl font-serif font-medium tracking-tight">
               <span className="block gradient-text-neon">Storytelling That Delivers.</span>
               <span className="mt-1 block text-foreground/88">Design That Wins.</span>
             </h1>
@@ -103,13 +103,13 @@ export default function HomePage() {
 
             {/* CTAs */}
             <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gradient-border neon-glow-hover rounded-full px-8">
+              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/work">
                   View Case Studies
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="neon-glow-hover rounded-full px-8">
+              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/contact">Start a Project</Link>
               </Button>
             </div>
@@ -252,13 +252,13 @@ export default function HomePage() {
               {"Let's build your next release, campaign, or platform."}
             </h2>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gradient-border neon-glow-hover rounded-full px-8">
+              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/contact">
                   Start a Project
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="neon-glow-hover rounded-full px-8">
+              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
                 <Link href="/deck">View the Deck</Link>
               </Button>
             </div>
