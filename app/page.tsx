@@ -82,8 +82,8 @@ export default function HomePage() {
 
             {/* Headline */}
             <h1 className="headline-display max-w-4xl font-serif font-medium tracking-tight">
-              <span className="block gradient-text-neon">Storytelling That Delivers.</span>
-              <span className="mt-1 block text-foreground/88">Design That Wins.</span>
+              <span className="block text-foreground">Storytelling That Delivers.</span>
+              <span className="mt-1 block gradient-text-neon">Design That Wins.</span>
             </h1>
 
             {/* Subhead */}

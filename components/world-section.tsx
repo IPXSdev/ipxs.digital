@@ -25,12 +25,12 @@ interface WorldSectionProps {
 
 // Per world gradients for distinct identity, lightweight and fast
 const worldGradients: Record<string, string> = {
-  'music-release-systems': 'from-fuchsia-500/10 via-background to-background',
-  'motion-social-ads': 'from-cyan-400/10 via-background to-background',
-  commercials: 'from-amber-400/10 via-background to-background',
-  'pitch-deck-architecture': 'from-violet-500/10 via-background to-background',
-  'websites-mvp-platforms': 'from-emerald-400/10 via-background to-background',
-  'institutional-investor-systems': 'from-sky-400/10 via-background to-background',
+  'music-release-systems': 'from-[oklch(0.70_0.22_332/0.12)] via-transparent to-transparent',
+  'motion-social-ads': 'from-[oklch(0.72_0.18_220/0.12)] via-transparent to-transparent',
+  commercials: 'from-[oklch(0.75_0.16_85/0.10)] via-transparent to-transparent',
+  'pitch-deck-architecture': 'from-[oklch(0.65_0.20_285/0.12)] via-transparent to-transparent',
+  'websites-mvp-platforms': 'from-[oklch(0.68_0.16_160/0.10)] via-transparent to-transparent',
+  'institutional-investor-systems': 'from-[oklch(0.68_0.16_188/0.10)] via-transparent to-transparent',
 }
 
 export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
