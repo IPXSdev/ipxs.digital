@@ -14,9 +14,11 @@ const fallbackPoster =
 export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
   const [playVideo, setPlayVideo] = useState(false)
 
+  const aspectClass = item.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
+
   if (item.type === 'video') {
     return (
-      <div className="group relative aspect-square overflow-hidden rounded-lg border border-border/50 bg-muted/40">
+      <div className={`group relative ${aspectClass} overflow-hidden rounded-lg border border-border/50 bg-muted/40`}>
         {!playVideo ? (
           <button
             type="button"
@@ -60,7 +62,7 @@ export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
   }
 
   return (
-    <div className="group relative aspect-square overflow-hidden rounded-lg border border-border/50 bg-muted/40">
+    <div className={`group relative ${aspectClass} overflow-hidden rounded-lg border border-border/50 bg-muted/40`}>
       {item.src ? (
         <img
           src={item.src}
