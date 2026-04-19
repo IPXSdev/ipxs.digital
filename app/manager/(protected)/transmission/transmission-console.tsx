@@ -67,9 +67,9 @@ export function TransmissionConsole({ initialSignups }: { initialSignups: Transm
                 <tr key={signup.id} className="border-b border-border/40">
                   <td className="py-2">{signup.email}</td>
                   <td className="py-2 text-muted-foreground">{new Date(signup.created_at).toLocaleString()}</td>
-                  <td className="py-2 text-muted-foreground">{signup.source_page || '—'}</td>
+                  <td className="py-2 text-muted-foreground">{signup.source_page || 'N/A'}</td>
                   <td className="py-2"><Badge variant="outline">{signup.status || 'active'}</Badge></td>
-                  <td className="py-2 text-muted-foreground">{signup.tags?.join(', ') || '—'}</td>
+                  <td className="py-2 text-muted-foreground">{signup.tags?.join(', ') || 'N/A'}</td>
                 </tr>
               ))}
             </tbody>

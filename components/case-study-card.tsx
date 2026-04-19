@@ -23,8 +23,8 @@ export function CaseStudyCard({
   return (
     <article
       className={cn(
-        'group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all duration-300',
-        'hover:border-muted-foreground/30 hover:bg-secondary/50',
+        'group sheen-hover gradient-border neon-glow-hover relative flex flex-col overflow-hidden rounded-lg bg-card/90 transition-all duration-300',
+        'hover:bg-secondary/55',
         className
       )}
     >
@@ -40,7 +40,7 @@ export function CaseStudyCard({
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-muted to-secondary" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       </div>
 
       {/* Content */}
