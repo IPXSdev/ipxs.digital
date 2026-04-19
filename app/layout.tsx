@@ -6,6 +6,7 @@ import { LenisProvider } from '@/components/lenis-provider'
 import { FilmGrain } from '@/components/film-grain'
 import { PortalOverlay } from '@/components/portal-overlay'
 import { PortalMenu } from '@/components/portal-menu'
+import { AuroraBackground } from '@/components/aurora-background'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -62,7 +63,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className="min-h-screen flex flex-col antialiased">
+      <body className="relative min-h-screen flex flex-col antialiased">
+        <AuroraBackground />
         <LenisProvider>
           <PortalOverlay>
             <FilmGrain />
