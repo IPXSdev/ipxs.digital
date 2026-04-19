@@ -103,7 +103,7 @@ export default function HomePage() {
 
             {/* CTAs */}
             <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8">
+              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
                 <Link href="/work">
                   View Case Studies
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -237,7 +237,7 @@ export default function HomePage() {
               {"Let's build your next release, campaign, or platform."}
             </h2>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8">
+              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
                 <Link href="/contact">
                   Start a Project
                   <ArrowRight className="ml-2 h-4 w-4" />

@@ -223,6 +223,8 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    padding-block: 0.1em;
+    margin-block: -0.1em;
   }
 
   /* Accent gradient text (for secondary highlights) */
