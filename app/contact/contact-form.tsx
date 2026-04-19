@@ -28,16 +28,66 @@ const projectTypes = [
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [projectType, setProjectType] = useState('')
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setError('')
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    const name = String(formData.get('name') ?? '').trim()
+    const email = String(formData.get('email') ?? '').trim()
+    const message = String(formData.get('message') ?? '').trim()
+    const phone = String(formData.get('phone') ?? '').trim()
+    const company = String(formData.get('company') ?? '').trim()
+
+    if (!name || !email || !message || !projectType) {
+      setError('Please complete all required fields before submitting.')
+      return
+    }
+
     setIsSubmitting(true)
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    
-    setIsSubmitting(false)
-    setSubmitted(true)
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          phone,
+          company,
+          projectType,
+          inquiryType: projectType,
+          subject: `Website inquiry (${projectType})`,
+          sourcePage: window.location.pathname,
+        }),
+      })
+
+      const result = (await response.json()) as { error?: string }
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit contact form.')
+      }
+
+      form.reset()
+      setProjectType('')
+      setSubmitted(true)
+    } catch (submitError) {
+      setError(
+        submitError instanceof Error
+          ? submitError.message
+          : 'Failed to submit contact form.',
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -80,9 +130,29 @@ export function ContactForm() {
           />
         </Field>
 
+
+        <Field>
+          <FieldLabel htmlFor="company">Company (Optional)</FieldLabel>
+          <Input
+            id="company"
+            name="company"
+            placeholder="Your company"
+            className="rounded-lg bg-card"
+          />
+        </Field>
+
+        <Field>
+          <FieldLabel htmlFor="phone">Phone (Optional)</FieldLabel>
+          <Input
+            id="phone"
+            name="phone"
+            placeholder="(555) 555-5555"
+            className="rounded-lg bg-card"
+          />
+        </Field>
         <Field>
           <FieldLabel htmlFor="project-type">Project Type</FieldLabel>
-          <Select name="project-type" required>
+          <Select value={projectType} onValueChange={setProjectType} required>
             <SelectTrigger id="project-type" className="rounded-lg bg-card">
               <SelectValue placeholder="Select a project type" />
             </SelectTrigger>
@@ -108,6 +178,8 @@ export function ContactForm() {
           />
         </Field>
       </FieldGroup>
+
+      {error ? <p className="text-sm text-destructive">{error}</p> : null}
 
       <Button
         type="submit"

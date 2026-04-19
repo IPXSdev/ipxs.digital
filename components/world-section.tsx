@@ -85,12 +85,12 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
               <Link
                 key={caseStudy.id}
                 href={`/work/${caseStudy.slug}`}
-                className="group relative overflow-hidden rounded-lg border border-border/50 bg-card/50 p-5 transition-all duration-300 hover:border-accent/30 hover:bg-card"
+                className="group sheen-hover gradient-border neon-glow-hover relative overflow-hidden rounded-lg bg-card/70 p-5 transition-all duration-300 hover:bg-card"
               >
                 <img
                   src={posterDataUri}
                   alt=""
-                  className="mb-4 aspect-[4/3] w-full rounded object-cover opacity-75"
+                  className="mb-4 aspect-[4/3] w-full rounded object-cover opacity-80"
                   loading="lazy"
                   decoding="async"
                   aria-hidden="true"
