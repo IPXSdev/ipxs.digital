@@ -10,6 +10,7 @@ interface CaseStudyTile {
   slug: string
   title: string
   category: string
+  poster: string
   outcome: string
 }
 
@@ -31,9 +32,6 @@ const worldGradients: Record<string, string> = {
   'websites-mvp-platforms': 'from-emerald-400/10 via-background to-background',
   'institutional-investor-systems': 'from-sky-400/10 via-background to-background',
 }
-
-const posterDataUri =
-  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23111111"/><stop offset="100%" stop-color="%23222222"/></linearGradient></defs><rect width="800" height="600" fill="url(%23g)"/></svg>'
 
 export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
   ({ id, number, title, outcome, caseStudies, isActive }, ref) => {
@@ -88,7 +86,7 @@ export const WorldSection = forwardRef<HTMLElement, WorldSectionProps>(
                 className="group sheen-hover gradient-border neon-glow-hover relative overflow-hidden rounded-lg bg-card/70 p-5 transition-all duration-300 hover:bg-card"
               >
                 <img
-                  src={posterDataUri}
+                  src={caseStudy.poster}
                   alt=""
                   className="mb-4 aspect-[4/3] w-full rounded object-cover opacity-80"
                   loading="lazy"

@@ -113,15 +113,6 @@ export default function HomePage() {
                 <Link href="/contact">Start a Project</Link>
               </Button>
             </div>
-
-            {/* Secondary CTA */}
-            <Link
-              href="/deck"
-              className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              View the Deck
-              <ArrowRight className="h-3 w-3" />
-            </Link>
           </div>
         </div>
 
