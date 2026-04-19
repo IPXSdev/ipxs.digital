@@ -6,15 +6,15 @@ export function AuroraBackground() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
-      {/* Base dark gradient */}
+      {/* Base light gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
       
-      {/* Aurora blobs with neon colors */}
-      <div className="aurora-blob absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[oklch(0.72_0.18_220/0.15)] blur-[100px]" />
-      <div className="aurora-blob absolute -right-24 top-[10%] h-[400px] w-[400px] rounded-full bg-[oklch(0.65_0.20_285/0.12)] blur-[100px]" />
-      <div className="aurora-blob absolute left-[20%] top-[45%] h-[350px] w-[350px] rounded-full bg-[oklch(0.70_0.22_332/0.10)] blur-[100px]" />
-      <div className="aurora-blob absolute -bottom-32 right-[25%] h-[450px] w-[450px] rounded-full bg-[oklch(0.68_0.16_188/0.08)] blur-[100px]" />
-      <div className="aurora-blob absolute bottom-[20%] -left-16 h-[300px] w-[300px] rounded-full bg-[oklch(0.65_0.20_285/0.08)] blur-[100px]" />
+      {/* Aurora blobs with subtle neon colors for light mode */}
+      <div className="aurora-blob absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[oklch(0.55_0.22_220/0.06)] blur-[100px]" />
+      <div className="aurora-blob absolute -right-24 top-[10%] h-[400px] w-[400px] rounded-full bg-[oklch(0.50_0.24_285/0.05)] blur-[100px]" />
+      <div className="aurora-blob absolute left-[20%] top-[45%] h-[350px] w-[350px] rounded-full bg-[oklch(0.55_0.26_340/0.04)] blur-[100px]" />
+      <div className="aurora-blob absolute -bottom-32 right-[25%] h-[450px] w-[450px] rounded-full bg-[oklch(0.52_0.18_188/0.04)] blur-[100px]" />
+      <div className="aurora-blob absolute bottom-[20%] -left-16 h-[300px] w-[300px] rounded-full bg-[oklch(0.50_0.24_285/0.03)] blur-[100px]" />
 
       <style>{`
         @media (prefers-reduced-motion: no-preference) {
