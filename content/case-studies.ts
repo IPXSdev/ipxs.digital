@@ -218,6 +218,26 @@ export const caseStudies: CaseStudy[] = [
     ],
     credits: defaultCredits,
   },
+  {
+    id: 'emory-capital',
+    slug: 'emory-capital',
+    title: 'Emory Capital',
+    category: 'Websites and MVP Platforms',
+    poster: '/case-studies/emory-capital/hero.jpeg',
+    cover: '/case-studies/emory-capital/hero.jpeg',
+    outcomeLine: 'Private and Institutional Capital. Digitally Re-Engineered.',
+    deliverables: ['Marketing website', 'Demo partner dashboard MVP', 'Copy creation', 'Asset creation'],
+    pipelineSteps: defaultPipeline,
+    proofLinks: [
+      { label: 'Live Site', url: 'https://www.emorycapital.com/' },
+      { label: 'Demo Dashboard', url: 'https://www.emorycapital.com/demoaccount' },
+    ],
+    media: [
+      { id: 'emory-hero', type: 'image', src: '/case-studies/emory-capital/hero.jpeg', poster: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand materials featuring gold elephant logo on black leather', caption: 'Brand identity and premium collateral system.' },
+      { id: 'emory-dashboard', type: 'image', src: '/case-studies/emory-capital/dashboard.png', poster: '/case-studies/emory-capital/dashboard.png', alt: 'Emory Capital partner dashboard showing portfolio overview, holdings, and performance chart', caption: 'Demo partner dashboard MVP with portfolio tracking, holdings, and activity feed.' },
+    ],
+    credits: defaultCredits,
+  },
 ]
 
 export function getCaseStudyBySlug(slug: string) {
