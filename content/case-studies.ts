@@ -4,6 +4,7 @@ export const caseStudyCategories = [
   'Commercials',
   'Pitch Deck Architecture',
   'Websites and MVP Platforms',
+  'World Building',
 ] as const
 
 export type CaseStudyCategory = (typeof caseStudyCategories)[number]
@@ -50,7 +51,7 @@ export interface CaseStudy {
 
 interface CaseStudyWorld {
   id: string
-  number: '01' | '02' | '03' | '04' | '05'
+  number: '01' | '02' | '03' | '04' | '05' | '06'
   title: CaseStudyCategory
   outcome: string
 }
@@ -99,6 +100,12 @@ export const caseStudyWorlds: CaseStudyWorld[] = [
     title: 'Websites and MVP Platforms',
     outcome: 'Digital platforms that connect brand expression to measurable conversion.',
   },
+  {
+    id: 'world-building',
+    number: '06',
+    title: 'World Building',
+    outcome: 'Franchise-scale story universes engineered for expansion across film, series, games, and brand collaborations.',
+  },
 ]
 
 export const caseStudies: CaseStudy[] = [
@@ -109,8 +116,8 @@ export const caseStudies: CaseStudy[] = [
     category: 'Music Release Systems',
     poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
     cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
-    outcomeLine: 'Full campaign system for major label releases including cover art, motion design, and animated video treatments.',
-    deliverables: ['Cover art suite (Chocolate Woman, Together)', 'Motion animation package', 'Character design and animation', 'Video treatment development', 'Social rollout assets'],
+    outcomeLine: 'Full campaign system for major label release including cover art and motion design for streaming and social.',
+    deliverables: ['Chocolate Woman cover art', 'Motion animation package', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
       { label: 'Deathrow Records', url: '#' },
@@ -120,31 +127,29 @@ export const caseStudies: CaseStudy[] = [
     media: [
       { id: 'chocolate-woman-cover', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman album cover featuring Statue of Liberty inspired artwork', caption: 'Primary cover art for Chocolate Woman single.', aspectRatio: 'square' },
       { id: 'chocolate-woman-motion', type: 'video', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman animated motion piece', caption: 'Motion animation for social and streaming placements.', aspectRatio: 'square' },
-      { id: 'together-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together animated video treatment concept', caption: 'Video treatment pitch for Together animated music video.' },
-      { id: 'character-sheet', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', poster: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', alt: 'CharliBereal character design sheet showing multiple poses', caption: 'Character design sheet for animated sequences.' },
     ],
     credits: defaultCredits,
   },
   {
-    id: 'northstar-tour-motion-campaign',
-    slug: 'northstar-tour-motion-campaign',
-    title: 'Northstar Tour Motion Campaign',
+    id: 'charlibereal-together-treatment',
+    slug: 'charlibereal-together-treatment',
+    title: 'Together Animated Music Video Treatment',
     category: 'Motion and Social Ads',
-    poster: '/case-studies/northstar-tour-motion-campaign/poster.svg',
-    cover: '/case-studies/northstar-tour-motion-campaign/cover.svg',
-    outcomeLine: 'Cross-platform campaign package that increased ticket intent through short-form creative sequencing.',
-    deliverables: ['Motion ad set', 'Story edits', 'Countdown package', 'Retargeting variants'],
+    poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
+    cover: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
+    outcomeLine: 'Full animated music video treatment for CharliBereal featuring custom character design, storyboarding, and visual direction.',
+    deliverables: ['Video treatment pitch deck', 'Custom character design', 'Character pose sheet', 'Visual style guide', 'Animation direction'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
-      { label: 'Instagram', url: '#' },
-      { label: 'TikTok', url: '#' },
+      { label: 'CharliBereal', url: '#' },
     ],
     media: [
-      { id: 'northstar-trailer', type: 'video', src: null, poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar campaign trailer', caption: 'Click to play campaign trailer cut.' },
-      { id: 'northstar-grid', type: 'image', src: '/case-studies/northstar-tour-motion-campaign/cover.svg', poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar ad grid', caption: 'Social ad variants for launch phase.' },
+      { id: 'together-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together animated video treatment concept with psychedelic visual style', caption: 'Video treatment pitch for Together animated music video.' },
+      { id: 'character-sheet', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', poster: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', alt: 'CharliBereal character design sheet showing multiple poses', caption: 'Character design sheet for animated sequences.' },
     ],
     credits: defaultCredits,
   },
+
   {
     id: 'keith-collins-rugs',
     slug: 'keith-collins-rugs',
@@ -189,6 +194,34 @@ export const caseStudies: CaseStudy[] = [
   },
 
 
+  {
+    id: 'dynamics-multiverse',
+    slug: 'dynamics-multiverse',
+    title: 'The Dynamics Multiverse',
+    category: 'World Building',
+    poster: '/case-studies/dynamics-multiverse/cover.jpg',
+    cover: '/case-studies/dynamics-multiverse/cover.jpg',
+    outcomeLine: 'A franchise-scale story universe engineered for expansion across film, series, games, music visuals, and brand collaborations.',
+    deliverables: ['World Bible and canon rules', 'Franchise architecture and expansion lanes', 'Visual language and brand identity direction', 'Character systems and trait classifications', 'Pitch-ready presentation structure'],
+    pipelineSteps: defaultPipeline,
+    proofLinks: [
+      { label: 'Book a Discovery Call', url: '/contact?subject=World%20Building%20Walkthrough' },
+      { label: 'Request Full PDF', url: '/contact?subject=Request%20Dynamics%20Multiverse%20PDF' },
+    ],
+    media: [
+      { id: 'dynamics-cover', type: 'image', src: '/case-studies/dynamics-multiverse/cover.jpg', poster: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Ultraviolet Multiverse overview showing character portraits and cosmic visuals', caption: 'Franchise overview: 333 traits, 22 classifications, and a complete multiversal vernacular index.' },
+      { id: 'dynamics-thysporinite', type: 'image', src: '/case-studies/dynamics-multiverse/still-01.png', poster: '/case-studies/dynamics-multiverse/still-01.png', alt: 'Dynamic Trait Class 1: Thysporinite 963, the rarest substance in the multiverse', caption: 'Trait Class 1: Thysporinite 963, the Elder DNA and rarest substance in the Multiverse.' },
+      { id: 'dynamics-lux', type: 'image', src: '/case-studies/dynamics-multiverse/still-02.jpg', poster: '/case-studies/dynamics-multiverse/still-02.jpg', alt: 'Dynamic Trait Class 3: Lux, the light that Dynamic beings naturally produce', caption: 'Trait Class 3: Lux, the visual signifier of congenital powers in Dynamic beings.' },
+      { id: 'dynamics-damu', type: 'image', src: '/case-studies/dynamics-multiverse/still-03.jpg', poster: '/case-studies/dynamics-multiverse/still-03.jpg', alt: 'Dynamic Trait Class 4: Damu, the blood of the galaxy and Divine Antibodies', caption: 'Trait Class 4: Damu, the Divine Antibodies unique to each galaxy.' },
+      { id: 'dynamics-travel', type: 'image', src: '/case-studies/dynamics-multiverse/still-04.png', poster: '/case-studies/dynamics-multiverse/still-04.png', alt: 'Ultraviolet Trait Class 2: Mode of Travel with futuristic motorcycle', caption: 'Trait Class 2: Mode of Travel, featuring Multiversal conveyance and wormhole networks.' },
+      { id: 'dynamics-galaxies', type: 'image', src: '/case-studies/dynamics-multiverse/still-05.png', poster: '/case-studies/dynamics-multiverse/still-05.png', alt: 'Dynamic Trait Class 7: Via Lactea, the 11 Primary Galaxies', caption: 'Trait Class 7: Via Lactea, the 11 Primary Galaxies home to 33 Dynamic Planets.' },
+      { id: 'dynamics-lore', type: 'image', src: '/case-studies/dynamics-multiverse/still-06.png', poster: '/case-studies/dynamics-multiverse/still-06.png', alt: 'The Generative Lore system for interactive character backstory generation', caption: 'Generative Lore: the interactive character backstory system for community collaboration.' },
+      { id: 'dynamics-character-1', type: 'image', src: '/case-studies/dynamics-multiverse/still-07.png', poster: '/case-studies/dynamics-multiverse/still-07.png', alt: 'Dynamic character with ornate armor and floral elements', caption: 'Character design: ornate armor systems with organic and metallic fusion.' },
+      { id: 'dynamics-character-2', type: 'image', src: '/case-studies/dynamics-multiverse/still-08.png', poster: '/case-studies/dynamics-multiverse/still-08.png', alt: 'Dynamic character with floral chest armor', caption: 'Character design: botanical integration with advanced technology.' },
+      { id: 'dynamics-character-3', type: 'image', src: '/case-studies/dynamics-multiverse/still-09.png', poster: '/case-studies/dynamics-multiverse/still-09.png', alt: 'Dynamic character with jeweled armor and celestial markings', caption: 'Character design: celestial markings and jeweled armor systems.' },
+    ],
+    credits: defaultCredits,
+  },
   {
     id: 'emory-capital',
     slug: 'emory-capital',
