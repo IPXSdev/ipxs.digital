@@ -222,6 +222,20 @@
   .page-header-title {
     @apply text-5xl leading-[1.06] md:text-6xl;
   }
+
+  /* Infinite scroll animation */
+  .animate-scroll-slow {
+    animation: scroll-infinite 40s linear infinite;
+  }
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

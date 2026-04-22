@@ -88,19 +88,19 @@ export default function DeckPage() {
         </div>
       </section>
 
-      {/* PDF Placeholder */}
+      {/* Full Deck Request */}
       <section className="border-t border-border/50 bg-secondary/30 py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col items-center text-center">
-            <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-full border-2 border-dashed border-muted-foreground/30">
-              <FileText className="h-8 w-8 text-muted-foreground/50" />
+            <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-full border border-muted-foreground/20 bg-secondary/50">
+              <FileText className="h-8 w-8 text-muted-foreground" />
             </div>
             <h2 className="font-serif text-2xl font-medium md:text-3xl">
-              Full Deck Coming Soon
+              Request the Full Deck
             </h2>
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              The complete studio deck PDF will be available in Phase 3. 
-              In the meantime, explore the sections above or get in touch directly.
+              The complete studio deck is available on request. 
+              Book a discovery call to walk through our capabilities together.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="rounded-full px-8">
