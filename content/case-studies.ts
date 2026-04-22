@@ -4,7 +4,6 @@ export const caseStudyCategories = [
   'Commercials',
   'Pitch Deck Architecture',
   'Websites and MVP Platforms',
-  'Institutional and Investor Systems',
 ] as const
 
 export type CaseStudyCategory = (typeof caseStudyCategories)[number]
@@ -51,7 +50,7 @@ export interface CaseStudy {
 
 interface CaseStudyWorld {
   id: string
-  number: '01' | '02' | '03' | '04' | '05' | '06'
+  number: '01' | '02' | '03' | '04' | '05'
   title: CaseStudyCategory
   outcome: string
 }
@@ -99,12 +98,6 @@ export const caseStudyWorlds: CaseStudyWorld[] = [
     number: '05',
     title: 'Websites and MVP Platforms',
     outcome: 'Digital platforms that connect brand expression to measurable conversion.',
-  },
-  {
-    id: 'institutional-investor-systems',
-    number: '06',
-    title: 'Institutional and Investor Systems',
-    outcome: 'Board-ready systems for reporting, governance, and investor communication.',
   },
 ]
 
@@ -185,39 +178,8 @@ export const caseStudies: CaseStudy[] = [
     ],
     credits: defaultCredits,
   },
-  {
-    id: 'nova-artist-platform',
-    slug: 'nova-artist-platform',
-    title: 'Nova Artist Platform MVP',
-    category: 'Websites and MVP Platforms',
-    poster: '/case-studies/nova-artist-platform/poster.svg',
-    cover: '/case-studies/nova-artist-platform/cover.svg',
-    outcomeLine: 'Launch-ready web platform unifying brand story, music discovery, and conversion pathways.',
-    deliverables: ['Experience map', 'MVP frontend', 'CMS content model', 'Analytics instrumentation'],
-    pipelineSteps: defaultPipeline,
-    proofLinks: [{ label: 'Live Site', url: '#' }],
-    media: [
-      { id: 'nova-home', type: 'image', src: '/case-studies/nova-artist-platform/cover.svg', poster: '/case-studies/nova-artist-platform/poster.svg', alt: 'Nova platform homepage', caption: 'Homepage and release hub modules.' },
-      { id: 'nova-demo', type: 'video', src: null, poster: '/case-studies/nova-artist-platform/poster.svg', alt: 'Nova platform demo', caption: 'Guided walkthrough of key MVP flows.' },
-    ],
-    credits: defaultCredits,
-  },
-  {
-    id: 'lumen-investor-portal',
-    slug: 'lumen-investor-portal',
-    title: 'Lumen Investor Portal',
-    category: 'Institutional and Investor Systems',
-    poster: '/case-studies/lumen-investor-portal/poster.svg',
-    cover: '/case-studies/lumen-investor-portal/cover.svg',
-    outcomeLine: 'Secure reporting and communication interface for recurring investor updates and governance workflows.',
-    deliverables: ['Portal information architecture', 'Reporting templates', 'Access control UX', 'Quarterly update modules'],
-    pipelineSteps: defaultPipeline,
-    proofLinks: [{ label: 'Portal Preview', url: '#' }],
-    media: [
-      { id: 'lumen-dashboard', type: 'image', src: '/case-studies/lumen-investor-portal/cover.svg', poster: '/case-studies/lumen-investor-portal/poster.svg', alt: 'Lumen dashboard', caption: 'Portfolio and performance dashboard states.' },
-    ],
-    credits: defaultCredits,
-  },
+
+
   {
     id: 'emory-capital',
     slug: 'emory-capital',

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
@@ -44,14 +45,23 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <article className="flex flex-col">
-      <section className="relative min-h-[70vh] flex items-end overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 via-background to-background" />
-        <div className="absolute inset-0 bg-muted/20" />
+      <section className="relative overflow-hidden">
+        {/* Hero Image */}
+        <div className="relative h-[50vh] min-h-[400px] w-full">
+          <Image
+            src={caseStudy.cover}
+            alt={caseStudy.title}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        </div>
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-32 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 -mt-32 lg:px-8">
           <Link
             href="/work"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Case Studies
@@ -61,11 +71,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {caseStudy.category}
           </span>
 
-          <h1 className="mb-6 max-w-4xl font-serif page-header-title font-medium gradient-text-neon">
+          <h1 className="mb-4 max-w-4xl font-serif text-3xl font-medium gradient-text-neon md:text-4xl lg:text-5xl">
             {caseStudy.title}
           </h1>
 
-          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {caseStudy.outcomeLine}
           </p>
         </div>
