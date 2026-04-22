@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
@@ -44,14 +45,23 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <article className="flex flex-col">
-      <section className="relative min-h-[70vh] flex items-end overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/50 via-background to-background" />
-        <div className="absolute inset-0 bg-muted/20" />
+      <section className="relative overflow-hidden">
+        {/* Hero Image */}
+        <div className="relative h-[50vh] min-h-[400px] w-full">
+          <Image
+            src={caseStudy.cover}
+            alt={caseStudy.title}
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        </div>
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-32 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 -mt-32 lg:px-8">
           <Link
             href="/work"
-            className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Case Studies
@@ -61,32 +71,30 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {caseStudy.category}
           </span>
 
-          <h1 className="mb-6 max-w-4xl font-serif page-header-title font-medium gradient-text-neon">
+          <h1 className="mb-4 max-w-4xl font-serif text-3xl font-medium gradient-text-neon md:text-4xl lg:text-5xl">
             {caseStudy.title}
           </h1>
 
-          <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
             {caseStudy.outcomeLine}
           </p>
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-16 lg:py-24">
+      <section className="border-t border-border/50 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            {/* Deliverables */}
             <div>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 Deliverables
               </p>
-              <h2 className="font-serif text-2xl font-medium md:text-3xl">What We Built</h2>
-            </div>
-
-            <div className="lg:col-span-2">
-              <ul className="grid gap-3 sm:grid-cols-2">
+              <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">What We Built</h2>
+              <ul className="grid gap-2">
                 {caseStudy.deliverables.map((item, index) => (
                   <li
                     key={item}
-                    className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/50 px-4 py-3"
+                    className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/50 px-4 py-2.5"
                   >
                     <span className="font-mono text-xs text-accent">
                       {String(index + 1).padStart(2, '0')}
@@ -96,71 +104,62 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 ))}
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="border-t border-border/50 bg-secondary/30 py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-12">
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Pipeline
-            </p>
-            <h2 className="font-serif text-2xl font-medium md:text-3xl">How We Got There</h2>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-5">
-            {caseStudy.pipelineSteps.map((step, index) => (
-              <div
-                key={step.phase}
-                className="relative flex flex-col gap-4 rounded-lg border border-border/50 bg-card/50 p-5"
-              >
-                {index < caseStudy.pipelineSteps.length - 1 && (
-                  <div className="absolute -right-2 top-1/2 hidden h-px w-4 bg-border/50 md:block" />
-                )}
-
-                <span className="font-mono text-xs text-accent">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="mb-2 font-medium">{step.phase}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{step.description}</p>
-                </div>
+            {/* Pipeline */}
+            <div>
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                Pipeline
+              </p>
+              <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">How We Got There</h2>
+              <div className="grid gap-2">
+                {caseStudy.pipelineSteps.map((step, index) => (
+                  <div
+                    key={step.phase}
+                    className="flex items-start gap-3 rounded-lg border border-border/50 bg-card/50 px-4 py-2.5"
+                  >
+                    <span className="font-mono text-xs text-accent pt-0.5">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className="flex-1">
+                      <span className="text-sm font-medium">{step.phase}</span>
+                      <span className="mx-2 text-muted-foreground/50">·</span>
+                      <span className="text-sm text-muted-foreground">{step.description}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-16 lg:py-24">
+      <section className="border-t border-border/50 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-12">
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+          <div className="mb-8">
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
               Case Study Media
             </p>
-            <h2 className="font-serif text-2xl font-medium md:text-3xl">The Output</h2>
+            <h2 className="font-serif text-xl font-medium md:text-2xl">The Output</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2">
             {caseStudy.media.map((item) => (
               <div key={item.id}>
                 <CaseStudyMediaView item={item} />
-                <p className="mt-3 text-sm text-muted-foreground">{item.caption}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{item.caption}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-border/50 bg-secondary/30 py-16 lg:py-24">
+      <section className="border-t border-border/50 bg-secondary/30 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            {/* Links */}
             <div>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Live</p>
-              <h2 className="font-serif text-2xl font-medium md:text-3xl">See It in the Wild</h2>
-            </div>
-
-            <div className="lg:col-span-2">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Live</p>
+              <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">See It in the Wild</h2>
               <div className="flex flex-wrap gap-3">
                 {caseStudy.proofLinks.map((link) => (
                   <a
@@ -176,22 +175,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="border-t border-border/50 py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
+            {/* Credits */}
             <div>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 Credits
               </p>
-              <h2 className="font-serif text-2xl font-medium md:text-3xl">Powered By</h2>
-            </div>
-
-            <div className="lg:col-span-2">
-              <div className="flex flex-col gap-4">
+              <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">Powered By</h2>
+              <div className="flex flex-col gap-3">
                 <div className="flex items-baseline gap-4 border-l-2 border-accent pl-4">
                   <span className="text-sm text-muted-foreground">Studio</span>
                   <span className="font-medium">{caseStudy.credits.studio}</span>
@@ -206,13 +197,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 bg-secondary/30 py-16 lg:py-24">
+      <section className="border-t border-border/50 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col items-center text-center">
-            <h2 className="mb-6 max-w-2xl font-serif text-2xl font-medium md:text-3xl lg:text-4xl">
+            <h2 className="mb-5 max-w-2xl font-serif text-xl font-medium md:text-2xl">
               Ready to build something like this?
             </h2>
-            <div className="flex flex-col items-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-center gap-3 sm:flex-row">
               <Button asChild size="lg" className="rounded-full px-8">
                 <Link href="/contact">
                   Start a Project

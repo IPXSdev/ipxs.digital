@@ -9,14 +9,16 @@ interface CaseStudyMediaProps {
 }
 
 const fallbackPoster =
-  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23161616"/><stop offset="100%" stop-color="%23272727"/></linearGradient></defs><rect width="1280" height="720" fill="url(%23g)"/></svg>'
+  'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23161616"/><stop offset="100%" stop-color="%23272727"/></linearGradient></defs><rect width="1000" height="1000" fill="url(%23g)"/></svg>'
 
 export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
   const [playVideo, setPlayVideo] = useState(false)
 
+  const aspectClass = item.aspectRatio === 'square' ? 'aspect-square' : 'aspect-video'
+
   if (item.type === 'video') {
     return (
-      <div className="group relative aspect-video overflow-hidden rounded-lg border border-border/50 bg-muted/40">
+      <div className={`group relative ${aspectClass} overflow-hidden rounded-lg border border-border/50 bg-muted/40`}>
         {!playVideo ? (
           <button
             type="button"
@@ -60,7 +62,7 @@ export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
   }
 
   return (
-    <div className="group relative aspect-video overflow-hidden rounded-lg border border-border/50 bg-muted/40">
+    <div className={`group relative ${aspectClass} overflow-hidden rounded-lg border border-border/50 bg-muted/40`}>
       {item.src ? (
         <img
           src={item.src}

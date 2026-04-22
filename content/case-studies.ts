@@ -4,7 +4,6 @@ export const caseStudyCategories = [
   'Commercials',
   'Pitch Deck Architecture',
   'Websites and MVP Platforms',
-  'Institutional and Investor Systems',
 ] as const
 
 export type CaseStudyCategory = (typeof caseStudyCategories)[number]
@@ -26,6 +25,7 @@ export interface CaseStudyMedia {
   poster: string | null
   alt: string
   caption: string
+  aspectRatio?: 'square' | 'video'
 }
 
 export interface CaseStudyCredits {
@@ -50,7 +50,7 @@ export interface CaseStudy {
 
 interface CaseStudyWorld {
   id: string
-  number: '01' | '02' | '03' | '04' | '05' | '06'
+  number: '01' | '02' | '03' | '04' | '05'
   title: CaseStudyCategory
   outcome: string
 }
@@ -99,33 +99,29 @@ export const caseStudyWorlds: CaseStudyWorld[] = [
     title: 'Websites and MVP Platforms',
     outcome: 'Digital platforms that connect brand expression to measurable conversion.',
   },
-  {
-    id: 'institutional-investor-systems',
-    number: '06',
-    title: 'Institutional and Investor Systems',
-    outcome: 'Board-ready systems for reporting, governance, and investor communication.',
-  },
 ]
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: 'atlas-debut-release-system',
-    slug: 'atlas-debut-release-system',
-    title: 'Atlas Debut Release System',
+    id: 'charlibereal-deathrow-campaign',
+    slug: 'charlibereal-deathrow-campaign',
+    title: 'CharliBereal x Deathrow Records Campaign',
     category: 'Music Release Systems',
-    poster: '/case-studies/atlas-debut-release-system/poster.svg',
-    cover: '/case-studies/atlas-debut-release-system/cover.svg',
-    outcomeLine: 'Unified visual rollout that supported a breakout release window with consistent platform execution.',
-    deliverables: ['Cover art suite', 'Visualizer cutdowns', 'Social rollout templates', 'Release calendar kit'],
+    poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
+    cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
+    outcomeLine: 'Full campaign system for major label releases including cover art, motion design, and animated video treatments.',
+    deliverables: ['Cover art suite (Chocolate Woman, Together)', 'Motion animation package', 'Character design and animation', 'Video treatment development', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
+      { label: 'Deathrow Records', url: '#' },
       { label: 'Spotify', url: '#' },
       { label: 'Apple Music', url: '#' },
-      { label: 'YouTube', url: '#' },
     ],
     media: [
-      { id: 'atlas-cover', type: 'image', src: '/case-studies/atlas-debut-release-system/cover.svg', poster: '/case-studies/atlas-debut-release-system/poster.svg', alt: 'Atlas cover art concept', caption: 'Primary cover direction for launch week.' },
-      { id: 'atlas-visualizer', type: 'video', src: null, poster: '/case-studies/atlas-debut-release-system/poster.svg', alt: 'Atlas visualizer preview', caption: 'Visualizer treatment for social and streaming placements.' },
+      { id: 'chocolate-woman-cover', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman album cover featuring Statue of Liberty inspired artwork', caption: 'Primary cover art for Chocolate Woman single.', aspectRatio: 'square' },
+      { id: 'chocolate-woman-motion', type: 'video', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman animated motion piece', caption: 'Motion animation for social and streaming placements.', aspectRatio: 'square' },
+      { id: 'together-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together animated video treatment concept', caption: 'Video treatment pitch for Together animated music video.' },
+      { id: 'character-sheet', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', poster: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', alt: 'CharliBereal character design sheet showing multiple poses', caption: 'Character design sheet for animated sequences.' },
     ],
     credits: defaultCredits,
   },
@@ -146,6 +142,28 @@ export const caseStudies: CaseStudy[] = [
     media: [
       { id: 'northstar-trailer', type: 'video', src: null, poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar campaign trailer', caption: 'Click to play campaign trailer cut.' },
       { id: 'northstar-grid', type: 'image', src: '/case-studies/northstar-tour-motion-campaign/cover.svg', poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar ad grid', caption: 'Social ad variants for launch phase.' },
+    ],
+    credits: defaultCredits,
+  },
+  {
+    id: 'keith-collins-rugs',
+    slug: 'keith-collins-rugs',
+    title: 'Keith Collins Rugs',
+    category: 'Commercials',
+    poster: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg',
+    cover: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg',
+    outcomeLine: 'Over the top comedy commercial built from client supplied audio. A weekly national podcast spot that would be impossible to ignore.',
+    deliverables: ['1 master commercial, widescreen', '1 master commercial, vertical cut for social', 'Export package optimized for podcast ad breaks', 'Thumbnail and still set for posting'],
+    pipelineSteps: defaultPipeline,
+    proofLinks: [{ label: 'Watch Commercial', url: '#' }],
+    media: [
+      { id: 'keith-collins-master', type: 'video', src: '/case-studies/keith-collins-rugs/video/keith-collins-rugs-master.mov', poster: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg', alt: 'Keith Collins Rugs master commercial', caption: 'Master commercial, widescreen edit.' },
+      { id: 'keith-collins-ali', type: 'image', src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', poster: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Muhammad Ali rug artwork', caption: 'The legend entrance: a rug moment framed like a heavyweight champion.' },
+      { id: 'keith-collins-kobe', type: 'image', src: '/case-studies/keith-collins-rugs/stills/kobe-jersey-rug.jpg', poster: '/case-studies/keith-collins-rugs/stills/kobe-jersey-rug.jpg', alt: 'Kobe Bryant jersey rug artwork', caption: 'The hero product reveal: detailed close ups of the rug craft and texture.' },
+      { id: 'keith-collins-flying', type: 'image', src: '/case-studies/keith-collins-rugs/stills/rugs-flying.jpg', poster: '/case-studies/keith-collins-rugs/stills/rugs-flying.jpg', alt: 'Rugs flying behind a speeding car', caption: 'The chaos beat: rugs flying behind a speeding car for maximum absurdity.' },
+      { id: 'keith-collins-woman', type: 'image', src: '/case-studies/keith-collins-rugs/stills/woman-feeling-rug.jpg', poster: '/case-studies/keith-collins-rugs/stills/woman-feeling-rug.jpg', alt: 'Woman feeling textured rug', caption: 'The emotional punchline: a customer literally falling in love with a rug.' },
+      { id: 'keith-collins-tiger', type: 'image', src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', poster: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger standing on rug in street', caption: 'The street spectacle: a tiger owning the runway on a rug in broad daylight.' },
+      { id: 'keith-collins-lambo', type: 'image', src: '/case-studies/keith-collins-rugs/stills/lambo-rug-wrap.jpg', poster: '/case-studies/keith-collins-rugs/stills/lambo-rug-wrap.jpg', alt: 'Lamborghini wrapped in rug texture', caption: 'Visual language: cinematic lighting, bold framing, and exaggerated moments.' },
     ],
     credits: defaultCredits,
   },
@@ -182,36 +200,25 @@ export const caseStudies: CaseStudy[] = [
     ],
     credits: defaultCredits,
   },
+
+
   {
-    id: 'nova-artist-platform',
-    slug: 'nova-artist-platform',
-    title: 'Nova Artist Platform MVP',
+    id: 'emory-capital',
+    slug: 'emory-capital',
+    title: 'Emory Capital',
     category: 'Websites and MVP Platforms',
-    poster: '/case-studies/nova-artist-platform/poster.svg',
-    cover: '/case-studies/nova-artist-platform/cover.svg',
-    outcomeLine: 'Launch-ready web platform unifying brand story, music discovery, and conversion pathways.',
-    deliverables: ['Experience map', 'MVP frontend', 'CMS content model', 'Analytics instrumentation'],
+    poster: '/case-studies/emory-capital/hero.jpeg',
+    cover: '/case-studies/emory-capital/hero.jpeg',
+    outcomeLine: 'Private and Institutional Capital. Digitally Re-Engineered.',
+    deliverables: ['Marketing website', 'Demo partner dashboard MVP', 'Copy creation', 'Asset creation'],
     pipelineSteps: defaultPipeline,
-    proofLinks: [{ label: 'Live Site', url: '#' }],
-    media: [
-      { id: 'nova-home', type: 'image', src: '/case-studies/nova-artist-platform/cover.svg', poster: '/case-studies/nova-artist-platform/poster.svg', alt: 'Nova platform homepage', caption: 'Homepage and release hub modules.' },
-      { id: 'nova-demo', type: 'video', src: null, poster: '/case-studies/nova-artist-platform/poster.svg', alt: 'Nova platform demo', caption: 'Guided walkthrough of key MVP flows.' },
+    proofLinks: [
+      { label: 'Live Site', url: 'https://www.emorycapital.com/' },
+      { label: 'Demo Dashboard', url: 'https://www.emorycapital.com/demoaccount' },
     ],
-    credits: defaultCredits,
-  },
-  {
-    id: 'lumen-investor-portal',
-    slug: 'lumen-investor-portal',
-    title: 'Lumen Investor Portal',
-    category: 'Institutional and Investor Systems',
-    poster: '/case-studies/lumen-investor-portal/poster.svg',
-    cover: '/case-studies/lumen-investor-portal/cover.svg',
-    outcomeLine: 'Secure reporting and communication interface for recurring investor updates and governance workflows.',
-    deliverables: ['Portal information architecture', 'Reporting templates', 'Access control UX', 'Quarterly update modules'],
-    pipelineSteps: defaultPipeline,
-    proofLinks: [{ label: 'Portal Preview', url: '#' }],
     media: [
-      { id: 'lumen-dashboard', type: 'image', src: '/case-studies/lumen-investor-portal/cover.svg', poster: '/case-studies/lumen-investor-portal/poster.svg', alt: 'Lumen dashboard', caption: 'Portfolio and performance dashboard states.' },
+      { id: 'emory-hero', type: 'image', src: '/case-studies/emory-capital/hero.jpeg', poster: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand materials featuring gold elephant logo on black leather', caption: 'Brand identity and premium collateral system.' },
+      { id: 'emory-dashboard', type: 'image', src: '/case-studies/emory-capital/dashboard.png', poster: '/case-studies/emory-capital/dashboard.png', alt: 'Emory Capital partner dashboard showing portfolio overview, holdings, and performance chart', caption: 'Demo partner dashboard MVP with portfolio tracking, holdings, and activity feed.' },
     ],
     credits: defaultCredits,
   },
