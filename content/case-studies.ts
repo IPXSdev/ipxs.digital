@@ -109,8 +109,8 @@ export const caseStudies: CaseStudy[] = [
     category: 'Music Release Systems',
     poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
     cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
-    outcomeLine: 'Full campaign system for major label releases including cover art, motion design, and animated video treatments.',
-    deliverables: ['Cover art suite (Chocolate Woman, Together)', 'Motion animation package', 'Character design and animation', 'Video treatment development', 'Social rollout assets'],
+    outcomeLine: 'Full campaign system for major label release including cover art and motion design for streaming and social.',
+    deliverables: ['Chocolate Woman cover art', 'Motion animation package', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
       { label: 'Deathrow Records', url: '#' },
@@ -120,7 +120,24 @@ export const caseStudies: CaseStudy[] = [
     media: [
       { id: 'chocolate-woman-cover', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman album cover featuring Statue of Liberty inspired artwork', caption: 'Primary cover art for Chocolate Woman single.', aspectRatio: 'square' },
       { id: 'chocolate-woman-motion', type: 'video', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman animated motion piece', caption: 'Motion animation for social and streaming placements.', aspectRatio: 'square' },
-      { id: 'together-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together animated video treatment concept', caption: 'Video treatment pitch for Together animated music video.' },
+    ],
+    credits: defaultCredits,
+  },
+  {
+    id: 'charlibereal-together-treatment',
+    slug: 'charlibereal-together-treatment',
+    title: 'Together Animated Music Video Treatment',
+    category: 'Motion and Social Ads',
+    poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
+    cover: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
+    outcomeLine: 'Full animated music video treatment for CharliBereal featuring custom character design, storyboarding, and visual direction.',
+    deliverables: ['Video treatment pitch deck', 'Custom character design', 'Character pose sheet', 'Visual style guide', 'Animation direction'],
+    pipelineSteps: defaultPipeline,
+    proofLinks: [
+      { label: 'CharliBereal', url: '#' },
+    ],
+    media: [
+      { id: 'together-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together animated video treatment concept with psychedelic visual style', caption: 'Video treatment pitch for Together animated music video.' },
       { id: 'character-sheet', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', poster: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', alt: 'CharliBereal character design sheet showing multiple poses', caption: 'Character design sheet for animated sequences.' },
     ],
     credits: defaultCredits,
