@@ -167,23 +167,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     credits: defaultCredits,
   },
-  {
-    id: 'pulse-brand-commercial',
-    slug: 'pulse-brand-commercial',
-    title: 'Pulse Brand Commercial',
-    category: 'Commercials',
-    poster: '/case-studies/pulse-brand-commercial/poster.svg',
-    cover: '/case-studies/pulse-brand-commercial/cover.svg',
-    outcomeLine: 'Hero commercial and cutdowns that clarified product value while preserving premium brand tone.',
-    deliverables: ['60-second hero spot', '15-second cutdowns', 'Platform safe-title versions'],
-    pipelineSteps: defaultPipeline,
-    proofLinks: [{ label: 'YouTube', url: '#' }],
-    media: [
-      { id: 'pulse-hero', type: 'video', src: null, poster: '/case-studies/pulse-brand-commercial/poster.svg', alt: 'Pulse hero commercial', caption: 'Main commercial edit, click to play.' },
-      { id: 'pulse-stills', type: 'image', src: '/case-studies/pulse-brand-commercial/cover.svg', poster: '/case-studies/pulse-brand-commercial/poster.svg', alt: 'Pulse still frames', caption: 'Stills from narrative and product sequences.' },
-    ],
-    credits: defaultCredits,
-  },
+
   {
     id: 'aurora-series-a-deck',
     slug: 'aurora-series-a-deck',

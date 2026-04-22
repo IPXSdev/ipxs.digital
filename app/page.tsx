@@ -60,18 +60,20 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
+        {/* Hero Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/hero/lightgod-title-card.mov" type="video/quicktime" />
+          <source src="/hero/lightgod-title-card.mov" type="video/mp4" />
+        </video>
         
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)`,
-            backgroundSize: '100px 100px',
-          }}
-        />
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
 
         <div className="relative mx-auto max-w-7xl px-4 pt-32 pb-20 lg:px-8">
           <div className="flex flex-col items-center text-center">
