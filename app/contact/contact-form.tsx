@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -19,6 +20,7 @@ const projectTypes = [
   { value: 'motion-social', label: 'Motion/Social' },
   { value: 'commercial', label: 'Commercial' },
   { value: 'pitch-deck', label: 'Pitch Deck' },
+  { value: 'deck-walkthrough', label: 'Deck Walkthrough Request' },
   { value: 'website', label: 'Website' },
   { value: 'mvp-platform', label: 'MVP Platform' },
   { value: 'custom-gpt', label: 'Custom GPT' },
@@ -26,10 +28,25 @@ const projectTypes = [
 ]
 
 export function ContactForm() {
+  const searchParams = useSearchParams()
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [projectType, setProjectType] = useState('')
   const [error, setError] = useState('')
+  const [prefillMessage, setPrefillMessage] = useState('')
+
+  useEffect(() => {
+    const messageParam = searchParams.get('message')
+    const subjectParam = searchParams.get('subject')
+    
+    if (messageParam) {
+      setPrefillMessage(messageParam)
+    }
+    
+    if (subjectParam && subjectParam.toLowerCase().includes('deck walkthrough')) {
+      setProjectType('deck-walkthrough')
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -175,6 +192,8 @@ export function ContactForm() {
             rows={6}
             required
             className="resize-none rounded-lg bg-card"
+            defaultValue={prefillMessage}
+            key={prefillMessage}
           />
         </Field>
       </FieldGroup>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { ContactForm } from './contact-form'
 import { Calendar, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -35,7 +36,9 @@ export default function ContactPage() {
           <div className="grid gap-16 lg:grid-cols-5 lg:gap-24">
             {/* Form */}
             <div className="lg:col-span-3">
-              <ContactForm />
+              <Suspense fallback={<div className="animate-pulse h-96 rounded-lg bg-muted" />}>
+                <ContactForm />
+              </Suspense>
             </div>
 
             {/* Sidebar */}
