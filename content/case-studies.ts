@@ -142,26 +142,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     credits: defaultCredits,
   },
-  {
-    id: 'northstar-tour-motion-campaign',
-    slug: 'northstar-tour-motion-campaign',
-    title: 'Northstar Tour Motion Campaign',
-    category: 'Motion and Social Ads',
-    poster: '/case-studies/northstar-tour-motion-campaign/poster.svg',
-    cover: '/case-studies/northstar-tour-motion-campaign/cover.svg',
-    outcomeLine: 'Cross-platform campaign package that increased ticket intent through short-form creative sequencing.',
-    deliverables: ['Motion ad set', 'Story edits', 'Countdown package', 'Retargeting variants'],
-    pipelineSteps: defaultPipeline,
-    proofLinks: [
-      { label: 'Instagram', url: '#' },
-      { label: 'TikTok', url: '#' },
-    ],
-    media: [
-      { id: 'northstar-trailer', type: 'video', src: null, poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar campaign trailer', caption: 'Click to play campaign trailer cut.' },
-      { id: 'northstar-grid', type: 'image', src: '/case-studies/northstar-tour-motion-campaign/cover.svg', poster: '/case-studies/northstar-tour-motion-campaign/poster.svg', alt: 'Northstar ad grid', caption: 'Social ad variants for launch phase.' },
-    ],
-    credits: defaultCredits,
-  },
+
   {
     id: 'keith-collins-rugs',
     slug: 'keith-collins-rugs',
