@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { caseStudies, caseStudyWorlds } from '@/content/case-studies'
+import { caseStudies } from '@/content/case-studies'
 import { Badge } from '@/components/ui/badge'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -14,10 +14,20 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <div className="flex flex-col pt-24">
-      {/* Header */}
-      <section className="border-b border-border/50 pb-16 pt-8">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+    <div className="flex flex-col">
+      {/* Hero with Character Motion Sheet */}
+      <section className="relative min-h-[50vh] overflow-hidden pt-24">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        >
+          <source src="/media/case-studies/character-motion-sheet.mov" type="video/quicktime" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-32 lg:px-8">
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
             Case Studies
           </p>
@@ -73,48 +83,6 @@ export default function WorkPage() {
                 </div>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Worlds Overview */}
-      <section className="border-t border-border/50 bg-secondary/30 py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-12">
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Six Disciplines
-            </p>
-            <h2 className="font-serif text-2xl font-medium md:text-3xl">
-              Explore by World
-            </h2>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-              Each world maps to a core ipxs.digital discipline. Click to filter case studies by expertise area.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {caseStudyWorlds.map((world) => {
-              const worldCaseStudies = caseStudies.filter(cs => cs.category === world.title)
-              return (
-                <div
-                  key={world.id}
-                  className="group flex flex-col gap-4 rounded-lg border border-border bg-card p-6 transition-colors hover:border-muted-foreground/30"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-muted-foreground/50">
-                      World {world.number}
-                    </span>
-                    <Badge variant="outline" className="text-xs">
-                      {worldCaseStudies.length} {worldCaseStudies.length === 1 ? 'study' : 'studies'}
-                    </Badge>
-                  </div>
-                  <h3 className="font-serif text-lg font-medium">{world.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {world.outcome}
-                  </p>
-                </div>
-              )
-            })}
           </div>
         </div>
       </section>

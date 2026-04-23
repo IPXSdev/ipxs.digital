@@ -52,29 +52,23 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
-        {/* Hero Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/hero/lightgod-title-card.mov" type="video/quicktime" />
-          <source src="/hero/lightgod-title-card.mov" type="video/mp4" />
-        </video>
-        
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+      <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden pt-24">
+        {/* Motion Logo */}
+        <div className="relative mx-auto w-full max-w-3xl px-4">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full"
+          >
+            <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 pt-32 pb-20 lg:px-8">
+        {/* Caption below motion logo */}
+        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-20 lg:px-8">
           <div className="flex flex-col items-center text-center">
-            {/* Eyebrow */}
-            <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Entertainment Creative Technology Studio
-            </p>
-
             {/* Headline */}
             <h1 className="headline-display max-w-4xl font-serif font-medium tracking-tight">
               <span className="block text-foreground">Storytelling That Delivers.</span>
@@ -83,9 +77,8 @@ export default function HomePage() {
 
             {/* Subhead */}
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              ipxs.digital is an entertainment-focused creative technology studio building AI-powered 
-              release ecosystems. Cover art, motion, campaigns, decks, and digital experiences, 
-              engineered to ship fast and look expensive.
+              Premium creative infrastructure for entertainment. Release systems, motion campaigns, 
+              pitch decks, and digital platforms engineered to ship fast and perform at scale.
             </p>
 
             {/* Founder line */}
@@ -93,7 +86,7 @@ export default function HomePage() {
               Founded and led by{' '}
               <span className="text-foreground">Darion R. Harris</span>
               <span className="text-muted-foreground/50"> (LightGod)</span>
-              , Founder & Lead Creative Technologist.
+              , Founder and Lead Creative Technologist.
             </p>
 
             {/* CTAs */}
@@ -110,8 +103,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Scroll indicator removed */}
       </section>
 
       {/* What We Build Section */}
@@ -187,6 +178,60 @@ export default function HomePage() {
               />
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Trusted Partners Marquee */}
+      <section className="border-t border-border/50 py-12">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <p className="mb-8 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Trusted Partners and Collaborators
+          </p>
+        </div>
+        <div className="relative overflow-hidden">
+          <div className="flex animate-scroll-slow items-center gap-16">
+            {[
+              { src: '/media/partners/death-row-records-logo.png', alt: 'Death Row Records', height: 'h-12' },
+              { src: '/media/partners/delicious-vinyl-logo.webp', alt: 'Delicious Vinyl', height: 'h-10' },
+              { src: '/media/partners/delicious-vinyl-island-logo.webp', alt: 'Delicious Vinyl Island', height: 'h-10' },
+              { src: '/media/partners/emory-capital-logo.png', alt: 'Emory Capital', height: 'h-14' },
+              { src: '/media/partners/the-rockwell-logo.webp', alt: 'The Rockwell', height: 'h-12' },
+              { src: '/media/partners/xyion-logo.png', alt: 'Xyion', height: 'h-8' },
+              { src: '/media/partners/xia-logo.png', alt: 'x|a', height: 'h-10' },
+              { src: '/media/partners/a-family-business.jpg', alt: 'A Family Business', height: 'h-14' },
+            ].map((logo, i) => (
+              <div key={i} className={`relative ${logo.height} w-auto shrink-0 opacity-70 transition-opacity hover:opacity-100`}>
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={160}
+                  height={56}
+                  className="h-full w-auto object-contain brightness-0 invert"
+                />
+              </div>
+            ))}
+            {/* Duplicate for seamless loop */}
+            {[
+              { src: '/media/partners/death-row-records-logo.png', alt: 'Death Row Records', height: 'h-12' },
+              { src: '/media/partners/delicious-vinyl-logo.webp', alt: 'Delicious Vinyl', height: 'h-10' },
+              { src: '/media/partners/delicious-vinyl-island-logo.webp', alt: 'Delicious Vinyl Island', height: 'h-10' },
+              { src: '/media/partners/emory-capital-logo.png', alt: 'Emory Capital', height: 'h-14' },
+              { src: '/media/partners/the-rockwell-logo.webp', alt: 'The Rockwell', height: 'h-12' },
+              { src: '/media/partners/xyion-logo.png', alt: 'Xyion', height: 'h-8' },
+              { src: '/media/partners/xia-logo.png', alt: 'x|a', height: 'h-10' },
+              { src: '/media/partners/a-family-business.jpg', alt: 'A Family Business', height: 'h-14' },
+            ].map((logo, i) => (
+              <div key={`dup-${i}`} className={`relative ${logo.height} w-auto shrink-0 opacity-70 transition-opacity hover:opacity-100`}>
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={160}
+                  height={56}
+                  className="h-full w-auto object-contain brightness-0 invert"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
