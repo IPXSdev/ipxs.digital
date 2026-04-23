@@ -1,8 +1,17 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
 import { DropSection } from '@/components/drop-section'
+import { caseStudies } from '@/content/case-studies'
+
+// Select featured case studies (first from different categories for variety)
+const featuredCaseStudies = [
+  caseStudies.find(cs => cs.slug === 'dynamics-multiverse'),
+  caseStudies.find(cs => cs.slug === 'keith-collins-rugs'),
+  caseStudies.find(cs => cs.slug === 'charlibereal-deathrow-campaign'),
+].filter(Boolean) as typeof caseStudies
 
 const pillars = [
   {
@@ -37,23 +46,7 @@ const whyUs = [
   },
 ]
 
-const placeholderCaseStudies = [
-  {
-    title: 'Campaign System for Major Label Release',
-    category: 'Release System',
-    outcome: 'Complete visual ecosystem for platinum-certified debut.',
-  },
-  {
-    title: 'Artist Platform & Digital Experience',
-    category: 'Platform Build',
-    outcome: 'Immersive web experience driving 2M+ unique visitors.',
-  },
-  {
-    title: 'Motion Campaign for Festival Launch',
-    category: 'Motion + Social',
-    outcome: 'Social-first campaign generating 50M impressions.',
-  },
-]
+
 
 export default function HomePage() {
   return (
@@ -154,6 +147,49 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Visual Showcase Strip */}
+      <section className="overflow-hidden py-8">
+        <div className="flex animate-scroll-slow gap-4">
+          {[
+            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
+            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
+            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
+            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
+            { src: '/case-studies/dynamics-multiverse/still-06.png', alt: 'Generative Lore system' },
+            { src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger on rug street scene' },
+            { src: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand identity' },
+            { src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together video treatment' },
+          ].map((img, i) => (
+            <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 288px, 384px"
+              />
+            </div>
+          ))}
+          {/* Duplicate for seamless loop */}
+          {[
+            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
+            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
+            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
+            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
+          ].map((img, i) => (
+            <div key={`dup-${i}`} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 288px, 384px"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Why ipxs.digital Section */}
       <section className="py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
@@ -216,13 +252,14 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {placeholderCaseStudies.map((study) => (
+            {featuredCaseStudies.map((study) => (
               <CaseStudyCard
-                key={study.title}
+                key={study.id}
                 title={study.title}
                 category={study.category}
-                outcome={study.outcome}
-                isPlaceholder
+                outcome={study.outcomeLine}
+                cover={study.cover}
+                href={`/work/${study.slug}`}
               />
             ))}
           </div>

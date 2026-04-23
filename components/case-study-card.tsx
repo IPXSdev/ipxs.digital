@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { ArrowRight } from 'lucide-react'
@@ -8,8 +9,8 @@ interface CaseStudyCardProps {
   category: string
   outcome: string
   href?: string
+  cover?: string
   className?: string
-  isPlaceholder?: boolean
 }
 
 export function CaseStudyCard({
@@ -17,8 +18,8 @@ export function CaseStudyCard({
   category,
   outcome,
   href = '#',
+  cover,
   className,
-  isPlaceholder = false,
 }: CaseStudyCardProps) {
   return (
     <article
@@ -28,15 +29,16 @@ export function CaseStudyCard({
         className
       )}
     >
-      {/* Image placeholder */}
+      {/* Cover image */}
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        {isPlaceholder ? (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex flex-col items-center gap-2 text-muted-foreground">
-              <div className="h-12 w-12 rounded-full border-2 border-dashed border-muted-foreground/30" />
-              <span className="text-xs">Coming Soon</span>
-            </div>
-          </div>
+        {cover ? (
+          <Image
+            src={cover}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-muted to-secondary" />
         )}

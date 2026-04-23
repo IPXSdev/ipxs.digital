@@ -42,7 +42,14 @@ export interface CaseStudy {
   poster: string
   cover: string
   outcomeLine: string
+  heroTagline?: string
+  problem?: string
+  approach?: string
+  solution?: string
   deliverables: string[]
+  pipeline?: string[]
+  tools?: string[]
+  results?: string[]
   pipelineSteps: PipelineStep[]
   proofLinks: ProofLink[]
   media: CaseStudyMedia[]
@@ -201,8 +208,15 @@ export const caseStudies: CaseStudy[] = [
     category: 'World Building',
     poster: '/case-studies/dynamics-multiverse/cover.jpg',
     cover: '/case-studies/dynamics-multiverse/cover.jpg',
-    outcomeLine: 'A franchise-scale story universe engineered for expansion across film, series, games, music visuals, and brand collaborations.',
-    deliverables: ['World Bible and canon rules', 'Franchise architecture and expansion lanes', 'Visual language and brand identity direction', 'Character systems and trait classifications', 'Pitch-ready presentation structure'],
+    outcomeLine: 'Built a scalable story bible and franchise framework designed to support generative lore, character arcs, and multi-format rollout.',
+    heroTagline: 'A narrative universe engineered for collectibles, licensing, and screen-ready expansion.',
+    problem: 'The goal was to establish a complete narrative foundation for a new IP that could live across multiple mediums without losing coherence. The world needed clear rules, a believable origin, and character and faction structure strong enough to support future scripts, visuals, collectibles, and licensing. It also needed a framework where new stories could be generated consistently while staying inside canon.',
+    approach: 'I treated the universe like a production pipeline, not just a document. That meant building a canon backbone first, then mapping factions, characters, and story mechanics to future deliverables. The system was designed to be expandable, so future chapters, episodes, and collectible releases can be added without rewriting the foundation. The narrative structure was paired with rollout logic so each creative asset has a reason to exist in the world.',
+    solution: 'The Dynamics Multiverse was developed as a structured story world with a defined creation myth and core conflict, a catalog of factions and character archetypes that can carry multiple storylines, a lore engine approach that supports generative expansion while protecting canon, and a franchise roadmap designed to connect narrative, collectibles, and cinematic execution.',
+    deliverables: ['World Bible and Canon Foundation', 'Faction and Character Framework', 'Narrative Mechanics and Rules of the World', 'Franchise Expansion Blueprint', 'Release-ready story structure for future scripts and pitch assets'],
+    pipeline: ['Discovery and tone alignment, define the promise of the world', 'Canon backbone, origin, rules, and constraints', 'Faction architecture and character archetypes', 'Conflict mapping, story engines, and episodic scalability', 'Franchise blueprint, how the world expands across formats', 'Packaging, editing, and presentation for future pitches and production teams'],
+    tools: ['Story architecture and writing systems', 'Visual planning and layout tools for documentation', 'AI-assisted iteration where appropriate, with canon control'],
+    results: ['Delivered a structured world building foundation built for expansion', 'Established clear canon rules to prevent drift across future chapters', 'Created a franchise-ready blueprint that can support decks, scripts, and production planning'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
       { label: 'Book a Discovery Call', url: '/contact?subject=World%20Building%20Walkthrough' },
