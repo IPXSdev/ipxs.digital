@@ -223,6 +223,32 @@
     @apply text-5xl leading-[1.06] md:text-6xl;
   }
 
+
+  .section-fade {
+    position: relative;
+  }
+
+  .section-fade::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 26px;
+    pointer-events: none;
+    opacity: 0.45;
+    background: linear-gradient(
+      to bottom,
+      oklch(0.72 0.08 255 / 0.22),
+      oklch(0.78 0.05 275 / 0.12),
+      transparent
+    );
+  }
+
+  .section-fade-soft::before {
+    opacity: 0.3;
+    height: 20px;
+  }
+
   /* Infinite scroll animation */
   .animate-scroll-slow {
     animation: scroll-infinite 40s linear infinite;

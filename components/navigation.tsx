@@ -9,13 +9,11 @@ import { Menu } from 'lucide-react'
 const navItems = [
   { href: '/work', label: 'Case Studies' },
   { href: '/services', label: 'Services' },
-  { href: '/lab', label: 'Lab' },
-  { href: '/contact', label: 'Contact' },
 ]
 
 export function Navigation() {
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur">
+    <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
         <Link href="/" className="font-serif text-lg tracking-tight">
           ipxs.digital
@@ -26,9 +24,7 @@ export function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className={cn(
-                'text-muted-foreground transition-colors hover:text-foreground'
-              )}
+              className={cn('text-muted-foreground transition-colors hover:text-foreground')}
             >
               {item.label}
             </Link>
