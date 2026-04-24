@@ -61,6 +61,7 @@ export default function HomePage() {
             poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
             className="w-full"
           >
+            <source src="/media/hero/ipxsdigital-motion-logo-master.mov" type="video/quicktime" />
             <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
           </video>
         </div>
@@ -207,6 +208,7 @@ export default function HomePage() {
                   poster="/media/case-studies/charlie-bereal-energy-fallback.png"
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 >
+                  <source src="/media/case-studies/charlie-bereal-energy-motion-art.mov" type="video/quicktime" />
                   <source src="/media/case-studies/charlie-bereal-energy-motion-art.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
