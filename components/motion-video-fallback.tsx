@@ -17,7 +17,7 @@ export function MotionVideoFallback({
   poster,
   alt,
   className = '',
-  objectClassName = 'object-cover',
+  objectClassName = 'object-cover object-top',
   priority = false,
 }: MotionVideoFallbackProps) {
   const videoRef = useRef<HTMLVideoElement>(null)

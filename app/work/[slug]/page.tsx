@@ -54,6 +54,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
             fill
             className="object-cover object-top"
             priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
         </div>

@@ -149,7 +149,7 @@ export default function HomePage() {
             { src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together video treatment' },
           ].map((img, i) => (
             <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 288px, 384px" />
+              <Image src={img.src} alt={img.alt} fill className="object-cover object-top" sizes="(max-width: 768px) 288px, 384px" />
             </div>
           ))}
         </div>
@@ -205,7 +205,7 @@ export default function HomePage() {
                   loop
                   playsInline
                   poster="/media/case-studies/charlie-bereal-energy-fallback.png"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 >
                   <source src="/media/case-studies/charlie-bereal-energy-motion-art.mp4" type="video/mp4" />
                 </video>
