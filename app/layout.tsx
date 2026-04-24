@@ -44,12 +44,21 @@ export const metadata: Metadata = {
     title: 'ipxs.digital | Entertainment Creative Technology Studio',
     description:
       'AI-powered release ecosystems for artists, labels, and entertainment brands.',
+    images: [
+      {
+        url: '/media/hero/ipxsdigital-motion-logo-fallback.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'ipxs.digital - Entertainment Creative Technology Studio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ipxs.digital | Entertainment Creative Technology Studio',
     description:
       'AI-powered release ecosystems for artists, labels, and entertainment brands.',
+    images: ['/media/hero/ipxsdigital-motion-logo-fallback.jpeg'],
   },
   robots: {
     index: true,
