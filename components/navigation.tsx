@@ -46,7 +46,7 @@ export function Navigation() {
               <div className="p-5">
                 <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl border border-border/40 bg-card/70">
                   <Image
-                    src="/case-studies/charlibereal-deathrow-campaign/together-cover.png"
+                    src="/icon.svg"
                     alt="ipxs hero fallback"
                     fill
                     className="object-cover object-top"

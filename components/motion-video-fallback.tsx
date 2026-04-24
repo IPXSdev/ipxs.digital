@@ -1,52 +1,42 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
-  mp4Src: string
-  movSrc?: string
+  primarySrc: string
+  primaryType: string
+  secondarySrc?: string
+  secondaryType?: string
   poster: string
   alt: string
   className?: string
-  objectClassName?: string
-  priority?: boolean
-  objectPosition?: 'top' | 'center' | 'bottom'
   fit?: 'cover' | 'contain'
+  objectPosition?: 'top' | 'center' | 'bottom'
+  priority?: boolean
 }
 
 export function MotionVideoFallback({
-  mp4Src,
-  movSrc,
+  primarySrc,
+  primaryType,
+  secondarySrc,
+  secondaryType,
   poster,
   alt,
   className = '',
-  objectClassName,
-  priority = false,
+  fit = 'contain',
   objectPosition = 'top',
-  fit = 'cover',
+  priority = false,
 }: MotionVideoFallbackProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const stallCountRef = useRef(0)
+  const [stallEvents, setStallEvents] = useState(0)
 
-  // Compute object classes based on props (objectClassName takes precedence if provided)
-  const computedObjectClass = objectClassName ?? `object-${fit} object-${objectPosition}`
-
-  const handlePlaying = useCallback(() => {
-    setIsPlaying(true)
-    setVideoFailed(false)
-    stallCountRef.current = 0
-  }, [])
-
-  const handleStalled = useCallback(() => {
-    // Only fail after multiple stalls, not on first stall (transient network hiccups)
-    stallCountRef.current += 1
-    if (stallCountRef.current >= 3) {
-      setVideoFailed(true)
-    }
-  }, [])
+  const objectClassName = useMemo(
+    () => `object-${fit} object-${objectPosition}`,
+    [fit, objectPosition],
+  )
 
   useEffect(() => {
     if (videoFailed || isPlaying) return
@@ -57,10 +47,21 @@ export function MotionVideoFallback({
       if (video.paused && video.currentTime === 0) {
         setVideoFailed(true)
       }
-    }, 5000)
+    }, 4500)
 
     return () => window.clearTimeout(timeout)
   }, [videoFailed, isPlaying])
+
+  useEffect(() => {
+    if (isPlaying) {
+      setStallEvents(0)
+      return
+    }
+
+    if (stallEvents >= 3) {
+      setVideoFailed(true)
+    }
+  }, [stallEvents, isPlaying])
 
   return (
     <div className={`relative h-full w-full ${className}`}>
@@ -73,24 +74,24 @@ export function MotionVideoFallback({
         poster={poster}
         onError={() => setVideoFailed(true)}
         onAbort={() => setVideoFailed(true)}
-        onStalled={handleStalled}
-        onPlaying={handlePlaying}
-        className={`h-full w-full ${computedObjectClass} ${videoFailed ? 'invisible' : 'visible'}`}
+        onStalled={() => setStallEvents((value) => value + 1)}
+        onPlaying={() => setIsPlaying(true)}
+        className={`h-full w-full ${objectClassName} ${videoFailed ? 'invisible' : 'visible'}`}
       >
-        <source src={mp4Src} type="video/mp4" />
-        {movSrc ? <source src={movSrc} type="video/quicktime" /> : null}
+        <source src={primarySrc} type={primaryType} />
+        {secondarySrc ? <source src={secondarySrc} type={secondaryType ?? ''} /> : null}
       </video>
 
-      {videoFailed && (
+      {videoFailed ? (
         <Image
           src={poster}
           alt={alt}
           fill
           priority={priority}
-          className={computedObjectClass}
+          className={objectClassName}
           sizes="100vw"
         />
-      )}
+      ) : null}
     </div>
   )
 }

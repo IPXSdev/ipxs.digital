@@ -249,6 +249,7 @@
     height: 20px;
   }
 
+  /* Infinite scroll animation */
   /* Infinite scroll animations */
   .animate-scroll-slow {
     animation: scroll-infinite 40s linear infinite;

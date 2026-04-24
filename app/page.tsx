@@ -1,19 +1,16 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
 import { DropSection } from '@/components/drop-section'
 import { caseStudies } from '@/content/case-studies'
 import { MotionVideoFallback } from '@/components/motion-video-fallback'
+import { TrustedLogoScroller, type TrustedLogoItem } from '@/components/trusted-logo-scroller'
 
 const featuredCaseStudies = [
   caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
   caseStudies.find((cs) => cs.slug === 'prissy-vandross-original-ip'),
   caseStudies.find((cs) => cs.slug === 'charlibereal-deathrow-campaign'),
-  caseStudies.find((cs) => cs.slug === 'prissy-vandross'),
-  caseStudies.find((cs) => cs.slug === 'keith-collins-rugs'),
-  caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
 ].filter(Boolean) as typeof caseStudies
 
 const pillars = [
@@ -49,7 +46,15 @@ const whyUs = [
   },
 ]
 
-const trustedBy = ['Tubi', 'x|a', 'Delicious Vinyl', 'Delicious Vinyl Island', 'Death Row Records', 'Emory Capital', 'Rockwell']
+const trustedByLogos: TrustedLogoItem[] = [
+  { name: 'Tubi', src: '/media/logos/tubi.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { name: 'x|a', src: '/media/logos/xa.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { name: 'Delicious Vinyl', src: '/media/logos/delicious-vinyl.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { name: 'Delicious Vinyl Island', src: '/media/logos/delicious-vinyl-island.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { name: 'Death Row', src: '/media/logos/death-row-records.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { name: 'Emory Capital', src: '/media/logos/emory-capital.svg', shape: 'circle', fit: 'contain', bg: 'card' },
+  { name: 'Rockwell', src: '/media/logos/rockwell.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+]
 
 export default function HomePage() {
   return (
@@ -58,11 +63,14 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
           <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
-              mp4Src="/media/hero/ipxsdigital-motion-logo-master.mp4"
-              movSrc="/media/hero/ipxsdigital-motion-logo-master.mov"
+              primarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
+              primaryType="video/quicktime"
+              secondarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
+              secondaryType="video/mp4"
               poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
               alt="ipxs.digital motion logo poster"
-              objectClassName="object-contain object-top"
+              fit="contain"
+              objectPosition="top"
               priority
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
@@ -119,28 +127,20 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-fade py-8">
-        <div className="mx-auto max-w-7xl overflow-hidden px-4 lg:px-8">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
-          <div className="flex animate-scroll-slow gap-3">
-            {[...trustedBy, ...trustedBy].map((brand, i) => (
-              <div key={`${brand}-${i}`} className="flex h-12 min-w-40 items-center justify-center rounded-xl border border-border/50 bg-card/70 px-5 text-sm font-medium text-foreground/85 backdrop-blur">
-                {brand}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TrustedLogoScroller logos={trustedByLogos} />
 
       <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
           <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
-              mp4Src="/media/case-studies/charlie-bereal-energy-motion-art.mp4"
-              movSrc="/media/case-studies/charlie-bereal-energy-motion-art.mov"
+              primarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mp4"
+              primaryType="video/mp4"
+              secondarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mov"
+              secondaryType="video/quicktime"
               poster="/media/case-studies/charlie-bereal-energy-motion-art-fallback.png"
               alt="Charlie Bereal Energy motion poster"
-              objectClassName="object-contain object-top"
+              fit="contain"
+              objectPosition="top"
             />
           </div>
           <div>
@@ -198,11 +198,14 @@ export default function HomePage() {
               <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">Character Motion Sheet</p>
               <div className="relative mx-auto aspect-[9/16] w-full max-w-[220px] overflow-hidden rounded-lg bg-black">
                 <MotionVideoFallback
-                  mp4Src="/media/case-studies/character-motion-sheet.mp4"
-                  movSrc="/media/case-studies/character-motion-sheet.mov"
+                  primarySrc="/media/case-studies/character-motion-sheet.mp4"
+                  primaryType="video/mp4"
+                  secondarySrc="/media/case-studies/character-motion-sheet.mov"
+                  secondaryType="video/quicktime"
                   poster="/media/case-studies/character-motion-sheet-fallback.png"
                   alt="Character Motion Sheet video"
-                  objectClassName="object-contain object-top"
+                  fit="contain"
+                  objectPosition="top"
                 />
               </div>
             </div>

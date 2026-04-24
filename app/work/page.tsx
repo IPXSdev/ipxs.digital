@@ -40,11 +40,14 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border/50 bg-black">
             <MotionVideoFallback
-              mp4Src="/media/case-studies/character-motion-sheet.mp4"
-              movSrc="/media/case-studies/character-motion-sheet.mov"
+              primarySrc="/media/case-studies/character-motion-sheet.mp4"
+              primaryType="video/mp4"
+              secondarySrc="/media/case-studies/character-motion-sheet.mov"
+              secondaryType="video/quicktime"
               poster="/media/case-studies/character-motion-sheet-fallback.png"
               alt="Character Sheet poster fallback"
-              objectClassName="object-cover object-top"
+              fit="contain"
+              objectPosition="top"
               priority
             />
           </div>
