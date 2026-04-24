@@ -59,34 +59,33 @@ export default function HomePage() {
             loop
             playsInline
             poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
-            className="w-full"
+            className="w-full object-contain object-top"
           >
-            <source src="/media/hero/ipxsdigital-motion-logo-master.mov" type="video/quicktime" />
             <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
+            <source src="/media/hero/ipxsdigital-motion-logo-master.mov" type="video/quicktime" />
           </video>
         </div>
 
-          <div className="mx-auto mt-10 max-w-4xl text-center">
-            <h1 className="headline-display font-serif font-medium tracking-tight">
-              <span className="block text-foreground">Storytelling That Converts Attention.</span>
-              <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
-            </h1>
-            <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
-              ipxs.digital builds entertainment-facing creative technology systems that connect art direction, motion,
-              campaign assets, and digital product execution into one launch engine.
-              Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative and technical delivery meet.
-            </p>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
-                <Link href="/work">
-                  View Case Studies
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
-                <Link href="/contact">Start a Project</Link>
-              </Button>
-            </div>
+        <div className="mx-auto mt-10 max-w-4xl text-center">
+          <h1 className="headline-display font-serif font-medium tracking-tight">
+            <span className="block text-foreground">Storytelling That Converts Attention.</span>
+            <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
+          </h1>
+          <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
+            ipxs.digital builds entertainment-facing creative technology systems that connect art direction, motion,
+            campaign assets, and digital product execution into one launch engine.
+            Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative and technical delivery meet.
+          </p>
+          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+            <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
+              <Link href="/work">
+                View Case Studies
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
+              <Link href="/contact">Start a Project</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -119,12 +118,14 @@ export default function HomePage() {
 
       <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
-          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
+          <div className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
-              mp4Src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
-              poster="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg"
+              mp4Src="/media/case-studies/charlie-bereal-energy-motion-art.mp4"
+              movSrc="/media/case-studies/charlie-bereal-energy-motion-art.mov"
+              poster="/media/case-studies/charlie-bereal-energy-fallback.png"
               alt="Charlie Bereal Energy motion poster"
-              objectClassName="object-cover object-top"
+              fit="contain"
+              objectPosition="top"
             />
           </div>
           <div>
@@ -196,31 +197,30 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Featured Motion Highlight */}
+          {/* Featured Motion Highlight - Character Motion Sheet (wide) */}
           <div className="mb-12">
-            <Link href="/work/charlibereal-deathrow-campaign" className="group block">
+            <Link href="/work/dynamics-multiverse" className="group block">
               <div className="relative aspect-video overflow-hidden rounded-xl">
                 <video
                   autoPlay
                   muted
                   loop
                   playsInline
-                  poster="/media/case-studies/charlie-bereal-energy-fallback.png"
+                  poster="/media/case-studies/character-motion-sheet-fallback.png"
                   className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 >
-                  <source src="/media/case-studies/charlie-bereal-energy-motion-art.mov" type="video/quicktime" />
-                  <source src="/media/case-studies/charlie-bereal-energy-motion-art.mp4" type="video/mp4" />
+                  <source src="/media/case-studies/character-motion-sheet.mov" type="video/quicktime" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                    Motion and Release System
+                    Character Design and Motion
                   </p>
                   <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">
-                    CharliBereal x Death Row Records
+                    Character Motion Sheet
                   </h3>
                   <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-                    Full campaign system for a multi-single release on Death Row Records. Motion art, cover design, and social content for the Chocolate Woman era.
+                    Animated character system designed for social content, merchandise, and brand storytelling across platforms.
                   </p>
                 </div>
               </div>

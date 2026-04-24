@@ -17,7 +17,9 @@ export const metadata: Metadata = {
   description:
     'AI-powered release ecosystems for artists, labels, and entertainment brands. Cover art, motion, campaigns, decks, and digital experiences engineered to ship fast and look expensive.',
   icons: {
-    icon: '/favicon.jpeg',
+    icon: [
+      { url: '/favicon.jpeg', sizes: 'any' },
+    ],
     shortcut: '/favicon.jpeg',
     apple: '/favicon.jpeg',
   },
