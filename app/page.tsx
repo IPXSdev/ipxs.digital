@@ -146,9 +146,9 @@ export default function HomePage() {
       </section>
 
       {/* Trusted By / Client Logos */}
-      <section className="overflow-hidden border-y border-border/30 bg-secondary/20 py-8">
-        <p className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
-        <div className="flex animate-scroll-fast items-center gap-8">
+      <section className="overflow-hidden border-y border-border/30 bg-secondary/20 py-6">
+        <p className="mb-5 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
+        <div className="flex animate-scroll-faster items-center gap-6">
           {[
             { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false, aspect: 'wide' },
             { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false, aspect: 'wide' },
@@ -165,16 +165,16 @@ export default function HomePage() {
           ].map((logo, i) => (
             <div 
               key={i} 
-              className={`logo-frame-neon relative shrink-0 ${
-                logo.aspect === 'square' ? 'h-20 w-20 md:h-24 md:w-24' : 'h-16 w-40 md:h-20 md:w-48'
+              className={`logo-frame-neon relative shrink-0 overflow-hidden ${
+                logo.aspect === 'square' ? 'h-24 w-24 md:h-28 md:w-28' : 'h-20 w-52 md:h-24 md:w-60'
               }`}
             >
               <Image 
                 src={logo.src} 
                 alt={logo.alt} 
                 fill 
-                className={`object-contain p-3 transition-all ${logo.invert ? 'invert' : ''}`}
-                sizes="(max-width: 768px) 160px, 192px" 
+                className={`rounded-xl object-cover transition-all ${logo.invert ? 'invert' : ''}`}
+                sizes="(max-width: 768px) 208px, 240px" 
               />
             </div>
           ))}
