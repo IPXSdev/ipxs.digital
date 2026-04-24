@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
@@ -42,19 +43,37 @@ export function Navigation() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
-              <div className="mt-6 flex flex-col gap-5">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-sm text-muted-foreground hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <Button asChild className="rounded-full">
-                  <Link href="/contact">Start a Project</Link>
-                </Button>
+              {/* Large Logo/Favicon */}
+              <div className="mb-8 mt-4 flex justify-center">
+                <Image
+                  src="/favicon.ico"
+                  alt="ipxs.digital"
+                  width={80}
+                  height={80}
+                  className="rounded-xl"
+                />
+              </div>
+              
+              {/* 3D Neon Button Navigation */}
+              <div className="flex flex-col gap-4">
+                <Link
+                  href="/work"
+                  className="mobile-nav-btn-cyan flex items-center justify-center rounded-full px-6 py-4 text-center font-medium text-foreground transition-all"
+                >
+                  Case Studies
+                </Link>
+                <Link
+                  href="/services"
+                  className="mobile-nav-btn-magenta flex items-center justify-center rounded-full px-6 py-4 text-center font-medium text-foreground transition-all"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/contact"
+                  className="mobile-nav-btn-violet flex items-center justify-center rounded-full px-6 py-4 text-center font-medium text-white transition-all"
+                >
+                  Start a Project
+                </Link>
               </div>
             </SheetContent>
           </Sheet>
