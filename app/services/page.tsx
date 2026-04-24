@@ -104,8 +104,8 @@ export default function ServicesPage() {
           <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Services</p>
           <h1 className="max-w-3xl font-serif page-header-title font-medium gradient-text-neon">Production Systems Built to Ship</h1>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Every engagement is structured with clear deliverables, accountable timelines, and production quality that holds up in market.
-            We design for speed, consistency, and outcomes teams can build on.
+            Every engagement combines custom AI-assisted workflows with disciplined creative direction.
+            We pair human authorship with production-grade acceleration to deliver outcomes that are faster, more ambitious, and built to perform in market.
           </p>
         </div>
       </section>

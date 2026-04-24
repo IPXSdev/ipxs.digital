@@ -8,9 +8,9 @@ import { caseStudies } from '@/content/case-studies'
 import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 const featuredCaseStudies = [
-  caseStudies.find((cs) => cs.slug === 'emory-capital'),
+  caseStudies.find((cs) => cs.slug === 'prissy-vandross'),
   caseStudies.find((cs) => cs.slug === 'keith-collins-rugs'),
-  caseStudies.find((cs) => cs.slug === 'charlibereal-deathrow-campaign'),
+  caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
 ].filter(Boolean) as typeof caseStudies
 
 const pillars = [
@@ -33,16 +33,16 @@ const pillars = [
 
 const whyUs = [
   {
-    title: 'Senior execution from day one',
-    description: 'Strategy, design, motion, and technical build are led by experienced operators who ship.',
+    title: 'Custom tools and AI-assisted workflows',
+    description: 'We use proprietary workflows across concept development, design, production, post, and story systems. AI is directed and orchestrated, not left to chance.',
   },
   {
-    title: 'Campaign architecture, not isolated assets',
-    description: 'Every output is connected so release momentum builds across touchpoints instead of fragmenting.',
+    title: 'Human authorship with AI acceleration',
+    description: 'Creative direction drives every project. AI extends reach, not replaces judgment. The result is work that moves faster without losing artistic ownership.',
   },
   {
-    title: 'AI integrated with production discipline',
-    description: 'Automation supports speed while editorial standards protect quality, consistency, and ownership.',
+    title: 'Full-stack creative development',
+    description: 'From campaigns and commercials to original characters, music properties, and franchise-scale world building, we build complete systems, not isolated assets.',
   },
 ]
 
@@ -79,9 +79,9 @@ export default function HomePage() {
             <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
           </h1>
           <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
-            ipxs.digital builds entertainment-facing creative technology systems that connect art direction, motion,
-            campaign assets, and digital product execution into one launch engine.
-            Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative and technical delivery meet.
+            ipxs.digital pairs human creative direction with custom AI-assisted workflows to move faster, go further, and build more ambitious work.
+            From campaigns and commercial content to original characters, music properties, and full-scale visual rollouts, there is no project we cannot accomplish together.
+            Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative authorship and technical production meet.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
@@ -149,18 +149,18 @@ export default function HomePage() {
       <section className="overflow-hidden py-8">
         <div className="flex animate-scroll-slow gap-4">
           {[
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
+            { src: '/case-studies/dynamics-multiverse/still-07.png', alt: 'Pri$$y Vandro$$ character portrait' },
             { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
             { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
-            { src: '/case-studies/dynamics-multiverse/still-06.png', alt: 'Generative lore system' },
+            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
+            { src: '/case-studies/dynamics-multiverse/still-08.png', alt: 'Pri$$y Vandro$$ visual identity' },
             { src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger on rug street scene' },
             { src: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand identity' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together video treatment' },
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
+            { src: '/case-studies/dynamics-multiverse/still-09.png', alt: 'Pri$$y Vandro$$ chrome futurism' },
+            { src: '/case-studies/dynamics-multiverse/still-07.png', alt: 'Pri$$y Vandro$$ character portrait' },
             { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
             { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
+            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
           ].map((img, i) => (
             <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
               <Image src={img.src} alt={img.alt} fill className="object-cover object-top" sizes="(max-width: 768px) 288px, 384px" />
