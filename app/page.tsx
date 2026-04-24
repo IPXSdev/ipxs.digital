@@ -8,6 +8,9 @@ import { caseStudies } from '@/content/case-studies'
 import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 const featuredCaseStudies = [
+  caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
+  caseStudies.find((cs) => cs.slug === 'prissy-vandross-original-ip'),
+  caseStudies.find((cs) => cs.slug === 'charlibereal-deathrow-campaign'),
   caseStudies.find((cs) => cs.slug === 'prissy-vandross'),
   caseStudies.find((cs) => cs.slug === 'keith-collins-rugs'),
   caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
@@ -33,66 +36,59 @@ const pillars = [
 
 const whyUs = [
   {
-    title: 'Custom tools and AI-assisted workflows',
-    description: 'We use proprietary workflows across concept development, design, production, post, and story systems. AI is directed and orchestrated, not left to chance.',
+    title: 'Senior execution from day one',
+    description: 'Strategy, design, motion, and technical build are led by experienced operators who ship.',
   },
   {
-    title: 'Human authorship with AI acceleration',
-    description: 'Creative direction drives every project. AI extends reach, not replaces judgment. The result is work that moves faster without losing artistic ownership.',
+    title: 'Campaign architecture, not isolated assets',
+    description: 'Every output is connected so release momentum builds across touchpoints instead of fragmenting.',
   },
   {
-    title: 'Full-stack creative development',
-    description: 'From campaigns and commercials to original characters, music properties, and franchise-scale world building, we build complete systems, not isolated assets.',
+    title: 'AI workflows built into production',
+    description: 'Custom AI-assisted pipelines reduce turn time while keeping quality control at a premium standard.',
   },
 ]
+
+const trustedBy = ['Tubi', 'x|a', 'Delicious Vinyl', 'Delicious Vinyl Island', 'Death Row Records', 'Emory Capital', 'Rockwell']
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Full bleed video starting at navbar */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-        {/* Full-width video container - responsive for mobile */}
-        <div className="absolute inset-x-0 top-0 flex h-[50vh] w-full items-center justify-center md:h-[65vh]">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
-            className="h-full w-full object-contain"
-          >
-            <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
-            <source src="/media/hero/ipxsdigital-motion-logo-master.mov" type="video/quicktime" />
-          </video>
-          
-          {/* Bottom fade to blend into content */}
-          <div 
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-32 md:h-48"
-            style={{ background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)' }}
-          />
-        </div>
+      <section className="pt-24">
+        <div className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
+          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
+            <MotionVideoFallback
+              mp4Src="/media/hero/ipxsdigital-motion-logo-master.mp4"
+              movSrc="/media/hero/ipxsdigital-motion-logo-master.mov"
+              poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
+              alt="ipxs.digital motion logo poster"
+              objectClassName="object-contain object-top"
+              priority
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+          </div>
 
-        {/* Content positioned below video area - responsive positioning */}
-        <div className="relative z-10 mx-auto mt-[48vh] max-w-4xl px-4 text-center md:mt-[62vh]">
-          <h1 className="headline-display font-serif font-medium tracking-tight">
-            <span className="block text-foreground">Storytelling That Converts Attention.</span>
-            <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
-          </h1>
-          <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
-            ipxs.digital pairs human creative direction with custom AI-assisted workflows to move faster, go further, and build more ambitious work.
-            From campaigns and commercial content to original characters, music properties, and full-scale visual rollouts, there is no project we cannot accomplish together.
-            Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative authorship and technical production meet.
-          </p>
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
-              <Link href="/work">
-                View Case Studies
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
-              <Link href="/contact">Start a Project</Link>
-            </Button>
+          <div className="mx-auto mt-10 max-w-4xl text-center">
+            <h1 className="headline-display font-serif font-medium tracking-tight">
+              <span className="block text-foreground">Storytelling That Converts Attention.</span>
+              <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
+            </h1>
+            <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
+              ipxs.digital builds entertainment-facing creative technology systems that connect art direction, motion,
+              campaign assets, and digital product execution into one launch engine.
+              Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative and technical delivery meet.
+            </p>
+            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
+                <Link href="/work">
+                  View Case Studies
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
+                <Link href="/contact">Start a Project</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -123,16 +119,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-fade py-8">
+        <div className="mx-auto max-w-7xl overflow-hidden px-4 lg:px-8">
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
+          <div className="flex animate-scroll-slow gap-3">
+            {[...trustedBy, ...trustedBy].map((brand, i) => (
+              <div key={`${brand}-${i}`} className="flex h-12 min-w-40 items-center justify-center rounded-xl border border-border/50 bg-card/70 px-5 text-sm font-medium text-foreground/85 backdrop-blur">
+                {brand}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
-          <div className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden rounded-2xl bg-black">
+          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
               mp4Src="/media/case-studies/charlie-bereal-energy-motion-art.mp4"
               movSrc="/media/case-studies/charlie-bereal-energy-motion-art.mov"
-              poster="/media/case-studies/charlie-bereal-energy-fallback.png"
+              poster="/media/case-studies/charlie-bereal-energy-motion-art-fallback.png"
               alt="Charlie Bereal Energy motion poster"
-              fit="contain"
-              objectPosition="top"
+              objectClassName="object-contain object-top"
             />
           </div>
           <div>
@@ -142,64 +150,6 @@ export default function HomePage() {
               Motion-first campaign artwork built for streaming placements, social circulation, and repeat visual recall.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Scrolling Project Images */}
-      <section className="overflow-hidden py-8">
-        <div className="flex animate-scroll-slow gap-4">
-          {[
-            { src: '/case-studies/dynamics-multiverse/still-07.png', alt: 'Pri$$y Vandro$$ character portrait' },
-            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
-            { src: '/case-studies/dynamics-multiverse/still-08.png', alt: 'Pri$$y Vandro$$ visual identity' },
-            { src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger on rug street scene' },
-            { src: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand identity' },
-            { src: '/case-studies/dynamics-multiverse/still-09.png', alt: 'Pri$$y Vandro$$ chrome futurism' },
-            { src: '/case-studies/dynamics-multiverse/still-07.png', alt: 'Pri$$y Vandro$$ character portrait' },
-            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
-          ].map((img, i) => (
-            <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
-              <Image src={img.src} alt={img.alt} fill className="object-cover object-top" sizes="(max-width: 768px) 288px, 384px" />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Trusted By / Client Logos */}
-      <section className="overflow-hidden border-y border-border/30 bg-secondary/20 py-6">
-        <p className="mb-5 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
-        <div className="flex animate-scroll-faster items-center gap-6">
-          {[
-            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
-            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
-            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
-            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
-            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
-            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
-            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
-            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
-            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
-            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
-            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
-            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
-          ].map((logo, i) => (
-            <div 
-              key={i} 
-              className="logo-frame-neon relative h-16 w-36 shrink-0 md:h-20 md:w-44"
-            >
-              <Image 
-                src={logo.src} 
-                alt={logo.alt} 
-                fill 
-                className={`object-contain p-2 transition-all ${logo.invert ? 'invert' : ''}`}
-                sizes="176px" 
-              />
-            </div>
-          ))}
         </div>
       </section>
 
@@ -232,7 +182,7 @@ export default function HomePage() {
 
       <section className="section-fade bg-secondary/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Featured Case Studies</p>
               <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Selected Work</h2>
@@ -243,47 +193,31 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Featured Motion Highlight - Character Motion Sheet (wide) */}
-          <div className="mb-12">
-            <Link href="/work/dynamics-multiverse" className="group block">
-              <div className="relative aspect-video overflow-hidden rounded-xl bg-white">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
+          <div className="mb-8 grid gap-6 lg:grid-cols-[280px_1fr]">
+            <div className="rounded-xl border border-border/50 bg-card/80 p-4">
+              <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">Character Motion Sheet</p>
+              <div className="relative mx-auto aspect-[9/16] w-full max-w-[220px] overflow-hidden rounded-lg bg-black">
+                <MotionVideoFallback
+                  mp4Src="/media/case-studies/character-motion-sheet.mp4"
+                  movSrc="/media/case-studies/character-motion-sheet.mov"
                   poster="/media/case-studies/character-motion-sheet-fallback.png"
-                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                >
-                  <source src="/media/case-studies/character-motion-sheet-wide.mov" type="video/quicktime" />
-                </video>
+                  alt="Character Motion Sheet video"
+                  objectClassName="object-contain object-top"
+                />
               </div>
-              {/* Caption below video - no overlap */}
-              <div className="mt-4 px-2">
-                <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                  Character Design and Motion
-                </p>
-                <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">
-                  Character Motion Sheet
-                </h3>
-                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-                  Animated character system designed for social content, merchandise, and brand storytelling across platforms.
-                </p>
-              </div>
-            </Link>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featuredCaseStudies.map((study) => (
-              <CaseStudyCard
-                key={study.id}
-                title={study.title}
-                category={study.category}
-                outcome={study.outcomeLine}
-                href={`/work/${study.slug}`}
-                cover={study.cover}
-              />
-            ))}
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {featuredCaseStudies.map((study) => (
+                <CaseStudyCard
+                  key={study.id}
+                  title={study.title}
+                  category={study.category}
+                  outcome={study.outcomeLine}
+                  href={`/work/${study.slug}`}
+                  cover={study.cover}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>

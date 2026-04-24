@@ -42,38 +42,31 @@ export function Navigation() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
-              {/* Large Logo/Favicon */}
-              <div className="mb-8 mt-4 flex justify-center">
-                <Image
-                  src="/favicon.ico"
-                  alt="ipxs.digital"
-                  width={80}
-                  height={80}
-                  className="rounded-xl"
-                />
-              </div>
-              
-              {/* 3D Neon Button Navigation */}
-              <div className="flex flex-col gap-4">
-                <Link
-                  href="/work"
-                  className="mobile-nav-btn-cyan flex items-center justify-center rounded-full px-6 py-4 text-center font-medium text-foreground transition-all"
-                >
-                  Case Studies
-                </Link>
-                <Link
-                  href="/services"
-                  className="mobile-nav-btn-magenta flex items-center justify-center rounded-full px-6 py-4 text-center font-medium text-foreground transition-all"
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/contact"
-                  className="mobile-nav-btn-violet flex items-center justify-center rounded-full px-6 py-4 text-center font-medium text-white transition-all"
-                >
-                  Start a Project
-                </Link>
+            <SheetContent side="right" className="w-[88vw] max-w-sm border-border/40 bg-background/95 p-0 backdrop-blur-xl">
+              <div className="p-5">
+                <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl border border-border/40 bg-card/70">
+                  <Image
+                    src="/case-studies/charlibereal-deathrow-campaign/together-cover.png"
+                    alt="ipxs hero fallback"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 90vw, 360px"
+                  />
+                </div>
+                <div className="flex flex-col gap-3">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="rounded-xl border border-border/60 bg-card/70 px-4 py-3 text-sm text-foreground shadow-sm backdrop-blur transition-all hover:border-accent/60 hover:bg-accent/10"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  <Button asChild className="h-11 rounded-xl bg-gradient-to-r from-indigo-500/90 to-violet-500/90 shadow-[0_10px_26px_rgba(99,102,241,0.35)]">
+                    <Link href="/contact">Start a Project</Link>
+                  </Button>
+                </div>
               </div>
             </SheetContent>
           </Sheet>

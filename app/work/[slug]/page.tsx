@@ -56,10 +56,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <div className={`absolute inset-0 ${caseStudy.slug === 'keith-collins-rugs' ? 'bg-gradient-to-b from-background/88 via-background/62 to-background/28' : 'bg-gradient-to-t from-background via-background/50 to-transparent'}`} />
         </div>
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 -mt-32 lg:px-8">
+        <div className={`relative mx-auto w-full max-w-7xl px-4 pb-12 lg:px-8 ${caseStudy.slug === 'keith-collins-rugs' ? '-mt-20 md:-mt-24' : '-mt-32'}`}>
           <Link
             href="/work"
             className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -81,43 +81,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </p>
         </div>
       </section>
-
-      {/* Extended Case Study Content: Problem, Approach, Solution */}
-      {(caseStudy.problem || caseStudy.approach || caseStudy.solution) && (
-        <section className="section-fade py-12 lg:py-16">
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="grid gap-12 lg:gap-16">
-              {caseStudy.problem && (
-                <div className="max-w-3xl">
-                  <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                    The Challenge
-                  </p>
-                  <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">What We Were Up Against</h2>
-                  <p className="text-base leading-relaxed text-muted-foreground">{caseStudy.problem}</p>
-                </div>
-              )}
-              {caseStudy.approach && (
-                <div className="max-w-3xl">
-                  <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                    The Approach
-                  </p>
-                  <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">How We Solved It</h2>
-                  <p className="text-base leading-relaxed text-muted-foreground">{caseStudy.approach}</p>
-                </div>
-              )}
-              {caseStudy.solution && (
-                <div className="max-w-3xl">
-                  <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                    The Outcome
-                  </p>
-                  <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">What This Proves</h2>
-                  <p className="text-base leading-relaxed text-muted-foreground">{caseStudy.solution}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
 
       <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
