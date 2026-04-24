@@ -72,8 +72,8 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Content positioned below video area */}
-        <div className="relative z-10 mx-auto mt-[55vh] max-w-4xl px-4 text-center">
+        {/* Content positioned below video area - pushed down to avoid overlap */}
+        <div className="relative z-10 mx-auto mt-[72vh] max-w-4xl px-4 text-center">
           <h1 className="headline-display font-serif font-medium tracking-tight">
             <span className="block text-foreground">Storytelling That Converts Attention.</span>
             <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
