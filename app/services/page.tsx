@@ -14,13 +14,13 @@ const services = [
     id: 'release-system',
     title: 'Release System',
     description:
-      'Complete visual ecosystem for album, EP, or single releases. Everything you need to launch with impact.',
+      'Complete visual ecosystem for an album, EP, or single launch with assets engineered to perform on streaming, social, and press.',
     deliverables: [
-      'Cover art (multiple formats & aspect ratios)',
-      'Motion cover / visualizer loop',
-      'Social asset pack (stories, posts, banners)',
-      'Press kit assets',
-      'Color & type guidelines',
+      'Cover art across all platform aspect ratios',
+      'Motion cover and visualizer loop',
+      'Social rollout pack for stories, posts, and headers',
+      'Press-ready promotional kit',
+      'Color and type direction for campaign consistency',
     ],
     timeline: '2-4 weeks',
   },
@@ -28,41 +28,41 @@ const services = [
     id: 'motion-social-kit',
     title: 'Motion + Social Kit',
     description:
-      'Scroll-stopping content for social campaigns. Built to perform across platforms and capture attention.',
+      'Scroll-stopping campaign content developed for speed and conversion across paid, organic, and artist-owned channels.',
     deliverables: [
-      'Campaign concept & creative direction',
-      '6-12 motion assets (15-60s each)',
-      'Platform-optimized exports',
-      'Static companion posts',
-      'Performance-ready file delivery',
+      'Campaign concept and visual direction',
+      '6-12 motion assets from 15-60 seconds',
+      'Platform-optimized export sets',
+      'Static companion posts for continuity',
+      'Performance-ready handoff package',
     ],
-    timeline: '2-3 weeks',
+    timeline: '1-3 weeks',
   },
   {
     id: 'commercial-spot',
     title: 'Commercial Spot',
     description:
-      'Broadcast-ready creative for brands and artists. From concept to final delivery, built for impact.',
+      'Brand and artist spots developed from concept through delivery with cinematic polish and measurable campaign utility.',
     deliverables: [
-      'Creative concept & storyboard',
-      '30-60s hero spot',
-      'Cutdowns (15s, 6s)',
-      'Platform-specific versions',
-      'Color grading & audio mix',
+      'Creative concept and storyboard',
+      '30-60 second hero spot',
+      '15 second and 6 second cutdowns',
+      'Platform-specific distribution variants',
+      'Color and audio finishing',
     ],
-    timeline: '4-6 weeks',
+    timeline: '1-4 weeks',
   },
   {
     id: 'pitch-deck',
     title: 'Pitch Deck Architecture',
     description:
-      'Investor-ready decks that tell your story with clarity and conviction. Built to close.',
+      'Investor-facing decks designed to clarify thesis, strengthen narrative flow, and improve confidence in the room.',
     deliverables: [
-      'Narrative architecture & flow',
-      '20-40 slide deck design',
-      'Data visualization design',
-      'Presentation coaching notes',
-      'Source files & template system',
+      'Narrative architecture and sequencing',
+      '20-40 slide presentation design',
+      'Data visualization and proof framing',
+      'Presenter notes and coaching support',
+      'Source files and reusable templates',
     ],
     timeline: '2-3 weeks',
   },
@@ -70,27 +70,27 @@ const services = [
     id: 'artist-website',
     title: 'Artist/Brand Website',
     description:
-      'Premium digital presence that converts. From portfolio sites to full artist ecosystems.',
+      'Premium digital presence built to convert attention into action, from artist rollouts to brand storytelling.',
     deliverables: [
-      'UX strategy & wireframes',
-      'Custom design (5-10 pages)',
-      'Responsive development',
+      'UX strategy and wireframe direction',
+      'Custom design across key pages',
+      'Responsive front-end development',
       'CMS integration',
-      'Performance optimization',
+      'Performance tuning before launch',
     ],
-    timeline: '4-8 weeks',
+    timeline: '1-2 weeks',
   },
   {
     id: 'mvp-platform',
     title: 'MVP Platform Build',
     description:
-      'Functional product builds for new ventures. From concept to deployed MVP, ready for users.',
+      'Launch-ready product builds that turn concepts into functional experiences teams can test, demo, and scale.',
     deliverables: [
-      'Product strategy & scoping',
-      'UX/UI design system',
-      'Full-stack development',
-      'User authentication & data',
-      'Deployment & handoff',
+      'Product strategy and scope definition',
+      'UX/UI system design',
+      'Full-stack build and integration',
+      'Authentication and data workflows',
+      'Deployment and handoff documentation',
     ],
     timeline: '6-12 weeks',
   },
@@ -99,24 +99,18 @@ const services = [
 export default function ServicesPage() {
   return (
     <div className="flex flex-col pt-24">
-      {/* Header */}
-      <section className="border-b border-border/50 pb-16 pt-8">
+      <section className="pb-14 pt-8">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Services
-          </p>
-          <h1 className="max-w-3xl font-serif page-header-title font-medium gradient-text-neon">
-            What We Build
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Premium creative packages with clear deliverables, realistic timelines, and outcomes 
-            that matter. Every engagement is scoped for success.
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Services</p>
+          <h1 className="max-w-3xl font-serif page-header-title font-medium gradient-text-neon">Production Systems Built to Ship</h1>
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            Every engagement is structured with clear deliverables, accountable timelines, and production quality that holds up in market.
+            We design for speed, consistency, and outcomes teams can build on.
           </p>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-16 lg:py-24">
+      <section className="section-fade py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2">
             {services.map((service, index) => (
@@ -124,27 +118,16 @@ export default function ServicesPage() {
                 key={service.id}
                 className="group flex flex-col rounded-lg border border-border bg-card p-8 transition-all duration-300 hover:border-muted-foreground/30 lg:p-10"
               >
-                {/* Header */}
                 <div className="mb-6 flex items-start justify-between">
-                  <span className="font-mono text-xs text-muted-foreground/50">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
-                    {service.timeline}
-                  </span>
+                  <span className="font-mono text-xs text-muted-foreground/50">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="rounded-full bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">{service.timeline}</span>
                 </div>
 
-                {/* Title & Description */}
                 <h2 className="mb-3 font-serif text-2xl font-medium">{service.title}</h2>
-                <p className="mb-8 text-sm leading-relaxed text-muted-foreground">
-                  {service.description}
-                </p>
+                <p className="mb-8 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
 
-                {/* Deliverables */}
                 <div className="mb-8 flex-1">
-                  <p className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Deliverables
-                  </p>
+                  <p className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">Deliverables</p>
                   <ul className="flex flex-col gap-3">
                     {service.deliverables.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm text-foreground">
@@ -155,7 +138,6 @@ export default function ServicesPage() {
                   </ul>
                 </div>
 
-                {/* CTA */}
                 <Button asChild variant="outline" className="w-full rounded-full">
                   <Link href="/contact">
                     Request a Quote
@@ -168,16 +150,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="border-t border-border/50 bg-secondary/30 py-24">
+      <section className="section-fade bg-secondary/30 py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col items-center text-center">
-            <h2 className="max-w-2xl font-serif text-3xl font-medium leading-tight md:text-4xl">
-              Need something custom?
-            </h2>
+            <h2 className="max-w-2xl font-serif text-3xl font-medium leading-tight md:text-4xl">Need something custom?</h2>
             <p className="mt-4 max-w-lg text-base text-muted-foreground">
-              Every project is different. Let&apos;s talk about what you&apos;re building and 
-              how we can help make it exceptional.
+              If your scope does not fit a package, we can design a custom production path around your timeline and goals.
             </p>
             <Button asChild size="lg" className="mt-8 rounded-full px-8">
               <Link href="/contact">
