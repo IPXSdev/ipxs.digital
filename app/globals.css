@@ -249,9 +249,13 @@
     height: 20px;
   }
 
-  /* Infinite scroll animation */
+  /* Infinite scroll animations */
   .animate-scroll-slow {
     animation: scroll-infinite 40s linear infinite;
+  }
+
+  .animate-scroll-fast {
+    animation: scroll-infinite 15s linear infinite;
   }
 
   /* 3D Glossy Neon Icon Circle */

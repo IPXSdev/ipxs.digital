@@ -51,29 +51,29 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* Hero Section - Full bleed video starting at navbar */}
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
-        {/* Full-width video container - no padding, spans edge to edge */}
-        <div className="absolute inset-x-0 top-0 h-[70vh] w-full">
+        {/* Full-width video container - responsive for mobile */}
+        <div className="absolute inset-x-0 top-0 flex h-[50vh] w-full items-center justify-center md:h-[65vh]">
           <video
             autoPlay
             muted
             loop
             playsInline
             poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-contain"
           >
             <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
             <source src="/media/hero/ipxsdigital-motion-logo-master.mov" type="video/quicktime" />
           </video>
           
-          {/* Bottom fade to blend into content - only bottom edge needed since video bleeds off other edges */}
+          {/* Bottom fade to blend into content */}
           <div 
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-48"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-32 md:h-48"
             style={{ background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)' }}
           />
         </div>
 
-        {/* Content positioned below video area - pushed down to avoid overlap */}
-        <div className="relative z-10 mx-auto mt-[72vh] max-w-4xl px-4 text-center">
+        {/* Content positioned below video area - responsive positioning */}
+        <div className="relative z-10 mx-auto mt-[48vh] max-w-4xl px-4 text-center md:mt-[62vh]">
           <h1 className="headline-display font-serif font-medium tracking-tight">
             <span className="block text-foreground">Storytelling That Converts Attention.</span>
             <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
@@ -145,20 +145,32 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="overflow-hidden py-8">
-        <div className="flex animate-scroll-slow gap-4">
+      {/* Trusted By / Client Logos */}
+      <section className="overflow-hidden border-y border-border/30 bg-secondary/20 py-6">
+        <p className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
+        <div className="flex animate-scroll-fast items-center gap-12">
           {[
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
-            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
-            { src: '/case-studies/dynamics-multiverse/still-06.png', alt: 'Generative lore system' },
-            { src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger on rug street scene' },
-            { src: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand identity' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together video treatment' },
-          ].map((img, i) => (
-            <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
-              <Image src={img.src} alt={img.alt} fill className="object-cover object-top" sizes="(max-width: 768px) 288px, 384px" />
+            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
+            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
+            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
+            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
+            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
+            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
+            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
+            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
+            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
+            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
+            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
+            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
+          ].map((logo, i) => (
+            <div key={i} className="relative h-10 w-28 shrink-0 md:h-12 md:w-36">
+              <Image 
+                src={logo.src} 
+                alt={logo.alt} 
+                fill 
+                className={`object-contain opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0 ${logo.invert ? 'invert' : ''}`}
+                sizes="144px" 
+              />
             </div>
           ))}
         </div>
