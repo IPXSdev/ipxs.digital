@@ -146,30 +146,35 @@ export default function HomePage() {
       </section>
 
       {/* Trusted By / Client Logos */}
-      <section className="overflow-hidden border-y border-border/30 bg-secondary/20 py-6">
-        <p className="mb-4 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
-        <div className="flex animate-scroll-fast items-center gap-12">
+      <section className="overflow-hidden border-y border-border/30 bg-secondary/20 py-8">
+        <p className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
+        <div className="flex animate-scroll-fast items-center gap-8">
           {[
-            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
-            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
-            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
-            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
-            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
-            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
-            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
-            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
-            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
-            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
-            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
-            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
+            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false, aspect: 'wide' },
+            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false, aspect: 'wide' },
+            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false, aspect: 'square' },
+            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false, aspect: 'square' },
+            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false, aspect: 'wide' },
+            { src: '/logos/xyion.png', alt: 'Xyion', invert: true, aspect: 'wide' },
+            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false, aspect: 'wide' },
+            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false, aspect: 'wide' },
+            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false, aspect: 'square' },
+            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false, aspect: 'square' },
+            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false, aspect: 'wide' },
+            { src: '/logos/xyion.png', alt: 'Xyion', invert: true, aspect: 'wide' },
           ].map((logo, i) => (
-            <div key={i} className="relative h-10 w-28 shrink-0 md:h-12 md:w-36">
+            <div 
+              key={i} 
+              className={`logo-frame-neon relative shrink-0 ${
+                logo.aspect === 'square' ? 'h-20 w-20 md:h-24 md:w-24' : 'h-16 w-40 md:h-20 md:w-48'
+              }`}
+            >
               <Image 
                 src={logo.src} 
                 alt={logo.alt} 
                 fill 
-                className={`object-contain opacity-70 grayscale transition-all hover:opacity-100 hover:grayscale-0 ${logo.invert ? 'invert' : ''}`}
-                sizes="144px" 
+                className={`object-contain p-3 transition-all ${logo.invert ? 'invert' : ''}`}
+                sizes="(max-width: 768px) 160px, 192px" 
               />
             </div>
           ))}
