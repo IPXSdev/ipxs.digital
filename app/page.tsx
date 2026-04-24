@@ -145,36 +145,58 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Scrolling Project Images */}
+      <section className="overflow-hidden py-8">
+        <div className="flex animate-scroll-slow gap-4">
+          {[
+            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
+            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
+            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
+            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
+            { src: '/case-studies/dynamics-multiverse/still-06.png', alt: 'Generative lore system' },
+            { src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger on rug street scene' },
+            { src: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand identity' },
+            { src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together video treatment' },
+            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
+            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
+            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
+            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
+          ].map((img, i) => (
+            <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
+              <Image src={img.src} alt={img.alt} fill className="object-cover object-top" sizes="(max-width: 768px) 288px, 384px" />
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Trusted By / Client Logos */}
       <section className="overflow-hidden border-y border-border/30 bg-secondary/20 py-6">
         <p className="mb-5 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Trusted By</p>
         <div className="flex animate-scroll-faster items-center gap-6">
           {[
-            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false, aspect: 'wide' },
-            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false, aspect: 'wide' },
-            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false, aspect: 'square' },
-            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false, aspect: 'square' },
-            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false, aspect: 'wide' },
-            { src: '/logos/xyion.png', alt: 'Xyion', invert: true, aspect: 'wide' },
-            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false, aspect: 'wide' },
-            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false, aspect: 'wide' },
-            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false, aspect: 'square' },
-            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false, aspect: 'square' },
-            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false, aspect: 'wide' },
-            { src: '/logos/xyion.png', alt: 'Xyion', invert: true, aspect: 'wide' },
+            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
+            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
+            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
+            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
+            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
+            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
+            { src: '/logos/death-row-records.png', alt: 'Death Row Records', invert: false },
+            { src: '/logos/delicious-vinyl-island.webp', alt: 'Delicious Vinyl Island', invert: false },
+            { src: '/logos/emory-capital.png', alt: 'Emory Capital', invert: false },
+            { src: '/logos/tubi.webp', alt: 'Tubi', invert: false },
+            { src: '/logos/xa-logo.png', alt: 'x|a', invert: false },
+            { src: '/logos/xyion.png', alt: 'Xyion', invert: true },
           ].map((logo, i) => (
             <div 
               key={i} 
-              className={`logo-frame-neon relative shrink-0 overflow-hidden ${
-                logo.aspect === 'square' ? 'h-24 w-24 md:h-28 md:w-28' : 'h-20 w-52 md:h-24 md:w-60'
-              }`}
+              className="logo-frame-neon relative h-16 w-36 shrink-0 md:h-20 md:w-44"
             >
               <Image 
                 src={logo.src} 
                 alt={logo.alt} 
                 fill 
-                className={`rounded-xl object-cover transition-all ${logo.invert ? 'invert' : ''}`}
-                sizes="(max-width: 768px) 208px, 240px" 
+                className={`object-contain p-2 transition-all ${logo.invert ? 'invert' : ''}`}
+                sizes="176px" 
               />
             </div>
           ))}
