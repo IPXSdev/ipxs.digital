@@ -6,47 +6,44 @@ import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
 import { DropSection } from '@/components/drop-section'
 import { caseStudies } from '@/content/case-studies'
 
-// Select featured case studies (first from different categories for variety)
 const featuredCaseStudies = [
-  caseStudies.find(cs => cs.slug === 'dynamics-multiverse'),
-  caseStudies.find(cs => cs.slug === 'keith-collins-rugs'),
-  caseStudies.find(cs => cs.slug === 'charlibereal-deathrow-campaign'),
+  caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
+  caseStudies.find((cs) => cs.slug === 'keith-collins-rugs'),
+  caseStudies.find((cs) => cs.slug === 'charlibereal-deathrow-campaign'),
 ].filter(Boolean) as typeof caseStudies
 
 const pillars = [
   {
     title: 'Release Systems',
-    description: 'Cover art, motion, and complete rollout kits engineered for maximum impact.',
+    description: 'Cover art, motion, and rollout assets planned as one launch system with channel-ready outputs.',
     icon: Layers,
   },
   {
-    title: 'Motion & Ads',
-    description: 'Social campaigns, commercials, trailers, and visualizers that move culture.',
+    title: 'Motion and Ads',
+    description: 'Commercial-grade visual storytelling for social, paid media, and narrative campaign moments.',
     icon: Zap,
   },
   {
-    title: 'Platforms & Decks',
-    description: 'Artist sites, investor-ready decks, and MVP portals built for scale.',
+    title: 'Platforms and Decks',
+    description: 'Digital products and investor-facing narratives built for confidence, speed, and close rate.',
     icon: Shield,
   },
 ]
 
 const whyUs = [
   {
-    title: 'Premium output at speed',
-    description: 'High-end creative delivered on aggressive timelines without compromise.',
+    title: 'Senior execution from day one',
+    description: 'Strategy, design, motion, and technical build are led by experienced operators who ship.',
   },
   {
-    title: 'Systems, not one-offs',
-    description: 'Scalable frameworks that grow with your brand and catalog.',
+    title: 'Campaign architecture, not isolated assets',
+    description: 'Every output is connected so release momentum builds across touchpoints instead of fragmenting.',
   },
   {
-    title: 'Rights-aware AI production',
-    description: 'Thoughtful integration of AI tools with proper consideration for ownership.',
+    title: 'AI integrated with production discipline',
+    description: 'Automation supports speed while editorial standards protect quality, consistency, and ownership.',
   },
 ]
-
-
 
 export default function HomePage() {
   return (
@@ -88,9 +85,7 @@ export default function HomePage() {
               <span className="text-muted-foreground/50"> (LightGod)</span>
               , Founder and Lead Creative Technologist.
             </p>
-
-            {/* CTAs */}
-            <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
                 <Link href="/work">
                   View Case Studies
@@ -105,16 +100,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What We Build Section */}
-      <section className="border-t border-border/50 bg-secondary/30 py-24 lg:py-32">
+      <section className="section-fade bg-secondary/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-16 max-w-2xl">
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              What We Build
-            </p>
-            <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">
-              Three Pillars of Creative Output
-            </h2>
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">What We Build</p>
+            <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Creative Systems Designed for Real Deadlines</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -128,9 +118,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <h3 className="font-serif text-xl font-medium">{pillar.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {pillar.description}
-                  </p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{pillar.description}</p>
                 </div>
               </article>
             ))}
@@ -138,7 +126,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Visual Showcase Strip */}
       <section className="overflow-hidden py-8">
         <div className="flex animate-scroll-slow gap-4">
           {[
@@ -146,36 +133,13 @@ export default function HomePage() {
             { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
             { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
             { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
-            { src: '/case-studies/dynamics-multiverse/still-06.png', alt: 'Generative Lore system' },
+            { src: '/case-studies/dynamics-multiverse/still-06.png', alt: 'Generative lore system' },
             { src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger on rug street scene' },
             { src: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand identity' },
             { src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together video treatment' },
           ].map((img, i) => (
             <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 288px, 384px"
-              />
-            </div>
-          ))}
-          {/* Duplicate for seamless loop */}
-          {[
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
-            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
-          ].map((img, i) => (
-            <div key={`dup-${i}`} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 288px, 384px"
-              />
+              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 288px, 384px" />
             </div>
           ))}
         </div>
@@ -240,33 +204,21 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
             <div>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Why ipxs.digital
-              </p>
-              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">
-                Built Different,{' '}
-                <span className="text-muted-foreground">By Design</span>
-              </h2>
+              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Why ipxs.digital</p>
+              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Built for Teams That Need Precision and Pace</h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                We combine creative direction with technical execution to deliver work that performs 
-                across every touchpoint. No handoffs, no dilution. Just premium output at velocity.
+                We combine creative direction with technical production so teams can move from brief to market without losing quality,
+                momentum, or narrative clarity.
               </p>
             </div>
 
             <div className="flex flex-col gap-8">
               {whyUs.map((item, index) => (
-                <div
-                  key={item.title}
-                  className="flex gap-6 border-l-2 border-border pl-6 transition-colors hover:border-foreground"
-                >
-                  <span className="font-mono text-sm text-muted-foreground/50">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
+                <div key={item.title} className="flex gap-6 border-l-2 border-border pl-6 transition-colors hover:border-foreground">
+                  <span className="font-mono text-sm text-muted-foreground/50">{String(index + 1).padStart(2, '0')}</span>
                   <div className="flex flex-col gap-2">
                     <h3 className="font-medium text-foreground">{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {item.description}
-                    </p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -275,22 +227,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Work Section */}
-      <section className="border-t border-border/50 bg-secondary/30 py-24 lg:py-32">
+      <section className="section-fade bg-secondary/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Featured Case Studies
-              </p>
-              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">
-                Selected Case Studies
-              </h2>
+              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Featured Case Studies</p>
+              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Selected Work</h2>
             </div>
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
-            >
+            <Link href="/work" className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground">
               View All Case Studies
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -332,8 +276,8 @@ export default function HomePage() {
                 title={study.title}
                 category={study.category}
                 outcome={study.outcomeLine}
-                cover={study.cover}
                 href={`/work/${study.slug}`}
+                cover={study.cover}
               />
             ))}
           </div>
@@ -341,28 +285,6 @@ export default function HomePage() {
       </section>
 
       <DropSection />
-
-      {/* CTA Band */}
-      <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="flex flex-col items-center text-center">
-            <h2 className="max-w-3xl font-serif text-3xl font-medium leading-tight md:text-4xl lg:text-5xl">
-              {"Let's build your next release, campaign, or platform."}
-            </h2>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
-                <Link href="/contact">
-                  Start a Project
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
-                <Link href="/deck">View the Deck</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

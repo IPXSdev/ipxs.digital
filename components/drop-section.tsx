@@ -70,7 +70,7 @@ export function DropSection() {
   }
 
   return (
-    <section className="border-t border-border/50 bg-secondary/20 py-20 lg:py-24">
+    <section className="section-fade bg-secondary/20 py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="rounded-2xl border border-border bg-card p-8 md:p-10">
           <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
