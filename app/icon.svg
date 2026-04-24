@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="ipxs.digital icon">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#3a36ff"/>
+      <stop offset="100%" stop-color="#8f36ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g fill="#ffffff" font-family="Inter, Arial, sans-serif" font-weight="700" text-anchor="middle">
+    <text x="256" y="304" font-size="154" letter-spacing="2">ip</text>
+    <text x="256" y="380" font-size="64" opacity="0.9">xs</text>
+  </g>
+</svg>

@@ -5,6 +5,7 @@ import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
 import { DropSection } from '@/components/drop-section'
 import { caseStudies } from '@/content/case-studies'
+import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 const featuredCaseStudies = [
   caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
@@ -48,42 +49,28 @@ const whyUs = [
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden pt-24">
-        {/* Motion Logo */}
-        <div className="relative mx-auto w-full max-w-3xl px-4">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full"
-          >
-            <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
-          </video>
-        </div>
+      <section className="pt-24">
+        <div className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
+          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
+            <MotionVideoFallback
+              src="/hero/lightgod-title-card.mov"
+              poster="/case-studies/charlibereal-deathrow-campaign/together-cover.png"
+              alt="ipxs.digital motion logo poster"
+              objectClassName="object-cover"
+              priority
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+          </div>
 
-        {/* Caption below motion logo */}
-        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-20 lg:px-8">
-          <div className="flex flex-col items-center text-center">
-            {/* Headline */}
-            <h1 className="headline-display max-w-4xl font-serif font-medium tracking-tight">
-              <span className="block text-foreground">Storytelling That Delivers.</span>
-              <span className="mt-1 block gradient-text-neon">Design That Wins.</span>
+          <div className="mx-auto mt-10 max-w-4xl text-center">
+            <h1 className="headline-display font-serif font-medium tracking-tight">
+              <span className="block text-foreground">Storytelling That Converts Attention.</span>
+              <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
             </h1>
-
-            {/* Subhead */}
-            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              Premium creative infrastructure for entertainment. Release systems, motion campaigns, 
-              pitch decks, and digital platforms engineered to ship fast and perform at scale.
-            </p>
-
-            {/* Founder line */}
-            <p className="mt-6 text-sm text-muted-foreground/70">
-              Founded and led by{' '}
-              <span className="text-foreground">Darion R. Harris</span>
-              <span className="text-muted-foreground/50"> (LightGod)</span>
-              , Founder and Lead Creative Technologist.
+            <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
+              ipxs.digital builds entertainment-facing creative technology systems that connect art direction, motion,
+              campaign assets, and digital product execution into one launch engine.
+              Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative and technical delivery meet.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
@@ -126,6 +113,26 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-fade py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
+          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
+            <MotionVideoFallback
+              src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
+              poster="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg"
+              alt="Charlie Bereal Energy motion poster"
+              objectClassName="object-cover object-top"
+            />
+          </div>
+          <div>
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Featured Motion</p>
+            <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Charlie Bereal Energy</h2>
+            <p className="mt-4 text-base text-muted-foreground">
+              Motion-first campaign artwork built for streaming placements, social circulation, and repeat visual recall.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="overflow-hidden py-8">
         <div className="flex animate-scroll-slow gap-4">
           {[
@@ -145,62 +152,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trusted Partners Marquee */}
-      <section className="border-t border-border/50 py-12">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <p className="mb-8 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Trusted Partners and Collaborators
-          </p>
-        </div>
-        <div className="relative overflow-hidden">
-          <div className="flex animate-scroll-slow items-center gap-16">
-            {[
-              { src: '/media/partners/death-row-records-logo.png', alt: 'Death Row Records', height: 'h-12' },
-              { src: '/media/partners/delicious-vinyl-logo.webp', alt: 'Delicious Vinyl', height: 'h-10' },
-              { src: '/media/partners/delicious-vinyl-island-logo.webp', alt: 'Delicious Vinyl Island', height: 'h-10' },
-              { src: '/media/partners/emory-capital-logo.png', alt: 'Emory Capital', height: 'h-14' },
-              { src: '/media/partners/the-rockwell-logo.webp', alt: 'The Rockwell', height: 'h-12' },
-              { src: '/media/partners/xyion-logo.png', alt: 'Xyion', height: 'h-8' },
-              { src: '/media/partners/xia-logo.png', alt: 'x|a', height: 'h-10' },
-              { src: '/media/partners/a-family-business.jpg', alt: 'A Family Business', height: 'h-14' },
-            ].map((logo, i) => (
-              <div key={i} className={`relative ${logo.height} w-auto shrink-0 opacity-70 transition-opacity hover:opacity-100`}>
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={160}
-                  height={56}
-                  className="h-full w-auto object-contain brightness-0 invert"
-                />
-              </div>
-            ))}
-            {/* Duplicate for seamless loop */}
-            {[
-              { src: '/media/partners/death-row-records-logo.png', alt: 'Death Row Records', height: 'h-12' },
-              { src: '/media/partners/delicious-vinyl-logo.webp', alt: 'Delicious Vinyl', height: 'h-10' },
-              { src: '/media/partners/delicious-vinyl-island-logo.webp', alt: 'Delicious Vinyl Island', height: 'h-10' },
-              { src: '/media/partners/emory-capital-logo.png', alt: 'Emory Capital', height: 'h-14' },
-              { src: '/media/partners/the-rockwell-logo.webp', alt: 'The Rockwell', height: 'h-12' },
-              { src: '/media/partners/xyion-logo.png', alt: 'Xyion', height: 'h-8' },
-              { src: '/media/partners/xia-logo.png', alt: 'x|a', height: 'h-10' },
-              { src: '/media/partners/a-family-business.jpg', alt: 'A Family Business', height: 'h-14' },
-            ].map((logo, i) => (
-              <div key={`dup-${i}`} className={`relative ${logo.height} w-auto shrink-0 opacity-70 transition-opacity hover:opacity-100`}>
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={160}
-                  height={56}
-                  className="h-full w-auto object-contain brightness-0 invert"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why ipxs.digital Section */}
-      <section className="py-24 lg:py-32">
+      <section className="section-fade py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
             <div>
