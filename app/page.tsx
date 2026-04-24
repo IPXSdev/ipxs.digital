@@ -193,6 +193,36 @@ export default function HomePage() {
             </Link>
           </div>
 
+          {/* Featured Motion Highlight */}
+          <div className="mb-12">
+            <Link href="/work/charlibereal-deathrow-campaign" className="group block">
+              <div className="relative aspect-video overflow-hidden rounded-xl">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  poster="/media/case-studies/charlie-bereal-energy-fallback.png"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                >
+                  <source src="/media/case-studies/charlie-bereal-energy-motion-art.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    Motion and Release System
+                  </p>
+                  <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">
+                    CharliBereal x Death Row Records
+                  </h3>
+                  <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
+                    Full campaign system for a multi-single release on Death Row Records. Motion art, cover design, and social content for the Chocolate Woman era.
+                  </p>
+                </div>
+              </div>
+            </Link>
+          </div>
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {featuredCaseStudies.map((study) => (
               <CaseStudyCard
