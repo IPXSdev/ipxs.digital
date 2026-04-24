@@ -48,25 +48,42 @@ const whyUs = [
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      <section className="pt-24">
-        <div className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
-          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
-            <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-              <source src="/hero/lightgod-title-card.mov" type="video/quicktime" />
-              <source src="/hero/lightgod-title-card.mov" type="video/mp4" />
-            </video>
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-          </div>
+      {/* Hero Section */}
+      <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden pt-24">
+        {/* Motion Logo */}
+        <div className="relative mx-auto w-full max-w-3xl px-4">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full"
+          >
+            <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-          <div className="mx-auto mt-10 max-w-4xl text-center">
-            <h1 className="headline-display font-serif font-medium tracking-tight">
-              <span className="block text-foreground">Storytelling That Converts Attention.</span>
-              <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
+        {/* Caption below motion logo */}
+        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-20 lg:px-8">
+          <div className="flex flex-col items-center text-center">
+            {/* Headline */}
+            <h1 className="headline-display max-w-4xl font-serif font-medium tracking-tight">
+              <span className="block text-foreground">Storytelling That Delivers.</span>
+              <span className="mt-1 block gradient-text-neon">Design That Wins.</span>
             </h1>
-            <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
-              ipxs.digital builds entertainment-facing creative technology systems that connect art direction, motion,
-              campaign assets, and digital product execution into one launch engine.
-              Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative and technical delivery meet.
+
+            {/* Subhead */}
+            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              Premium creative infrastructure for entertainment. Release systems, motion campaigns, 
+              pitch decks, and digital platforms engineered to ship fast and perform at scale.
+            </p>
+
+            {/* Founder line */}
+            <p className="mt-6 text-sm text-muted-foreground/70">
+              Founded and led by{' '}
+              <span className="text-foreground">Darion R. Harris</span>
+              <span className="text-muted-foreground/50"> (LightGod)</span>
+              , Founder and Lead Creative Technologist.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
@@ -128,7 +145,62 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-fade py-24 lg:py-32">
+      {/* Trusted Partners Marquee */}
+      <section className="border-t border-border/50 py-12">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <p className="mb-8 text-center text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Trusted Partners and Collaborators
+          </p>
+        </div>
+        <div className="relative overflow-hidden">
+          <div className="flex animate-scroll-slow items-center gap-16">
+            {[
+              { src: '/media/partners/death-row-records-logo.png', alt: 'Death Row Records', height: 'h-12' },
+              { src: '/media/partners/delicious-vinyl-logo.webp', alt: 'Delicious Vinyl', height: 'h-10' },
+              { src: '/media/partners/delicious-vinyl-island-logo.webp', alt: 'Delicious Vinyl Island', height: 'h-10' },
+              { src: '/media/partners/emory-capital-logo.png', alt: 'Emory Capital', height: 'h-14' },
+              { src: '/media/partners/the-rockwell-logo.webp', alt: 'The Rockwell', height: 'h-12' },
+              { src: '/media/partners/xyion-logo.png', alt: 'Xyion', height: 'h-8' },
+              { src: '/media/partners/xia-logo.png', alt: 'x|a', height: 'h-10' },
+              { src: '/media/partners/a-family-business.jpg', alt: 'A Family Business', height: 'h-14' },
+            ].map((logo, i) => (
+              <div key={i} className={`relative ${logo.height} w-auto shrink-0 opacity-70 transition-opacity hover:opacity-100`}>
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={160}
+                  height={56}
+                  className="h-full w-auto object-contain brightness-0 invert"
+                />
+              </div>
+            ))}
+            {/* Duplicate for seamless loop */}
+            {[
+              { src: '/media/partners/death-row-records-logo.png', alt: 'Death Row Records', height: 'h-12' },
+              { src: '/media/partners/delicious-vinyl-logo.webp', alt: 'Delicious Vinyl', height: 'h-10' },
+              { src: '/media/partners/delicious-vinyl-island-logo.webp', alt: 'Delicious Vinyl Island', height: 'h-10' },
+              { src: '/media/partners/emory-capital-logo.png', alt: 'Emory Capital', height: 'h-14' },
+              { src: '/media/partners/the-rockwell-logo.webp', alt: 'The Rockwell', height: 'h-12' },
+              { src: '/media/partners/xyion-logo.png', alt: 'Xyion', height: 'h-8' },
+              { src: '/media/partners/xia-logo.png', alt: 'x|a', height: 'h-10' },
+              { src: '/media/partners/a-family-business.jpg', alt: 'A Family Business', height: 'h-14' },
+            ].map((logo, i) => (
+              <div key={`dup-${i}`} className={`relative ${logo.height} w-auto shrink-0 opacity-70 transition-opacity hover:opacity-100`}>
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={160}
+                  height={56}
+                  className="h-full w-auto object-contain brightness-0 invert"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why ipxs.digital Section */}
+      <section className="py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
             <div>
@@ -165,6 +237,35 @@ export default function HomePage() {
             <Link href="/work" className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground">
               View All Case Studies
               <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Featured Motion Highlight */}
+          <div className="mb-12">
+            <Link href="/work/charlibereal-deathrow-campaign" className="group block">
+              <div className="relative aspect-video overflow-hidden rounded-xl">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                >
+                  <source src="/media/case-studies/charlie-bereal-energy-motion-art.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    Motion and Release System
+                  </p>
+                  <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">
+                    CharliBereal x Death Row Records
+                  </h3>
+                  <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
+                    Full campaign system for a multi-single release on Death Row Records. Motion art, cover design, and social content for the Chocolate Woman era.
+                  </p>
+                </div>
+              </div>
             </Link>
           </div>
 
