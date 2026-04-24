@@ -123,13 +123,13 @@ export const caseStudies: CaseStudy[] = [
     category: 'Music Release Systems',
     poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
     cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
-    outcomeLine: 'Full campaign system for major label release including cover art and motion design for streaming and social.',
+    outcomeLine: 'End to end Death Row release campaign including primary artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
     deliverables: ['Chocolate Woman cover art', 'Motion animation package', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
-      { label: 'Deathrow Records', url: '#' },
-      { label: 'Spotify', url: '#' },
-      { label: 'Apple Music', url: '#' },
+      { label: 'Death Row Records', url: 'https://www.deathrowofficial.com/' },
+      { label: 'Spotify', url: 'https://open.spotify.com/track/0M5ZTD5bzYadecfUQcQx8j' },
+      { label: 'Apple Music', url: 'https://music.apple.com/us/album/chocolate-woman-single/1857721393' },
     ],
     media: [
       { id: 'chocolate-woman-cover', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman album cover featuring Statue of Liberty inspired artwork', caption: 'Primary cover art for Chocolate Woman single.', aspectRatio: 'square' },
@@ -144,11 +144,12 @@ export const caseStudies: CaseStudy[] = [
     category: 'Motion and Social Ads',
     poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
     cover: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
-    outcomeLine: 'Full animated music video treatment for CharliBereal featuring custom character design, storyboarding, and visual direction.',
+    outcomeLine: 'Animated music video treatment for Together with original character design, storyboard direction, and visual development prepared for production alignment.',
     deliverables: ['Video treatment pitch deck', 'Custom character design', 'Character pose sheet', 'Visual style guide', 'Animation direction'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
-      { label: 'CharliBereal', url: '#' },
+      { label: 'Spotify', url: 'https://open.spotify.com/track/196CykfquyUe0B4zGkG2GZ' },
+      { label: 'Apple Music', url: 'https://music.apple.com/us/album/together-single/1840887531' },
     ],
     media: [
       { id: 'together-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together animated video treatment concept with psychedelic visual style', caption: 'Video treatment pitch for Together animated music video.' },

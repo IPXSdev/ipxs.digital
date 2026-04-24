@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
-import { caseStudies, caseStudyWorlds } from '@/content/case-studies'
-import { Badge } from '@/components/ui/badge'
+import { caseStudies, caseStudyCategories } from '@/content/case-studies'
+import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 export const metadata: Metadata = {
   title: 'Case Studies',
@@ -12,122 +12,85 @@ export const metadata: Metadata = {
     'Explore case studies spanning release systems, motion campaigns, commercials, pitch deck architecture, digital platforms, and world building.',
 }
 
-export default function WorkPage() {
+interface WorkPageProps {
+  searchParams: Promise<{ category?: string }>
+}
+
+export default async function WorkPage({ searchParams }: WorkPageProps) {
+  const params = await searchParams
+  const activeCategory = params.category ?? 'All'
+  const filteredStudies =
+    activeCategory === 'All'
+      ? caseStudies
+      : caseStudies.filter((study) => study.category === activeCategory)
+
   return (
     <div className="flex flex-col pt-24">
-      {/* Header */}
-      <section className="border-b border-border/50 pb-16 pt-8">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Case Studies
-          </p>
-          <h1 className="max-w-4xl font-serif page-header-title font-medium gradient-text-neon">
-            Work That Ships and Wins
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Every case study represents a real engagement with measurable outcomes. From release systems that drive streams to decks that close funding rounds, this is the work.
-          </p>
+      <section className="pb-14 pt-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:items-end lg:px-8">
+          <div>
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Case Studies</p>
+            <h1 className="max-w-4xl font-serif page-header-title font-medium gradient-text-neon">Execution You Can Audit</h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              This is production work shipped for real teams, real timelines, and real outcomes.
+              Each case study details the brief, the build, and the assets delivered to market.
+            </p>
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border/50 bg-black">
+            <MotionVideoFallback
+              mp4Src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
+              poster="/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png"
+              alt="Character Sheet poster fallback"
+              objectClassName="object-cover object-top"
+              priority
+            />
+          </div>
         </div>
       </section>
 
-      {/* Case Studies Grid */}
-      <section className="py-16 lg:py-24">
+      <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {caseStudies.map((study) => (
-              <Link
-                key={study.id}
-                href={`/work/${study.slug}`}
-                className="group sheen-hover gradient-border neon-glow-hover relative flex flex-col overflow-hidden rounded-lg bg-card/90 transition-all duration-300 hover:bg-secondary/55"
-              >
-                {/* Cover Image */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-                  <Image
-                    src={study.cover}
-                    alt={study.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </div>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {['All', ...caseStudyCategories].map((category) => {
+              const isActive = category === activeCategory
+              const href = category === 'All' ? '/work' : `/work?category=${encodeURIComponent(category)}`
+              return (
+                <Link
+                  key={category}
+                  href={href}
+                  className={`rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] transition-colors ${
+                    isActive
+                      ? 'bg-foreground text-background'
+                      : 'bg-secondary text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {category}
+                </Link>
+              )
+            })}
+          </div>
 
-                {/* Content */}
-                <div className="flex flex-1 flex-col gap-3 p-5">
-                  <Badge
-                    variant="secondary"
-                    className="w-fit text-xs font-normal uppercase tracking-wider"
-                  >
-                    {study.category}
-                  </Badge>
-                  <h3 className="font-serif text-lg font-medium leading-snug text-foreground">
-                    {study.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
-                    {study.outcomeLine}
-                  </p>
-                  <span className="mt-auto inline-flex items-center gap-2 pt-2 text-sm font-medium text-foreground transition-colors group-hover:text-accent">
-                    View Case Study
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {filteredStudies.map((study) => (
+              <CaseStudyCard
+                key={study.id}
+                title={study.title}
+                category={study.category}
+                outcome={study.outcomeLine}
+                href={`/work/${study.slug}`}
+                cover={study.cover}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Worlds Overview */}
-      <section className="border-t border-border/50 bg-secondary/30 py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-12">
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Six Disciplines
-            </p>
-            <h2 className="font-serif text-2xl font-medium md:text-3xl">
-              Explore by World
-            </h2>
-            <p className="mt-4 max-w-2xl text-base text-muted-foreground">
-              Each world maps to a core ipxs.digital discipline. Click to filter case studies by expertise area.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {caseStudyWorlds.map((world) => {
-              const worldCaseStudies = caseStudies.filter(cs => cs.category === world.title)
-              return (
-                <div
-                  key={world.id}
-                  className="group flex flex-col gap-4 rounded-lg border border-border bg-card p-6 transition-colors hover:border-muted-foreground/30"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-muted-foreground/50">
-                      World {world.number}
-                    </span>
-                    <Badge variant="outline" className="text-xs">
-                      {worldCaseStudies.length} {worldCaseStudies.length === 1 ? 'study' : 'studies'}
-                    </Badge>
-                  </div>
-                  <h3 className="font-serif text-lg font-medium">{world.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {world.outcome}
-                  </p>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-24 lg:py-32">
+      <section className="section-fade bg-secondary/30 py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col items-center text-center">
-            <h2 className="max-w-2xl font-serif text-3xl font-medium leading-tight md:text-4xl">
-              Ready to build something that ships?
-            </h2>
+            <h2 className="max-w-2xl font-serif text-3xl font-medium leading-tight md:text-4xl">Ready to build the next one?</h2>
             <p className="mt-4 max-w-lg text-base text-muted-foreground">
-              Every project starts with a conversation about goals, timelines, and what success looks like for you.
+              We scope each engagement around your launch window, audience, and commercial goals.
             </p>
             <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
               <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
