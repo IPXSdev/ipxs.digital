@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { caseStudies, caseStudyCategories } from '@/content/case-studies'
 import { CaseStudyCard } from '@/components/case-study-card'
+import { MotionVideoFallback } from '@/components/motion-video-fallback'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
@@ -37,9 +38,10 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border/50 bg-black">
             <MotionVideoFallback
-              mp4Src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
-              poster="/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png"
-              alt="Character Sheet poster fallback"
+              mp4Src="/media/case-studies/character-motion-sheet.mov"
+              movSrc="/media/case-studies/character-motion-sheet.mov"
+              poster="/media/case-studies/character-motion-sheet-fallback.png"
+              alt="Character Motion Sheet"
               objectClassName="object-cover object-top"
               priority
             />
