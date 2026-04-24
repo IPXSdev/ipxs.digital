@@ -51,19 +51,72 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden pt-24">
-        {/* Motion Logo */}
-        <div className="relative mx-auto w-full max-w-3xl px-4">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
-            className="w-full object-contain object-top"
-          >
-            <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
-            <source src="/media/hero/ipxsdigital-motion-logo-master.mov" type="video/quicktime" />
-          </video>
+        {/* Motion Logo with seamless edge blend */}
+        <div className="relative mx-auto w-full max-w-4xl px-4">
+          {/* Video container with portal bulge effect */}
+          <div className="relative">
+            {/* Outer glow/bulge effect - creates subtle 3D portal illusion */}
+            <div 
+              className="pointer-events-none absolute -inset-4 rounded-[3rem] opacity-60"
+              style={{
+                background: 'radial-gradient(ellipse at center, transparent 40%, hsl(var(--background)) 70%)',
+                filter: 'blur(20px)',
+              }}
+            />
+            
+            {/* Video element */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
+              className="relative w-full object-contain object-top"
+            >
+              <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
+              <source src="/media/hero/ipxsdigital-motion-logo-master.mov" type="video/quicktime" />
+            </video>
+            
+            {/* Edge fade overlays - seamlessly blend video to white background */}
+            {/* Top fade */}
+            <div 
+              className="pointer-events-none absolute inset-x-0 top-0 h-24"
+              style={{ background: 'linear-gradient(to bottom, hsl(var(--background)) 0%, transparent 100%)' }}
+            />
+            {/* Bottom fade */}
+            <div 
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-24"
+              style={{ background: 'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)' }}
+            />
+            {/* Left fade */}
+            <div 
+              className="pointer-events-none absolute inset-y-0 left-0 w-32"
+              style={{ background: 'linear-gradient(to right, hsl(var(--background)) 0%, transparent 100%)' }}
+            />
+            {/* Right fade */}
+            <div 
+              className="pointer-events-none absolute inset-y-0 right-0 w-32"
+              style={{ background: 'linear-gradient(to left, hsl(var(--background)) 0%, transparent 100%)' }}
+            />
+            
+            {/* Corner blends for extra smoothness */}
+            <div 
+              className="pointer-events-none absolute left-0 top-0 h-32 w-32"
+              style={{ background: 'radial-gradient(ellipse at top left, hsl(var(--background)) 0%, transparent 70%)' }}
+            />
+            <div 
+              className="pointer-events-none absolute right-0 top-0 h-32 w-32"
+              style={{ background: 'radial-gradient(ellipse at top right, hsl(var(--background)) 0%, transparent 70%)' }}
+            />
+            <div 
+              className="pointer-events-none absolute bottom-0 left-0 h-32 w-32"
+              style={{ background: 'radial-gradient(ellipse at bottom left, hsl(var(--background)) 0%, transparent 70%)' }}
+            />
+            <div 
+              className="pointer-events-none absolute bottom-0 right-0 h-32 w-32"
+              style={{ background: 'radial-gradient(ellipse at bottom right, hsl(var(--background)) 0%, transparent 70%)' }}
+            />
+          </div>
         </div>
 
         <div className="mx-auto mt-10 max-w-4xl text-center">
