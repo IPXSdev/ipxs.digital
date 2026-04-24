@@ -4,6 +4,7 @@ import { caseStudies, caseStudyCategories } from '@/content/case-studies'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 export const metadata: Metadata = {
   title: 'Case Studies',
