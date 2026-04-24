@@ -52,13 +52,13 @@ export default async function CaseStudyPage({ params }: PageProps) {
             src={caseStudy.cover}
             alt={caseStudy.title}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <div className={`absolute inset-0 ${caseStudy.slug === 'keith-collins-rugs' ? 'bg-gradient-to-b from-background/88 via-background/62 to-background/28' : 'bg-gradient-to-t from-background via-background/50 to-transparent'}`} />
         </div>
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 -mt-32 lg:px-8">
+        <div className={`relative mx-auto w-full max-w-7xl px-4 pb-12 lg:px-8 ${caseStudy.slug === 'keith-collins-rugs' ? '-mt-20 md:-mt-24' : '-mt-32'}`}>
           <Link
             href="/work"
             className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -81,7 +81,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-12 lg:py-16">
+      <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Deliverables */}
@@ -133,7 +133,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-12 lg:py-16">
+      <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-8">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -153,7 +153,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 bg-secondary/30 py-12 lg:py-16">
+      <section className="section-fade bg-secondary/30 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Links */}
@@ -197,7 +197,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-12 lg:py-16">
+      <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col items-center text-center">
             <h2 className="mb-5 max-w-2xl font-serif text-xl font-medium md:text-2xl">
