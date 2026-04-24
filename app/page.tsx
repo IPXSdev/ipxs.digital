@@ -57,6 +57,7 @@ export default function HomePage() {
             muted
             loop
             playsInline
+            poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
             className="w-full"
           >
             <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
@@ -249,6 +250,7 @@ export default function HomePage() {
                   muted
                   loop
                   playsInline
+                  poster="/media/case-studies/charlie-bereal-energy-fallback.png"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 >
                   <source src="/media/case-studies/charlie-bereal-energy-motion-art.mp4" type="video/mp4" />

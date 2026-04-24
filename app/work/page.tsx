@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { caseStudies, caseStudyCategories } from '@/content/case-studies'
 import { CaseStudyCard } from '@/components/case-study-card'
@@ -37,14 +36,16 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
             </p>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border/50 bg-secondary/30">
-            <Image
-              src="/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png"
-              alt="Character Motion Sheet"
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              priority
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster="/media/case-studies/character-motion-sheet-fallback.png"
+              className="h-full w-full object-cover object-top"
+            >
+              <source src="/media/case-studies/character-motion-sheet.mov" type="video/quicktime" />
+            </video>
           </div>
         </div>
       </section>
