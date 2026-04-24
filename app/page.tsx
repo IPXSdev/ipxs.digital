@@ -121,7 +121,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
           <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
-              src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
+              mp4Src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
               poster="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg"
               alt="Charlie Bereal Energy motion poster"
               objectClassName="object-cover object-top"
