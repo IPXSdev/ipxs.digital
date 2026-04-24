@@ -5,7 +5,6 @@ import { Footer } from '@/components/footer'
 import { LenisProvider } from '@/components/lenis-provider'
 import { FilmGrain } from '@/components/film-grain'
 import { PortalOverlay } from '@/components/portal-overlay'
-import { PortalMenu } from '@/components/portal-menu'
 import { AuroraBackground } from '@/components/aurora-background'
 import './globals.css'
 
@@ -86,7 +85,6 @@ export default function RootLayout({
             <PortalOverlay>
             <FilmGrain />
             <Navigation />
-            <PortalMenu />
             <main className="flex-1">{children}</main>
             <Footer />
             </PortalOverlay>

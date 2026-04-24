@@ -249,9 +249,37 @@
     height: 20px;
   }
 
-  /* Infinite scroll animation */
+  /* Infinite scroll animations */
   .animate-scroll-slow {
     animation: scroll-infinite 40s linear infinite;
+  }
+
+  .animate-scroll-fast {
+    animation: scroll-infinite 15s linear infinite;
+  }
+
+  .animate-scroll-faster {
+    animation: scroll-infinite 8s linear infinite;
+  }
+
+  /* Neon frame for client logos - tight fit, no internal gaps */
+  .logo-frame-neon {
+    border-radius: 0.75rem;
+    border: 2px solid oklch(0.70 0.14 260 / 0.5);
+    box-shadow:
+      0 0 16px oklch(0.55 0.18 260 / 0.18),
+      0 0 32px oklch(0.50 0.20 285 / 0.1),
+      0 4px 12px oklch(0.3 0.05 260 / 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .logo-frame-neon:hover {
+    border-color: oklch(0.55 0.20 260 / 0.7);
+    box-shadow:
+      0 0 24px oklch(0.55 0.18 260 / 0.28),
+      0 0 48px oklch(0.50 0.20 285 / 0.16),
+      0 6px 20px oklch(0.3 0.05 260 / 0.14);
+    transform: translateY(-2px);
   }
 
   /* 3D Glossy Neon Icon Circle */
@@ -396,6 +424,91 @@
       0 12px 32px oklch(0.3 0.05 285 / 0.12),
       inset 0 2px 4px oklch(1 0 0 / 0.8),
       inset 0 -2px 8px oklch(0.50 0.24 285 / 0.12);
+  }
+
+  /* 3D Neon Mobile Nav Buttons */
+  .mobile-nav-btn-cyan {
+    background: linear-gradient(
+      145deg,
+      oklch(0.94 0.04 220),
+      oklch(0.86 0.08 225)
+    );
+    border: 1px solid oklch(0.70 0.14 220 / 0.5);
+    box-shadow:
+      0 0 16px oklch(0.55 0.22 220 / 0.2),
+      0 0 32px oklch(0.52 0.18 188 / 0.12),
+      0 4px 12px oklch(0.55 0.22 220 / 0.15),
+      0 6px 20px oklch(0.3 0.05 220 / 0.1),
+      inset 0 2px 4px oklch(1 0 0 / 0.6),
+      inset 0 -2px 6px oklch(0.55 0.22 220 / 0.1);
+  }
+
+  .mobile-nav-btn-cyan:hover,
+  .mobile-nav-btn-cyan:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 0 24px oklch(0.55 0.22 220 / 0.3),
+      0 0 48px oklch(0.52 0.18 188 / 0.18),
+      0 6px 16px oklch(0.55 0.22 220 / 0.2),
+      0 10px 28px oklch(0.3 0.05 220 / 0.14),
+      inset 0 2px 4px oklch(1 0 0 / 0.7),
+      inset 0 -2px 8px oklch(0.55 0.22 220 / 0.14);
+  }
+
+  .mobile-nav-btn-magenta {
+    background: linear-gradient(
+      145deg,
+      oklch(0.94 0.05 340),
+      oklch(0.86 0.09 335)
+    );
+    border: 1px solid oklch(0.70 0.18 340 / 0.5);
+    box-shadow:
+      0 0 16px oklch(0.55 0.26 340 / 0.2),
+      0 0 32px oklch(0.50 0.24 285 / 0.12),
+      0 4px 12px oklch(0.55 0.26 340 / 0.15),
+      0 6px 20px oklch(0.3 0.05 340 / 0.1),
+      inset 0 2px 4px oklch(1 0 0 / 0.6),
+      inset 0 -2px 6px oklch(0.55 0.26 340 / 0.1);
+  }
+
+  .mobile-nav-btn-magenta:hover,
+  .mobile-nav-btn-magenta:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 0 24px oklch(0.55 0.26 340 / 0.3),
+      0 0 48px oklch(0.50 0.24 285 / 0.18),
+      0 6px 16px oklch(0.55 0.26 340 / 0.2),
+      0 10px 28px oklch(0.3 0.05 340 / 0.14),
+      inset 0 2px 4px oklch(1 0 0 / 0.7),
+      inset 0 -2px 8px oklch(0.55 0.26 340 / 0.14);
+  }
+
+  .mobile-nav-btn-violet {
+    background: linear-gradient(
+      145deg,
+      oklch(0.55 0.22 260),
+      oklch(0.45 0.24 285)
+    );
+    border: 1px solid oklch(0.50 0.20 270 / 0.5);
+    box-shadow:
+      0 0 16px oklch(0.50 0.24 285 / 0.25),
+      0 0 32px oklch(0.55 0.22 260 / 0.15),
+      0 4px 12px oklch(0.50 0.24 285 / 0.18),
+      0 6px 20px oklch(0.3 0.05 285 / 0.12),
+      inset 0 2px 4px oklch(1 0 0 / 0.3),
+      inset 0 -2px 6px oklch(0.40 0.20 285 / 0.2);
+  }
+
+  .mobile-nav-btn-violet:hover,
+  .mobile-nav-btn-violet:active {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 0 24px oklch(0.50 0.24 285 / 0.35),
+      0 0 48px oklch(0.55 0.22 260 / 0.22),
+      0 6px 16px oklch(0.50 0.24 285 / 0.25),
+      0 10px 28px oklch(0.3 0.05 285 / 0.16),
+      inset 0 2px 4px oklch(1 0 0 / 0.4),
+      inset 0 -2px 8px oklch(0.40 0.20 285 / 0.25);
   }
 }
 
