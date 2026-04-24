@@ -49,21 +49,19 @@ const whyUs = [
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden pt-24">
-        {/* Motion Logo */}
-        <div className="relative mx-auto w-full max-w-3xl px-4">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/media/hero/ipxsdigital-motion-logo-fallback.jpeg"
-            className="w-full"
-          >
-            <source src="/media/hero/ipxsdigital-motion-logo-master.mp4" type="video/mp4" />
-          </video>
-        </div>
+      <section className="pt-24">
+        <div className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
+          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
+            <MotionVideoFallback
+              mp4Src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
+              movSrc="/hero/lightgod-title-card.mov"
+              poster="/case-studies/charlibereal-deathrow-campaign/together-cover.png"
+              alt="ipxs.digital motion logo poster"
+              objectClassName="object-cover"
+              priority
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+          </div>
 
           <div className="mx-auto mt-10 max-w-4xl text-center">
             <h1 className="headline-display font-serif font-medium tracking-tight">
@@ -120,7 +118,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
           <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
-              src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
+              mp4Src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
               poster="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg"
               alt="Charlie Bereal Energy motion poster"
               objectClassName="object-cover object-top"

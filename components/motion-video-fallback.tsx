@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
-  src: string
+  mp4Src: string
+  movSrc?: string
   poster: string
   alt: string
   className?: string
@@ -13,7 +14,8 @@ interface MotionVideoFallbackProps {
 }
 
 export function MotionVideoFallback({
-  src,
+  mp4Src,
+  movSrc,
   poster,
   alt,
   className = '',
@@ -53,8 +55,8 @@ export function MotionVideoFallback({
         onPlaying={() => setIsPlaying(true)}
         className={`h-full w-full ${objectClassName} ${videoFailed ? 'invisible' : 'visible'}`}
       >
-        <source src={src} type="video/mp4" />
-        <source src={src} type="video/quicktime" />
+        <source src={mp4Src} type="video/mp4" />
+        {movSrc ? <source src={movSrc} type="video/quicktime" /> : null}
       </video>
 
       {videoFailed ? (
