@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { caseStudies, caseStudyCategories } from '@/content/case-studies'
 import { CaseStudyCard } from '@/components/case-study-card'
