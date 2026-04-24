@@ -64,8 +64,8 @@ interface CaseStudyWorld {
 }
 
 const defaultPipeline: PipelineStep[] = [
-  { phase: 'Brief', description: 'Aligned goals, audience, and launch constraints with the client team.' },
-  { phase: 'Strategy', description: 'Built positioning, narrative arc, and rollout map for every channel.' },
+  { phase: 'Brief', description: 'Defined scope, timeline, and creative requirements.' },
+  { phase: 'Strategy', description: 'Developed creative direction and asset planning.' },
   { phase: 'Production', description: 'Designed and produced creative assets with platform-native variants.' },
   { phase: 'Delivery', description: 'Packaged final outputs with clear specs and handoff documentation.' },
   { phase: 'Distribution', description: 'Deployed across channels and supported launch optimization.' },
@@ -123,7 +123,7 @@ export const caseStudies: CaseStudy[] = [
     category: 'Music Release Systems',
     poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
     cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
-    outcomeLine: 'End to end Death Row release campaign including primary artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
+    outcomeLine: 'End to end creative art direction for a Death Row Records single release including primary cover artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
     deliverables: ['Chocolate Woman cover art', 'Motion animation package', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [

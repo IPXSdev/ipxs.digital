@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { caseStudies, caseStudyCategories } from '@/content/case-studies'
 import { CaseStudyCard } from '@/components/case-study-card'
+import { MotionVideoFallback } from '@/components/motion-video-fallback'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 export const metadata: Metadata = {
   title: 'Case Studies',
@@ -36,12 +36,13 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
               Each case study details the brief, the build, and the assets delivered to market.
             </p>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border/50 bg-black">
+          <div className="relative aspect-video overflow-hidden rounded-lg border border-border/50 bg-white">
             <MotionVideoFallback
-              mp4Src="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
-              poster="/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png"
-              alt="Character Sheet poster fallback"
-              objectClassName="object-cover object-top"
+              mp4Src="/media/case-studies/character-motion-sheet-wide.mov"
+              movSrc="/media/case-studies/character-motion-sheet-wide.mov"
+              poster="/media/case-studies/character-motion-sheet-fallback.png"
+              alt="Character Motion Sheet"
+              objectClassName="object-contain"
               priority
             />
           </div>
