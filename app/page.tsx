@@ -8,7 +8,7 @@ import { caseStudies } from '@/content/case-studies'
 import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 const featuredCaseStudies = [
-  caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
+  caseStudies.find((cs) => cs.slug === 'emory-capital'),
   caseStudies.find((cs) => cs.slug === 'keith-collins-rugs'),
   caseStudies.find((cs) => cs.slug === 'charlibereal-deathrow-campaign'),
 ].filter(Boolean) as typeof caseStudies
@@ -207,29 +207,29 @@ export default function HomePage() {
           {/* Featured Motion Highlight - Character Motion Sheet (wide) */}
           <div className="mb-12">
             <Link href="/work/dynamics-multiverse" className="group block">
-              <div className="relative aspect-video overflow-hidden rounded-xl">
+              <div className="relative aspect-video overflow-hidden rounded-xl bg-white">
                 <video
                   autoPlay
                   muted
                   loop
                   playsInline
                   poster="/media/case-studies/character-motion-sheet-fallback.png"
-                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
                 >
-                  <source src="/media/case-studies/character-motion-sheet.mov" type="video/quicktime" />
+                  <source src="/media/case-studies/character-motion-sheet-wide.mov" type="video/quicktime" />
                 </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                    Character Design and Motion
-                  </p>
-                  <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">
-                    Character Motion Sheet
-                  </h3>
-                  <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-                    Animated character system designed for social content, merchandise, and brand storytelling across platforms.
-                  </p>
-                </div>
+              </div>
+              {/* Caption below video - no overlap */}
+              <div className="mt-4 px-2">
+                <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  Character Design and Motion
+                </p>
+                <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">
+                  Character Motion Sheet
+                </h3>
+                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
+                  Animated character system designed for social content, merchandise, and brand storytelling across platforms.
+                </p>
               </div>
             </Link>
           </div>
