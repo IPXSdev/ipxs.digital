@@ -1,103 +1,84 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
 import { DropSection } from '@/components/drop-section'
 import { caseStudies } from '@/content/case-studies'
+import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
-// Select featured case studies (first from different categories for variety)
 const featuredCaseStudies = [
-  caseStudies.find(cs => cs.slug === 'dynamics-multiverse'),
-  caseStudies.find(cs => cs.slug === 'keith-collins-rugs'),
-  caseStudies.find(cs => cs.slug === 'charlibereal-deathrow-campaign'),
+  caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
+  caseStudies.find((cs) => cs.slug === 'prissy-vandross-original-ip'),
+  caseStudies.find((cs) => cs.slug === 'charlibereal-deathrow-campaign'),
 ].filter(Boolean) as typeof caseStudies
 
 const pillars = [
   {
     title: 'Release Systems',
-    description: 'Cover art, motion, and complete rollout kits engineered for maximum impact.',
+    description: 'Cover art, motion, and rollout assets planned as one launch system with channel-ready outputs.',
     icon: Layers,
   },
   {
-    title: 'Motion & Ads',
-    description: 'Social campaigns, commercials, trailers, and visualizers that move culture.',
+    title: 'Motion and Ads',
+    description: 'Commercial-grade visual storytelling for social, paid media, and narrative campaign moments.',
     icon: Zap,
   },
   {
-    title: 'Platforms & Decks',
-    description: 'Artist sites, investor-ready decks, and MVP portals built for scale.',
+    title: 'Platforms and Decks',
+    description: 'Digital products and investor-facing narratives built for confidence, speed, and close rate.',
     icon: Shield,
   },
 ]
 
 const whyUs = [
   {
-    title: 'Premium output at speed',
-    description: 'High-end creative delivered on aggressive timelines without compromise.',
+    title: 'Senior execution from day one',
+    description: 'Strategy, design, motion, and technical build are led by experienced operators who ship.',
   },
   {
-    title: 'Systems, not one-offs',
-    description: 'Scalable frameworks that grow with your brand and catalog.',
+    title: 'Campaign architecture, not isolated assets',
+    description: 'Every output is connected so release momentum builds across touchpoints instead of fragmenting.',
   },
   {
-    title: 'Rights-aware AI production',
-    description: 'Thoughtful integration of AI tools with proper consideration for ownership.',
+    title: 'AI workflows built into production',
+    description: 'Custom AI-assisted pipelines reduce turn time while keeping quality control at a premium standard.',
   },
 ]
-
-
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
-        {/* Hero Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/hero/lightgod-title-card.mov" type="video/quicktime" />
-          <source src="/hero/lightgod-title-card.mov" type="video/mp4" />
-        </video>
-        
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+      <section className="pt-16">
+        <div className="relative h-[calc(100vh-4rem)] w-screen overflow-hidden bg-black">
+          <MotionVideoFallback
+            primarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
+            primaryType="video/quicktime"
+            secondarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
+            secondaryType="video/mp4"
+            poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
+            alt="ipxs.digital motion logo"
+            fit="cover"
+            objectPosition="top"
+            priority
+            className="absolute inset-0"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
+        </div>
+      </section>
 
-        <div className="relative mx-auto max-w-7xl px-4 pt-32 pb-20 lg:px-8">
-          <div className="flex flex-col items-center text-center">
-            {/* Eyebrow */}
-            <p className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Entertainment Creative Technology Studio
-            </p>
-
-            {/* Headline */}
-            <h1 className="headline-display max-w-4xl font-serif font-medium tracking-tight">
-              <span className="block text-foreground">Storytelling That Delivers.</span>
-              <span className="mt-1 block gradient-text-neon">Design That Wins.</span>
+      <section className="section-fade py-10">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="headline-display font-serif font-medium tracking-tight">
+              <span className="block text-foreground">Storytelling That Converts Attention.</span>
+              <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
             </h1>
-
-            {/* Subhead */}
-            <p className="mt-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              ipxs.digital is an entertainment-focused creative technology studio building AI-powered 
-              release ecosystems. Cover art, motion, campaigns, decks, and digital experiences, 
-              engineered to ship fast and look expensive.
+            <p className="mt-7 text-base leading-relaxed text-muted-foreground md:text-lg">
+              ipxs.digital builds entertainment-facing creative technology systems that connect art direction, motion,
+              campaign assets, and digital product execution into one launch engine.
+              Founded and led by Darion R. Harris (LightGod), the studio operates where premium creative and technical delivery meet.
             </p>
-
-            {/* Founder line */}
-            <p className="mt-6 text-sm text-muted-foreground/70">
-              Founded and led by{' '}
-              <span className="text-foreground">Darion R. Harris</span>
-              <span className="text-muted-foreground/50"> (LightGod)</span>
-              , Founder & Lead Creative Technologist.
-            </p>
-
-            {/* CTAs */}
-            <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
+            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
                 <Link href="/work">
                   View Case Studies
@@ -110,20 +91,13 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        {/* Scroll indicator removed */}
       </section>
 
-      {/* What We Build Section */}
-      <section className="border-t border-border/50 bg-secondary/30 py-24 lg:py-32">
+      <section className="section-fade bg-secondary/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-16 max-w-2xl">
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              What We Build
-            </p>
-            <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">
-              Three Pillars of Creative Output
-            </h2>
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">What We Build</p>
+            <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Creative Systems Designed for Real Deadlines</h2>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
@@ -137,9 +111,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex flex-col gap-3">
                   <h3 className="font-serif text-xl font-medium">{pillar.title}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {pillar.description}
-                  </p>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{pillar.description}</p>
                 </div>
               </article>
             ))}
@@ -147,81 +119,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Visual Showcase Strip */}
-      <section className="overflow-hidden py-8">
-        <div className="flex animate-scroll-slow gap-4">
-          {[
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
-            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
-            { src: '/case-studies/dynamics-multiverse/still-06.png', alt: 'Generative Lore system' },
-            { src: '/case-studies/keith-collins-rugs/stills/tiger-on-rug.jpg', alt: 'Tiger on rug street scene' },
-            { src: '/case-studies/emory-capital/hero.jpeg', alt: 'Emory Capital brand identity' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together video treatment' },
-          ].map((img, i) => (
-            <div key={i} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 288px, 384px"
-              />
-            </div>
-          ))}
-          {/* Duplicate for seamless loop */}
-          {[
-            { src: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Dynamics Multiverse world building' },
-            { src: '/case-studies/keith-collins-rugs/stills/ali-rug.jpg', alt: 'Keith Collins Rugs Ali artwork' },
-            { src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'CharliBereal Chocolate Woman cover' },
-            { src: '/case-studies/pitch-decks/covers/xia.jpg', alt: 'xIa pitch deck cover' },
-          ].map((img, i) => (
-            <div key={`dup-${i}`} className="relative h-48 w-72 shrink-0 overflow-hidden rounded-lg md:h-64 md:w-96">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 288px, 384px"
-              />
-            </div>
-          ))}
+      <section className="section-fade py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
+          <div className="relative mx-auto aspect-[9/16] w-full max-w-[420px] overflow-hidden rounded-2xl bg-black">
+            <MotionVideoFallback
+              primarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mp4"
+              primaryType="video/mp4"
+              secondarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mov"
+              secondaryType="video/quicktime"
+              poster="/media/case-studies/charlie-bereal-energy-fallback.png"
+              alt="Charlie Bereal Energy motion poster"
+              fit="contain"
+              objectPosition="center"
+            />
+          </div>
+          <div>
+            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Featured Motion</p>
+            <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Charlie Bereal Energy</h2>
+            <p className="mt-4 text-base text-muted-foreground">
+              Motion-first campaign artwork built for streaming placements, social circulation, and repeat visual recall.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Why ipxs.digital Section */}
-      <section className="py-24 lg:py-32">
+      <section className="section-fade py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
             <div>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Why ipxs.digital
-              </p>
-              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">
-                Built Different,{' '}
-                <span className="text-muted-foreground">By Design</span>
-              </h2>
+              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Why ipxs.digital</p>
+              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Built for Teams That Need Precision and Pace</h2>
               <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                We combine creative direction with technical execution to deliver work that performs 
-                across every touchpoint. No handoffs, no dilution. Just premium output at velocity.
+                We combine creative direction with technical production so teams can move from brief to market without losing quality,
+                momentum, or narrative clarity.
               </p>
             </div>
 
             <div className="flex flex-col gap-8">
               {whyUs.map((item, index) => (
-                <div
-                  key={item.title}
-                  className="flex gap-6 border-l-2 border-border pl-6 transition-colors hover:border-foreground"
-                >
-                  <span className="font-mono text-sm text-muted-foreground/50">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
+                <div key={item.title} className="flex gap-6 border-l-2 border-border pl-6 transition-colors hover:border-foreground">
+                  <span className="font-mono text-sm text-muted-foreground/50">{String(index + 1).padStart(2, '0')}</span>
                   <div className="flex flex-col gap-2">
                     <h3 className="font-medium text-foreground">{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {item.description}
-                    </p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -230,65 +170,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Work Section */}
-      <section className="border-t border-border/50 bg-secondary/30 py-24 lg:py-32">
+      <section className="section-fade bg-secondary/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div className="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Featured Case Studies
-              </p>
-              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">
-                Selected Case Studies
-              </h2>
+              <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Featured Case Studies</p>
+              <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Selected Work</h2>
             </div>
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground"
-            >
+            <Link href="/work" className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground">
               View All Case Studies
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featuredCaseStudies.map((study) => (
-              <CaseStudyCard
-                key={study.id}
-                title={study.title}
-                category={study.category}
-                outcome={study.outcomeLine}
-                cover={study.cover}
-                href={`/work/${study.slug}`}
-              />
-            ))}
+          <div className="mb-8 grid gap-6 lg:grid-cols-[320px_1fr]">
+            <div className="rounded-xl border border-border/50 bg-card/80 p-4">
+              <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">Character Motion Sheet</p>
+              <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-lg bg-black">
+                <MotionVideoFallback
+                  primarySrc="/media/case-studies/character-motion-sheet.mov"
+                  primaryType="video/quicktime"
+                  secondarySrc="/media/case-studies/character-motion-sheet-wide.mov"
+                  secondaryType="video/quicktime"
+                  poster="/media/case-studies/character-motion-sheet-fallback.png"
+                  alt="Character Motion Sheet video"
+                  fit="cover"
+                  objectPosition="top"
+                />
+              </div>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {featuredCaseStudies.map((study) => (
+                <CaseStudyCard
+                  key={study.id}
+                  title={study.title}
+                  category={study.category}
+                  outcome={study.outcomeLine}
+                  href={`/work/${study.slug}`}
+                  cover={study.cover}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <DropSection />
-
-      {/* CTA Band */}
-      <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="flex flex-col items-center text-center">
-            <h2 className="max-w-3xl font-serif text-3xl font-medium leading-tight md:text-4xl lg:text-5xl">
-              {"Let's build your next release, campaign, or platform."}
-            </h2>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-              <Button asChild size="lg" className="gradient-border neon-glow-hover sheen-hover rounded-full px-8 text-foreground">
-                <Link href="/contact">
-                  Start a Project
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="neon-glow-hover sheen-hover rounded-full px-8">
-                <Link href="/deck">View the Deck</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

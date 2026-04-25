@@ -29,7 +29,7 @@ export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
             <img
               src={item.poster ?? fallbackPoster}
               alt={item.alt}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover object-top"
               loading="lazy"
               decoding="async"
             />
@@ -43,7 +43,7 @@ export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
           </button>
         ) : item.src ? (
           <video
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-top"
             controls
             poster={item.poster ?? fallbackPoster}
             preload="none"
@@ -54,7 +54,7 @@ export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
           </video>
         ) : (
           <div className="flex h-full items-center justify-center px-6 text-center text-sm text-muted-foreground">
-            Video source will be connected in production.
+            Video source is currently unavailable for this case study.
           </div>
         )}
       </div>
@@ -67,7 +67,7 @@ export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
         <img
           src={item.src}
           alt={item.alt}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-top"
           loading="lazy"
           decoding="async"
         />
@@ -75,7 +75,7 @@ export function CaseStudyMediaView({ item }: CaseStudyMediaProps) {
         <img
           src={fallbackPoster}
           alt={item.alt}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-top"
           loading="lazy"
           decoding="async"
         />

@@ -47,18 +47,18 @@ export default async function CaseStudyPage({ params }: PageProps) {
     <article className="flex flex-col">
       <section className="relative overflow-hidden">
         {/* Hero Image */}
-        <div className="relative h-[50vh] min-h-[400px] w-full">
+        <div className="relative h-[65vh] min-h-[520px] w-full">
           <Image
             src={caseStudy.cover}
             alt={caseStudy.title}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <div className={`absolute inset-0 ${caseStudy.slug === 'keith-collins-rugs' ? 'bg-gradient-to-b from-background/88 via-background/62 to-background/28' : 'bg-gradient-to-t from-background via-background/50 to-transparent'}`} />
         </div>
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 -mt-32 lg:px-8">
+        <div className="relative mx-auto max-w-5xl px-4 pb-16 pt-10 lg:px-8">
           <Link
             href="/work"
             className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -67,21 +67,23 @@ export default async function CaseStudyPage({ params }: PageProps) {
             Back to Case Studies
           </Link>
 
-          <span className="mb-4 inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-            {caseStudy.category}
-          </span>
+          <div className="rounded-2xl border border-border/40 bg-background/85 px-6 py-6 shadow-sm backdrop-blur">
+            <span className="mb-4 inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
+              {caseStudy.category}
+            </span>
 
-          <h1 className="mb-4 max-w-4xl font-serif text-3xl font-medium gradient-text-neon md:text-4xl lg:text-5xl">
-            {caseStudy.title}
-          </h1>
+            <h1 className="mb-4 max-w-4xl font-serif text-3xl font-medium gradient-text-neon md:text-4xl lg:text-5xl">
+              {caseStudy.title}
+            </h1>
 
-          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            {caseStudy.outcomeLine}
-          </p>
+            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              {caseStudy.outcomeLine}
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-12 lg:py-16">
+      <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Deliverables */}
@@ -133,7 +135,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-12 lg:py-16">
+      <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-8">
             <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -153,7 +155,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 bg-secondary/30 py-12 lg:py-16">
+      <section className="section-fade bg-secondary/30 py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Links */}
@@ -197,7 +199,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border/50 py-12 lg:py-16">
+      <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col items-center text-center">
             <h2 className="mb-5 max-w-2xl font-serif text-xl font-medium md:text-2xl">
