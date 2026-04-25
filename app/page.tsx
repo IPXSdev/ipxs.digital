@@ -6,11 +6,32 @@ import { DropSection } from '@/components/drop-section'
 import { caseStudies } from '@/content/case-studies'
 import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
-const featuredCaseStudies = [
-  caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
-  caseStudies.find((cs) => cs.slug === 'prissy-vandross-original-ip'),
-  caseStudies.find((cs) => cs.slug === 'charlibereal-deathrow-campaign'),
-].filter(Boolean) as typeof caseStudies
+const homepageFeaturedHeroSlug = 'keith-collins-rugs'
+const homepageSelectedWorkSlugs = [
+  'pitch-decks',
+  'prissy-vandross-original-ip',
+  'charlibereal-deathrow-campaign',
+] as const
+
+const selectedWorkCards = homepageSelectedWorkSlugs
+  .map((slug) => {
+    const study = caseStudies.find((item) => item.slug === slug)
+    if (!study) return null
+
+    if (slug === 'pitch-decks') {
+      return {
+        ...study,
+        title: 'x|a Deck',
+        cover: '/case-studies/pitch-decks/covers/xia.jpg',
+        outcomeLine: 'Investor narrative and visual architecture designed to position x|a with confidence in the room.',
+      }
+    }
+
+    return study
+  })
+  .filter(Boolean)
+
+const featuredHeroStudy = caseStudies.find((study) => study.slug === homepageFeaturedHeroSlug)
 
 const pillars = [
   {
@@ -172,7 +193,25 @@ export default function HomePage() {
 
       <section className="section-fade bg-secondary/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          {featuredHeroStudy ? (
+            <article className="relative overflow-hidden rounded-2xl border border-border/40 bg-black">
+              <div className="relative h-[58vh] min-h-[420px] w-full">
+                <Image src={featuredHeroStudy.cover} alt={featuredHeroStudy.title} fill className="object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/45 to-transparent" />
+              </div>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-secondary/30" />
+              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                <p className="mb-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">Featured Header Case Study</p>
+                <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">{featuredHeroStudy.title}</h3>
+                <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">{featuredHeroStudy.outcomeLine}</p>
+                <Button asChild className="mt-5 rounded-full px-6">
+                  <Link href={`/work/${featuredHeroStudy.slug}`}>View Case Study</Link>
+                </Button>
+              </div>
+            </article>
+          ) : null}
+
+          <div className="mt-12 mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Featured Case Studies</p>
               <h2 className="font-serif text-3xl font-medium leading-tight md:text-4xl">Selected Work</h2>
@@ -183,34 +222,17 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mb-8 grid gap-6 lg:grid-cols-[320px_1fr]">
-            <div className="rounded-xl border border-border/50 bg-card/80 p-4">
-              <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">Character Motion Sheet</p>
-              <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-lg bg-black">
-                <MotionVideoFallback
-                  primarySrc="/media/case-studies/character-motion-sheet.mov"
-                  primaryType="video/quicktime"
-                  secondarySrc="/media/case-studies/character-motion-sheet-wide.mov"
-                  secondaryType="video/quicktime"
-                  poster="/media/case-studies/character-motion-sheet-fallback.png"
-                  alt="Character Motion Sheet video"
-                  fit="cover"
-                  objectPosition="top"
-                />
-              </div>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {featuredCaseStudies.map((study) => (
-                <CaseStudyCard
-                  key={study.id}
-                  title={study.title}
-                  category={study.category}
-                  outcome={study.outcomeLine}
-                  href={`/work/${study.slug}`}
-                  cover={study.cover}
-                />
-              ))}
-            </div>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {selectedWorkCards.map((study) => (
+              <CaseStudyCard
+                key={study.id}
+                title={study.title}
+                category={study.category}
+                outcome={study.outcomeLine}
+                href={`/work/${study.slug}`}
+                cover={study.cover}
+              />
+            ))}
           </div>
         </div>
       </section>
