@@ -5,7 +5,7 @@ import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
 import { DropSection } from '@/components/drop-section'
 import { caseStudies } from '@/content/case-studies'
 import { MotionVideoFallback } from '@/components/motion-video-fallback'
-import { TrustedLogoScroller, type TrustedLogoItem } from '@/components/trusted-logo-scroller'
+import { TrustedLogoScroller, type MarqueeItem } from '@/components/trusted-logo-scroller'
 
 const featuredCaseStudies = [
   caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
@@ -46,37 +46,43 @@ const whyUs = [
   },
 ]
 
-const trustedByLogos: TrustedLogoItem[] = [
-  { name: 'Tubi', src: '/media/logos/tubi.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { name: 'x|a', src: '/media/logos/xa.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { name: 'Delicious Vinyl', src: '/media/logos/delicious-vinyl.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { name: 'Delicious Vinyl Island', src: '/media/logos/delicious-vinyl-island.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { name: 'Death Row', src: '/media/logos/death-row-records.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { name: 'Emory Capital', src: '/media/logos/emory-capital.svg', shape: 'circle', fit: 'contain', bg: 'card' },
-  { name: 'Rockwell', src: '/media/logos/rockwell.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+const marqueeItems: MarqueeItem[] = [
+  { kind: 'project', name: 'Dynamics Multiverse', src: '/case-studies/dynamics-multiverse/cover.jpg', fit: 'cover' },
+  { kind: 'logo', name: 'Tubi', src: '/media/logos/tubi.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { kind: 'project', name: 'Charlie Energy', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', fit: 'cover' },
+  { kind: 'logo', name: 'x|a', src: '/media/logos/xa.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { kind: 'project', name: 'Character Motion Sheet', src: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', fit: 'cover' },
+  { kind: 'logo', name: 'Delicious Vinyl', src: '/media/logos/delicious-vinyl.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { kind: 'project', name: 'Emory Capital', src: '/case-studies/emory-capital/hero.jpeg', fit: 'cover' },
+  { kind: 'logo', name: 'Delicious Vinyl Island', src: '/media/logos/delicious-vinyl-island.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { kind: 'project', name: 'Pitch Decks', src: '/case-studies/pitch-decks/covers/xia.jpg', fit: 'cover' },
+  { kind: 'logo', name: 'Death Row', src: '/media/logos/death-row-records.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
+  { kind: 'project', name: 'Keith Collins Rugs', src: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg', fit: 'cover' },
+  { kind: 'logo', name: 'Emory Capital', src: '/media/logos/emory-capital.svg', shape: 'circle', fit: 'contain', bg: 'card' },
+  { kind: 'logo', name: 'Rockwell', src: '/media/logos/rockwell.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
 ]
 
 export default function HomePage() {
   return (
     <div className="flex flex-col">
-      <section className="pt-24">
-        <div className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
-          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
-            <MotionVideoFallback
-              primarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
-              primaryType="video/quicktime"
-              secondarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
-              secondaryType="video/mp4"
-              poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
-              alt="ipxs.digital motion logo poster"
-              fit="contain"
-              objectPosition="top"
-              priority
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-          </div>
+      <section className="pt-16">
+        <div className="relative min-h-[calc(100vh-4rem)] w-full overflow-hidden bg-black">
+          <MotionVideoFallback
+            primarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
+            primaryType="video/quicktime"
+            secondarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
+            secondaryType="video/mp4"
+            poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
+            alt="ipxs.digital motion logo poster"
+            fit="cover"
+            objectPosition="top"
+            priority
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
+        </div>
 
-          <div className="mx-auto mt-10 max-w-4xl text-center">
+        <div className="mx-auto max-w-7xl px-4 pb-6 pt-10 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
             <h1 className="headline-display font-serif font-medium tracking-tight">
               <span className="block text-foreground">Storytelling That Converts Attention.</span>
               <span className="mt-1 block gradient-text-neon">Design Systems That Carry the Release.</span>
@@ -127,7 +133,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TrustedLogoScroller logos={trustedByLogos} />
+      <TrustedLogoScroller items={marqueeItems} />
 
       <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
