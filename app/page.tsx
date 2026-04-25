@@ -5,7 +5,6 @@ import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
 import { DropSection } from '@/components/drop-section'
 import { caseStudies } from '@/content/case-studies'
 import { MotionVideoFallback } from '@/components/motion-video-fallback'
-import { TrustedLogoScroller, type MarqueeItem } from '@/components/trusted-logo-scroller'
 
 const featuredCaseStudies = [
   caseStudies.find((cs) => cs.slug === 'dynamics-multiverse'),
@@ -46,42 +45,29 @@ const whyUs = [
   },
 ]
 
-const marqueeItems: MarqueeItem[] = [
-  { kind: 'project', name: 'Dynamics Multiverse', src: '/case-studies/dynamics-multiverse/cover.jpg', fit: 'cover' },
-  { kind: 'logo', name: 'Tubi', src: '/media/logos/tubi.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { kind: 'project', name: 'Charlie Energy', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', fit: 'cover' },
-  { kind: 'logo', name: 'x|a', src: '/media/logos/xa.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { kind: 'project', name: 'Character Motion Sheet', src: '/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png', fit: 'cover' },
-  { kind: 'logo', name: 'Delicious Vinyl', src: '/media/logos/delicious-vinyl.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { kind: 'project', name: 'Emory Capital', src: '/case-studies/emory-capital/hero.jpeg', fit: 'cover' },
-  { kind: 'logo', name: 'Delicious Vinyl Island', src: '/media/logos/delicious-vinyl-island.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { kind: 'project', name: 'Pitch Decks', src: '/case-studies/pitch-decks/covers/xia.jpg', fit: 'cover' },
-  { kind: 'logo', name: 'Death Row', src: '/media/logos/death-row-records.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-  { kind: 'project', name: 'Keith Collins Rugs', src: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg', fit: 'cover' },
-  { kind: 'logo', name: 'Emory Capital', src: '/media/logos/emory-capital.svg', shape: 'circle', fit: 'contain', bg: 'card' },
-  { kind: 'logo', name: 'Rockwell', src: '/media/logos/rockwell.svg', shape: 'rect', fit: 'contain', bg: 'transparent' },
-]
-
 export default function HomePage() {
   return (
     <div className="flex flex-col">
       <section className="pt-16">
-        <div className="relative min-h-[calc(100vh-4rem)] w-full overflow-hidden bg-black">
+        <div className="relative h-[calc(100vh-4rem)] w-screen overflow-hidden bg-black">
           <MotionVideoFallback
             primarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
             primaryType="video/quicktime"
             secondarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
             secondaryType="video/mp4"
             poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
-            alt="ipxs.digital motion logo poster"
+            alt="ipxs.digital motion logo"
             fit="cover"
             objectPosition="top"
             priority
+            className="absolute inset-0"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
         </div>
+      </section>
 
-        <div className="mx-auto max-w-7xl px-4 pb-6 pt-10 lg:px-8">
+      <section className="section-fade py-10">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="headline-display font-serif font-medium tracking-tight">
               <span className="block text-foreground">Storytelling That Converts Attention.</span>
@@ -133,20 +119,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <TrustedLogoScroller items={marqueeItems} />
-
       <section className="section-fade py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
-          <div className="relative aspect-video overflow-hidden rounded-2xl bg-black">
+          <div className="relative mx-auto aspect-[9/16] w-full max-w-[420px] overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
               primarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mp4"
               primaryType="video/mp4"
               secondarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mov"
               secondaryType="video/quicktime"
-              poster="/media/case-studies/charlie-bereal-energy-motion-art-fallback.png"
+              poster="/media/case-studies/charlie-bereal-energy-fallback.png"
               alt="Charlie Bereal Energy motion poster"
               fit="contain"
-              objectPosition="top"
+              objectPosition="center"
             />
           </div>
           <div>
@@ -199,18 +183,18 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mb-8 grid gap-6 lg:grid-cols-[280px_1fr]">
+          <div className="mb-8 grid gap-6 lg:grid-cols-[320px_1fr]">
             <div className="rounded-xl border border-border/50 bg-card/80 p-4">
               <p className="mb-3 text-xs uppercase tracking-[0.18em] text-muted-foreground">Character Motion Sheet</p>
-              <div className="relative mx-auto aspect-[9/16] w-full max-w-[220px] overflow-hidden rounded-lg bg-black">
+              <div className="relative mx-auto aspect-[9/16] w-full max-w-[320px] overflow-hidden rounded-lg bg-black">
                 <MotionVideoFallback
-                  primarySrc="/media/case-studies/character-motion-sheet.mp4"
-                  primaryType="video/mp4"
-                  secondarySrc="/media/case-studies/character-motion-sheet.mov"
+                  primarySrc="/media/case-studies/character-motion-sheet.mov"
+                  primaryType="video/quicktime"
+                  secondarySrc="/media/case-studies/character-motion-sheet-wide.mov"
                   secondaryType="video/quicktime"
                   poster="/media/case-studies/character-motion-sheet-fallback.png"
                   alt="Character Motion Sheet video"
-                  fit="contain"
+                  fit="cover"
                   objectPosition="top"
                 />
               </div>
