@@ -91,6 +91,20 @@
     @apply border-border outline-ring/40;
   }
 
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  @supports not (overflow: clip) {
+    html,
+    body {
+      overflow-x: hidden;
+    }
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
   }

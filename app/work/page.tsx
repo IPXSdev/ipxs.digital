@@ -36,13 +36,14 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
               Each case study details the brief, the build, and the assets delivered to market.
             </p>
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-lg border border-border/50 bg-white">
+          <div className="relative aspect-video w-full max-w-full overflow-hidden rounded-lg border border-border/50 bg-white">
             <MotionVideoFallback
               mp4Src="/media/case-studies/character-motion-sheet-wide.mov"
               movSrc="/media/case-studies/character-motion-sheet-wide.mov"
               poster="/media/case-studies/character-motion-sheet-fallback.png"
               alt="Character Motion Sheet"
-              objectClassName="object-contain"
+              fit="cover"
+              objectPosition="center"
               priority
             />
           </div>

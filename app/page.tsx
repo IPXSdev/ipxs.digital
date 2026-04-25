@@ -243,36 +243,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Featured Motion Highlight - Character Motion Sheet (wide) */}
-          <div className="mb-12">
-            <Link href="/work/dynamics-multiverse" className="group block">
-              <div className="relative aspect-video overflow-hidden rounded-xl bg-white">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  poster="/media/case-studies/character-motion-sheet-fallback.png"
-                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                >
-                  <source src="/media/case-studies/character-motion-sheet-wide.mov" type="video/quicktime" />
-                </video>
-              </div>
-              {/* Caption below video - no overlap */}
-              <div className="mt-4 px-2">
-                <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                  Character Design and Motion
-                </p>
-                <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">
-                  Character Motion Sheet
-                </h3>
-                <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-                  Animated character system designed for social content, merchandise, and brand storytelling across platforms.
-                </p>
-              </div>
-            </Link>
-          </div>
-
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {featuredCaseStudies.map((study) => (
               <CaseStudyCard

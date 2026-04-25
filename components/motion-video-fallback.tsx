@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
@@ -28,53 +28,43 @@ export function MotionVideoFallback({
 }: MotionVideoFallbackProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const stallCountRef = useRef(0)
 
   // Compute object classes based on props (objectClassName takes precedence if provided)
-  const computedObjectClass = objectClassName ?? `object-${fit} object-${objectPosition}`
+  const computedObjectClass = useMemo(
+    () => objectClassName ?? `object-${fit} object-${objectPosition}`,
+    [objectClassName, fit, objectPosition]
+  )
 
-  const handlePlaying = useCallback(() => {
-    setIsPlaying(true)
+  const handlePlayable = () => {
     setVideoFailed(false)
-    stallCountRef.current = 0
-  }, [])
 
-  const handleStalled = useCallback(() => {
-    // Only fail after multiple stalls, not on first stall (transient network hiccups)
-    stallCountRef.current += 1
-    if (stallCountRef.current >= 3) {
-      setVideoFailed(true)
+    const video = videoRef.current
+    if (!video) return
+
+    const playPromise = video.play()
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        // Keep the poster/video element visible. Do not force the fallback image
+        // unless the browser reports a real media error.
+      })
     }
-  }, [])
-
-  useEffect(() => {
-    if (videoFailed || isPlaying) return
-
-    const timeout = window.setTimeout(() => {
-      const video = videoRef.current
-      if (!video) return
-      if (video.paused && video.currentTime === 0) {
-        setVideoFailed(true)
-      }
-    }, 5000)
-
-    return () => window.clearTimeout(timeout)
-  }, [videoFailed, isPlaying])
+  }
 
   return (
-    <div className={`relative h-full w-full ${className}`}>
+    <div className={`relative h-full w-full max-w-full overflow-hidden ${className}`}>
       <video
         ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
         poster={poster}
+        aria-label={alt}
+        onCanPlay={handlePlayable}
+        onLoadedData={() => setVideoFailed(false)}
+        onPlaying={() => setVideoFailed(false)}
         onError={() => setVideoFailed(true)}
-        onAbort={() => setVideoFailed(true)}
-        onStalled={handleStalled}
-        onPlaying={handlePlaying}
         className={`h-full w-full ${computedObjectClass} ${videoFailed ? 'invisible' : 'visible'}`}
       >
         <source src={mp4Src} type="video/mp4" />
