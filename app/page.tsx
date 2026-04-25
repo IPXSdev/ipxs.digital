@@ -115,12 +115,12 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {pillars.map((pillar) => (
+            {pillars.map((pillar, index) => (
               <article
                 key={pillar.title}
                 className="group sheen-hover gradient-border neon-glow-hover flex flex-col gap-6 rounded-lg bg-card/80 p-8 transition-all duration-300 hover:bg-secondary/55"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border bg-secondary transition-colors group-hover:border-muted-foreground/30">
+                <div className={`icon-3d-neon ${index === 0 ? 'icon-3d-neon-cyan' : index === 1 ? 'icon-3d-neon-magenta' : 'icon-3d-neon-violet'}`}>
                   <pillar.icon className="h-5 w-5 text-foreground" />
                 </div>
                 <div className="flex flex-col gap-3">
