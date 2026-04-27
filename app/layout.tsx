@@ -5,7 +5,6 @@ import { Footer } from '@/components/footer'
 import { LenisProvider } from '@/components/lenis-provider'
 import { FilmGrain } from '@/components/film-grain'
 import { PortalOverlay } from '@/components/portal-overlay'
-import { PortalMenu } from '@/components/portal-menu'
 import { AuroraBackground } from '@/components/aurora-background'
 import './globals.css'
 
@@ -16,6 +15,13 @@ export const metadata: Metadata = {
   },
   description:
     'AI-powered release ecosystems for artists, labels, and entertainment brands. Cover art, motion, campaigns, decks, and digital experiences engineered to ship fast and look expensive.',
+  icons: {
+    icon: [
+      { url: '/favicon.jpeg', sizes: 'any' },
+    ],
+    shortcut: '/favicon.jpeg',
+    apple: '/favicon.jpeg',
+  },
   keywords: [
     'creative technology',
     'entertainment',
@@ -37,12 +43,21 @@ export const metadata: Metadata = {
     title: 'ipxs.digital | Entertainment Creative Technology Studio',
     description:
       'AI-powered release ecosystems for artists, labels, and entertainment brands.',
+    images: [
+      {
+        url: '/media/hero/ipxsdigital-motion-logo-fallback.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'ipxs.digital - Entertainment Creative Technology Studio',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ipxs.digital | Entertainment Creative Technology Studio',
     description:
       'AI-powered release ecosystems for artists, labels, and entertainment brands.',
+    images: ['/media/hero/ipxsdigital-motion-logo-fallback.jpeg'],
   },
   robots: {
     index: true,
@@ -70,7 +85,6 @@ export default function RootLayout({
             <PortalOverlay>
             <FilmGrain />
             <Navigation />
-            <PortalMenu />
             <main className="flex-1">{children}</main>
             <Footer />
             </PortalOverlay>

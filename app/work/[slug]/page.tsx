@@ -54,6 +54,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
             fill
             className="object-cover object-top"
             priority
+            sizes="100vw"
           />
           <div className={`absolute inset-0 ${caseStudy.slug === 'keith-collins-rugs' ? 'bg-gradient-to-b from-background/88 via-background/62 to-background/28' : 'bg-gradient-to-t from-background via-background/50 to-transparent'}`} />
         </div>
@@ -110,28 +111,91 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {/* Pipeline */}
             <div>
               <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Pipeline
+                {caseStudy.pipeline ? 'Workflow' : 'Pipeline'}
               </p>
-              <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">How We Got There</h2>
-              <div className="grid gap-2">
-                {caseStudy.pipelineSteps.map((step, index) => (
-                  <div
-                    key={step.phase}
-                    className="flex items-start gap-3 rounded-lg border border-border/50 bg-card/50 px-4 py-2.5"
-                  >
-                    <span className="font-mono text-xs text-accent pt-0.5">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <div className="flex-1">
-                      <span className="text-sm font-medium">{step.phase}</span>
-                      <span className="mx-2 text-muted-foreground/50">·</span>
-                      <span className="text-sm text-muted-foreground">{step.description}</span>
+              <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">
+                {caseStudy.pipeline ? 'Production Pipeline' : 'How We Got There'}
+              </h2>
+              {caseStudy.pipeline ? (
+                <div className="grid gap-2">
+                  {caseStudy.pipeline.map((step, index) => (
+                    <div
+                      key={step}
+                      className="flex items-start gap-3 rounded-lg border border-border/50 bg-card/50 px-4 py-2.5"
+                    >
+                      <span className="font-mono text-xs text-accent pt-0.5">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-sm font-medium">{step}</span>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid gap-2">
+                  {caseStudy.pipelineSteps.map((step, index) => (
+                    <div
+                      key={step.phase}
+                      className="flex items-start gap-3 rounded-lg border border-border/50 bg-card/50 px-4 py-2.5"
+                    >
+                      <span className="font-mono text-xs text-accent pt-0.5">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <div className="flex-1">
+                        <span className="text-sm font-medium">{step.phase}</span>
+                        <span className="mx-2 text-muted-foreground/50">·</span>
+                        <span className="text-sm text-muted-foreground">{step.description}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
+
+          {/* Tools and Results */}
+          {(caseStudy.tools || caseStudy.results) && (
+            <div className="mt-12 grid gap-8 lg:grid-cols-2 lg:gap-12">
+              {caseStudy.tools && caseStudy.tools.length > 0 && (
+                <div>
+                  <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    Tools & Workflow
+                  </p>
+                  <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">What Powered It</h2>
+                  <div className="flex flex-wrap gap-2">
+                    {caseStudy.tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="rounded-full bg-secondary px-4 py-2 text-sm font-medium text-foreground"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {caseStudy.results && caseStudy.results.length > 0 && (
+                <div>
+                  <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    Results
+                  </p>
+                  <h2 className="mb-6 font-serif text-xl font-medium md:text-2xl">What It Delivered</h2>
+                  <ul className="grid gap-2">
+                    {caseStudy.results.map((result, index) => (
+                      <li
+                        key={result}
+                        className="flex items-start gap-3 text-sm"
+                      >
+                        <span className="font-mono text-xs text-accent pt-0.5">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <span className="text-muted-foreground">{result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
