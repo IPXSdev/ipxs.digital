@@ -44,6 +44,24 @@
   --neon-teal: oklch(0.52 0.18 188);
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
 @theme inline {
   --font-sans: 'Inter', 'Avenir Next', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Cambria, Georgia, serif;
@@ -221,6 +239,32 @@
 
   .page-header-title {
     @apply text-5xl leading-[1.06] md:text-6xl;
+  }
+
+
+  .section-fade {
+    position: relative;
+  }
+
+  .section-fade::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 26px;
+    pointer-events: none;
+    opacity: 0.45;
+    background: linear-gradient(
+      to bottom,
+      oklch(0.72 0.08 255 / 0.22),
+      oklch(0.78 0.05 275 / 0.12),
+      transparent
+    );
+  }
+
+  .section-fade-soft::before {
+    opacity: 0.3;
+    height: 20px;
   }
 
   /* Infinite scroll animation */

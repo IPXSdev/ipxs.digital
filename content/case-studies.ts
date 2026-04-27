@@ -5,6 +5,7 @@ export const caseStudyCategories = [
   'Pitch Deck Architecture',
   'Websites and MVP Platforms',
   'World Building',
+  'Original IP',
 ] as const
 
 export type CaseStudyCategory = (typeof caseStudyCategories)[number]
@@ -58,7 +59,7 @@ export interface CaseStudy {
 
 interface CaseStudyWorld {
   id: string
-  number: '01' | '02' | '03' | '04' | '05' | '06'
+  number: '01' | '02' | '03' | '04' | '05' | '06' | '07'
   title: CaseStudyCategory
   outcome: string
 }
@@ -113,6 +114,13 @@ export const caseStudyWorlds: CaseStudyWorld[] = [
     title: 'World Building',
     outcome: 'Franchise-scale story universes engineered for expansion across film, series, games, and brand collaborations.',
   },
+
+  {
+    id: 'original-ip',
+    number: '07',
+    title: 'Original IP',
+    outcome: 'Flagship in-house IP systems designed for narrative depth, repeatable releases, and monetization-ready growth.',
+  },
 ]
 
 export const caseStudies: CaseStudy[] = [
@@ -123,13 +131,13 @@ export const caseStudies: CaseStudy[] = [
     category: 'Music Release Systems',
     poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
     cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
-    outcomeLine: 'Full campaign system for major label release including cover art and motion design for streaming and social.',
+    outcomeLine: 'End to end Death Row release campaign including primary artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
     deliverables: ['Chocolate Woman cover art', 'Motion animation package', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
-      { label: 'Deathrow Records', url: '#' },
-      { label: 'Spotify', url: '#' },
-      { label: 'Apple Music', url: '#' },
+      { label: 'Death Row Records', url: 'https://www.deathrowofficial.com/' },
+      { label: 'Spotify', url: 'https://open.spotify.com/track/0M5ZTD5bzYadecfUQcQx8j' },
+      { label: 'Apple Music', url: 'https://music.apple.com/us/album/chocolate-woman-single/1857721393' },
     ],
     media: [
       { id: 'chocolate-woman-cover', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg', alt: 'Chocolate Woman album cover featuring Statue of Liberty inspired artwork', caption: 'Primary cover art for Chocolate Woman single.', aspectRatio: 'square' },
@@ -144,11 +152,12 @@ export const caseStudies: CaseStudy[] = [
     category: 'Motion and Social Ads',
     poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
     cover: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
-    outcomeLine: 'Full animated music video treatment for CharliBereal featuring custom character design, storyboarding, and visual direction.',
+    outcomeLine: 'Animated music video treatment for Together with original character design, storyboard direction, and visual development prepared for production alignment.',
     deliverables: ['Video treatment pitch deck', 'Custom character design', 'Character pose sheet', 'Visual style guide', 'Animation direction'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
-      { label: 'CharliBereal', url: '#' },
+      { label: 'Spotify', url: 'https://open.spotify.com/track/196CykfquyUe0B4zGkG2GZ' },
+      { label: 'Apple Music', url: 'https://music.apple.com/us/album/together-single/1840887531' },
     ],
     media: [
       { id: 'together-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Together animated video treatment concept with psychedelic visual style', caption: 'Video treatment pitch for Together animated music video.' },
@@ -164,7 +173,7 @@ export const caseStudies: CaseStudy[] = [
     category: 'Commercials',
     poster: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg',
     cover: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg',
-    outcomeLine: 'Over the top comedy commercial built from client supplied audio. A weekly national podcast spot that would be impossible to ignore.',
+    outcomeLine: 'Over the top comedy commercial built from client supplied audio with AI-assisted production support from concepting through final cut delivery.',
     deliverables: ['1 master commercial, widescreen', '1 master commercial, vertical cut for social', 'Export package optimized for podcast ad breaks', 'Thumbnail and still set for posting'],
     pipelineSteps: defaultPipeline,
     proofLinks: [{ label: 'Watch Commercial', url: '#' }],
@@ -236,6 +245,32 @@ export const caseStudies: CaseStudy[] = [
     ],
     credits: defaultCredits,
   },
+
+  {
+    id: 'prissy-vandross-original-ip',
+    slug: 'prissy-vandross-original-ip',
+    title: 'Pri$$y Vandro$$ Original IP System',
+    category: 'Original IP',
+    poster: '/case-studies/charlibereal-deathrow-campaign/together-cover.png',
+    cover: '/case-studies/charlibereal-deathrow-campaign/together-cover.png',
+    outcomeLine: 'Flagship Original IP built as a monetization-ready music universe with character systems, release pipeline, and visual album roadmap.',
+    heroTagline: 'Character, lore, music, and campaign architecture designed as one scalable IP stack.',
+    problem: 'Pri$$y Vandro$$ needed to launch as a complete world, not a single drop. The objective was to create a production-ready character identity, narrative backbone, and music workflow that could continuously generate release assets without losing voice consistency.',
+    approach: 'IPXS built a cross-tool pipeline using Higgsfield for character creation, world-building systems for canon and storyline development, and a music workflow moving from Reason and Pro Tools composition into AI-assisted voice and style modeling. Every stage was structured for speed, repeatability, and quality control.',
+    solution: 'Delivered a 7-song EP production pipeline, monetization-ready content architecture, press and campaign assets generated through AI-assisted workflows, and a visual album plan structured as one short-film style music video per song.',
+    deliverables: ['Character system and style guide in Higgsfield', 'Lore engine and world-building canon', 'Reason and Pro Tools composition workflow', 'Suno voice and style model pipeline', '7-song EP release framework', 'Visual album roadmap with one short film style video per song', 'AI-assisted press and campaign asset package'],
+    pipelineSteps: defaultPipeline,
+    proofLinks: [
+      { label: 'Live Experience', url: 'https://prissyv.space/' },
+      { label: 'Start a Similar Build', url: '/contact?subject=Original%20IP%20System' },
+    ],
+    media: [
+      { id: 'prissy-cover', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-cover.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-cover.png', alt: 'Pri$$y Vandro$$ flagship original IP identity frame', caption: 'Core character identity and launch visual language.' },
+      { id: 'prissy-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Pri$$y Vandro$$ world and visual album planning board', caption: 'Visual album planning and world narrative mapping.' },
+    ],
+    credits: defaultCredits,
+  },
+
   {
     id: 'emory-capital',
     slug: 'emory-capital',

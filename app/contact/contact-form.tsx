@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { ArrowRight, Copy, Mail, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -12,209 +13,261 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
-import { ArrowRight, Check } from 'lucide-react'
+
+const destinationEmail = 'ipxsdev@gmail.com'
 
 const projectTypes = [
   { value: 'release-system', label: 'Release System' },
-  { value: 'motion-social', label: 'Motion/Social' },
-  { value: 'commercial', label: 'Commercial' },
-  { value: 'pitch-deck', label: 'Pitch Deck' },
+  { value: 'motion-social', label: 'Motion and Social' },
+  { value: 'commercial', label: 'Commercial Spot' },
+  { value: 'pitch-deck', label: 'Pitch Deck Architecture' },
   { value: 'deck-walkthrough', label: 'Deck Walkthrough Request' },
-  { value: 'website', label: 'Website' },
+  { value: 'website', label: 'Artist/Brand Website' },
   { value: 'mvp-platform', label: 'MVP Platform' },
-  { value: 'custom-gpt', label: 'Custom GPT' },
-  { value: 'other', label: 'Other / Not Sure' },
+  { value: 'other', label: 'Other' },
 ]
+
+const inquiryTypes = [
+  { value: 'new-project', label: 'New Project' },
+  { value: 'partnership', label: 'Partnership' },
+  { value: 'retainer', label: 'Retainer' },
+  { value: 'other', label: 'Other' },
+]
+
+interface ContactDraft {
+  name: string
+  email: string
+  company: string
+  phone: string
+  projectType: string
+  inquiryType: string
+  subject: string
+  message: string
+}
+
+const emptyDraft: ContactDraft = {
+  name: '',
+  email: '',
+  company: '',
+  phone: '',
+  projectType: '',
+  inquiryType: '',
+  subject: '',
+  message: '',
+}
 
 export function ContactForm() {
   const searchParams = useSearchParams()
-  const [submitted, setSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [projectType, setProjectType] = useState('')
+  const [form, setForm] = useState<ContactDraft>(emptyDraft)
   const [error, setError] = useState('')
-  const [prefillMessage, setPrefillMessage] = useState('')
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     const messageParam = searchParams.get('message')
     const subjectParam = searchParams.get('subject')
-    
-    if (messageParam) {
-      setPrefillMessage(messageParam)
-    }
-    
-    if (subjectParam && subjectParam.toLowerCase().includes('deck walkthrough')) {
-      setProjectType('deck-walkthrough')
-    }
+
+    setForm((prev) => ({
+      ...prev,
+      message: messageParam ?? prev.message,
+      subject: subjectParam ?? prev.subject,
+      projectType:
+        subjectParam && subjectParam.toLowerCase().includes('deck walkthrough')
+          ? 'deck-walkthrough'
+          : prev.projectType,
+    }))
   }, [searchParams])
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const composed = useMemo(() => {
+    const projectLabel = projectTypes.find((item) => item.value === form.projectType)?.label ?? form.projectType
+    const inquiryLabel = inquiryTypes.find((item) => item.value === form.inquiryType)?.label ?? form.inquiryType
+
+    const subject = `[ipxs.space] ${form.subject}`
+    const body = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Company: ${form.company}`,
+      `Phone: ${form.phone}`,
+      `Project Type: ${projectLabel}`,
+      `Inquiry Type: ${inquiryLabel}`,
+      '',
+      'Project Details:',
+      form.message,
+    ].join('\n')
+
+    return { subject, body }
+  }, [form])
+
+  const encodedSubject = encodeURIComponent(composed.subject)
+  const encodedBody = encodeURIComponent(composed.body)
+
+  const links = {
+    mailto: `mailto:${destinationEmail}?subject=${encodedSubject}&body=${encodedBody}`,
+    gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${destinationEmail}&su=${encodedSubject}&body=${encodedBody}`,
+    outlook: `https://outlook.office.com/mail/deeplink/compose?to=${destinationEmail}&subject=${encodedSubject}&body=${encodedBody}`,
+  }
+
+  const copyPayload = `${destinationEmail}\n\nSubject: ${composed.subject}\n\n${composed.body}`
+
+  const copyMessage = async () => {
+    try {
+      await navigator.clipboard.writeText(copyPayload)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch {
+      setCopied(false)
+    }
+  }
+
+  const openDialog = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     setError('')
 
-    const form = e.currentTarget
-    const formData = new FormData(form)
+    const requiredFields = [
+      form.name,
+      form.email,
+      form.company,
+      form.phone,
+      form.projectType,
+      form.inquiryType,
+      form.subject,
+      form.message,
+    ]
 
-    const name = String(formData.get('name') ?? '').trim()
-    const email = String(formData.get('email') ?? '').trim()
-    const message = String(formData.get('message') ?? '').trim()
-    const phone = String(formData.get('phone') ?? '').trim()
-    const company = String(formData.get('company') ?? '').trim()
-
-    if (!name || !email || !message || !projectType) {
-      setError('Please complete all required fields before submitting.')
+    if (requiredFields.some((field) => !field.trim())) {
+      setError('Please complete every field before tapping in.')
       return
     }
 
-    setIsSubmitting(true)
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          message,
-          phone,
-          company,
-          projectType,
-          inquiryType: projectType,
-          subject: `Website inquiry (${projectType})`,
-          sourcePage: window.location.pathname,
-        }),
-      })
-
-      const result = (await response.json()) as { error?: string }
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to submit contact form.')
-      }
-
-      form.reset()
-      setProjectType('')
-      setSubmitted(true)
-    } catch (submitError) {
-      setError(
-        submitError instanceof Error
-          ? submitError.message
-          : 'Failed to submit contact form.',
-      )
-    } finally {
-      setIsSubmitting(false)
-    }
+    await copyMessage()
+    setDialogOpen(true)
   }
 
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center rounded-lg border border-border bg-card p-12 text-center">
-        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-foreground">
-          <Check className="h-8 w-8 text-background" />
-        </div>
-        <h2 className="mb-2 font-serif text-2xl font-medium">Message Sent</h2>
-        <p className="max-w-sm text-sm text-muted-foreground">
-          Thanks for reaching out. We&apos;ll review your message and get back to you within 24-48 hours.
-        </p>
-      </div>
-    )
+  const updateField = (key: keyof ContactDraft, value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }))
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-      <FieldGroup>
-        <Field>
-          <FieldLabel htmlFor="name">Name</FieldLabel>
-          <Input
-            id="name"
-            name="name"
-            placeholder="Your name"
-            required
-            className="rounded-lg bg-card"
-          />
-        </Field>
+    <>
+      <form onSubmit={openDialog} className="flex flex-col gap-8">
+        <FieldGroup>
+          <Field>
+            <FieldLabel htmlFor="name">Name</FieldLabel>
+            <Input id="name" name="name" placeholder="Your full name" required className="rounded-lg bg-card" value={form.name} onChange={(event) => updateField('name', event.target.value)} />
+          </Field>
 
-        <Field>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
-          <Input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="you@company.com"
-            required
-            className="rounded-lg bg-card"
-          />
-        </Field>
+          <Field>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+            <Input id="email" name="email" type="email" placeholder="you@company.com" required className="rounded-lg bg-card" value={form.email} onChange={(event) => updateField('email', event.target.value)} />
+          </Field>
 
+          <Field>
+            <FieldLabel htmlFor="company">Company</FieldLabel>
+            <Input id="company" name="company" placeholder="Company or artist name" required className="rounded-lg bg-card" value={form.company} onChange={(event) => updateField('company', event.target.value)} />
+          </Field>
 
-        <Field>
-          <FieldLabel htmlFor="company">Company (Optional)</FieldLabel>
-          <Input
-            id="company"
-            name="company"
-            placeholder="Your company"
-            className="rounded-lg bg-card"
-          />
-        </Field>
+          <Field>
+            <FieldLabel htmlFor="phone">Phone</FieldLabel>
+            <Input id="phone" name="phone" placeholder="(555) 555-5555" required className="rounded-lg bg-card" value={form.phone} onChange={(event) => updateField('phone', event.target.value)} />
+          </Field>
 
-        <Field>
-          <FieldLabel htmlFor="phone">Phone (Optional)</FieldLabel>
-          <Input
-            id="phone"
-            name="phone"
-            placeholder="(555) 555-5555"
-            className="rounded-lg bg-card"
-          />
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="project-type">Project Type</FieldLabel>
-          <Select value={projectType} onValueChange={setProjectType} required>
-            <SelectTrigger id="project-type" className="rounded-lg bg-card">
-              <SelectValue placeholder="Select a project type" />
-            </SelectTrigger>
-            <SelectContent>
-              {projectTypes.map((type) => (
-                <SelectItem key={type.value} value={type.value}>
-                  {type.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </Field>
+          <Field>
+            <FieldLabel htmlFor="project-type">Project Type</FieldLabel>
+            <Select value={form.projectType} onValueChange={(value) => updateField('projectType', value)}>
+              <SelectTrigger id="project-type" className="rounded-lg bg-card">
+                <SelectValue placeholder="Select project type" />
+              </SelectTrigger>
+              <SelectContent>
+                {projectTypes.map((type) => (
+                  <SelectItem key={type.value} value={type.value}>
+                    {type.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </Field>
 
-        <Field>
-          <FieldLabel htmlFor="message">Message</FieldLabel>
-          <Textarea
-            id="message"
-            name="message"
-            placeholder="Tell us about your project, timeline, and any specific requirements..."
-            rows={6}
-            required
-            className="resize-none rounded-lg bg-card"
-            defaultValue={prefillMessage}
-            key={prefillMessage}
-          />
-        </Field>
-      </FieldGroup>
+          <Field>
+            <FieldLabel htmlFor="inquiry-type">Inquiry Type</FieldLabel>
+            <Select value={form.inquiryType} onValueChange={(value) => updateField('inquiryType', value)}>
+              <SelectTrigger id="inquiry-type" className="rounded-lg bg-card">
+                <SelectValue placeholder="Select inquiry type" />
+              </SelectTrigger>
+              <SelectContent>
+                {inquiryTypes.map((type) => (
+                  <SelectItem key={type.value} value={type.value}>
+                    {type.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </Field>
 
-      {error ? <p className="text-sm text-destructive">{error}</p> : null}
+          <Field>
+            <FieldLabel htmlFor="subject">Subject</FieldLabel>
+            <Input id="subject" name="subject" placeholder="What are we building?" required className="rounded-lg bg-card" value={form.subject} onChange={(event) => updateField('subject', event.target.value)} />
+          </Field>
 
-      <Button
-        type="submit"
-        size="lg"
-        className="w-full rounded-full sm:w-auto"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? (
-          'Sending...'
-        ) : (
-          <>
-            Send Message
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </>
-        )}
-      </Button>
-    </form>
+          <Field>
+            <FieldLabel htmlFor="message">Project Details</FieldLabel>
+            <Textarea
+              id="message"
+              name="message"
+              placeholder="Share goals, timeline, budget range, and launch context."
+              rows={6}
+              required
+              className="resize-none rounded-lg bg-card"
+              value={form.message}
+              onChange={(event) => updateField('message', event.target.value)}
+            />
+          </Field>
+        </FieldGroup>
+
+        {error ? <p className="text-sm text-destructive">{error}</p> : null}
+
+        <Button type="submit" size="lg" className="w-full rounded-full sm:w-auto">
+          Tap in
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
+      </form>
+
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Choose your email app</DialogTitle>
+            <DialogDescription>
+              Your message is ready for {destinationEmail}. We also copied the email and draft message to your clipboard.
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="grid gap-3">
+            <Button asChild className="justify-between rounded-full">
+              <a href={links.mailto}>
+                Open Mail App
+                <Mail className="h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="justify-between rounded-full">
+              <a href={links.gmail} target="_blank" rel="noopener noreferrer">
+                Gmail
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="justify-between rounded-full">
+              <a href={links.outlook} target="_blank" rel="noopener noreferrer">
+                Outlook
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </Button>
+            <Button type="button" variant="ghost" onClick={copyMessage} className="justify-between rounded-full">
+              {copied ? 'Copied' : 'Copy Email + Message'}
+              <Copy className="h-4 w-4" />
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   )
 }
