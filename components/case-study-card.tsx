@@ -36,7 +36,7 @@ export function CaseStudyCard({
             src={cover}
             alt={title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
@@ -59,7 +59,7 @@ export function CaseStudyCard({
         <p className="text-sm leading-relaxed text-muted-foreground">{outcome}</p>
         <Link
           href={href}
-          className="mt-auto inline-flex items-center gap-2 pt-2 text-sm font-medium text-foreground transition-colors hover:text-accent"
+          className="mt-auto inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/60 px-4 py-2 text-sm font-medium text-foreground shadow-sm backdrop-blur transition-all hover:border-accent/60 hover:bg-accent/10 hover:text-accent hover:shadow-[0_8px_24px_rgba(80,80,255,0.18)]"
         >
           View Case Study
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
