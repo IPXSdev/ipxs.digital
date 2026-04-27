@@ -59,7 +59,7 @@ export interface CaseStudy {
 
 interface CaseStudyWorld {
   id: string
-  number: '01' | '02' | '03' | '04' | '05' | '06'
+  number: '01' | '02' | '03' | '04' | '05' | '06' | '07'
   title: CaseStudyCategory
   outcome: string
 }
@@ -114,11 +114,12 @@ export const caseStudyWorlds: CaseStudyWorld[] = [
     title: 'World Building',
     outcome: 'Franchise-scale story universes engineered for expansion across film, series, games, and brand collaborations.',
   },
+
   {
     id: 'original-ip',
     number: '07',
     title: 'Original IP',
-    outcome: 'Fully realized entertainment properties developed from concept to monetizable IP through hybrid creative workflows.',
+    outcome: 'Flagship in-house IP systems designed for narrative depth, repeatable releases, and monetization-ready growth.',
   },
 ]
 
@@ -130,7 +131,7 @@ export const caseStudies: CaseStudy[] = [
     category: 'Music Release Systems',
     poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
     cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
-    outcomeLine: 'End to end creative art direction for a Death Row Records single release including primary cover artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
+    outcomeLine: 'End to end Death Row release campaign including primary artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
     deliverables: ['Chocolate Woman cover art', 'Motion animation package', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
@@ -172,45 +173,9 @@ export const caseStudies: CaseStudy[] = [
     category: 'Commercials',
     poster: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg',
     cover: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg',
-    outcomeLine: 'An AI-powered cinematic commercial built from a single photograph and client-supplied audio. A complete visual world created through character stabilization, scene generation, and disciplined creative direction.',
-    heroTagline: 'From one image to a full commercial. AI-assisted production that proves what is possible.',
-    problem: 'The client supplied only audio and one photograph of Keith. No additional source material. The challenge was to build a complete commercial world from minimal starting assets, including a stable lead character representation, supporting cast, consistent visual language, and a narrative structure that could support the voice performance and brand tone. Traditional production would have required extensive shoots, casting, and location work. Instead, IPXS developed an AI-assisted pipeline to accomplish what would otherwise be impossible at this speed and scale.',
-    approach: 'IPXS used an AI-assisted creative pipeline to translate one source image into a scalable visual performance system. The process began with character stabilization, developing Keith as a repeatable character that could maintain consistency across multiple scenes and shot types. From there, supporting characters were generated and stabilized. Every scene was designed with storyboard-level thinking, planning compositions, camera angles, and narrative beats before generation. The workflow included concept development, shot planning, AI image and motion development, continuity management across shots, syncing visuals to audio, and post-production assembly into a polished commercial.',
-    solution: 'The result is a polished comedy commercial that feels imaginative, premium, and impossible to ignore. Built with speed and flexibility that traditional workflows cannot match, the project demonstrates that AI-assisted production is not about shortcuts. It is about expanding what a small team can accomplish when creative direction, technical discipline, and the right tools come together.',
-    deliverables: [
-      'Master commercial, widescreen edit',
-      'Master commercial, vertical cut for social',
-      'Character stabilization system for Keith',
-      'Supporting character generation and consistency',
-      'Scene-by-scene visual development',
-      'Export package optimized for podcast ad breaks',
-      'Thumbnail and still set for posting',
-    ],
-    pipeline: [
-      'Audio analysis and narrative beat mapping',
-      'Character stabilization from single source image',
-      'Supporting character design and consistency',
-      'Storyboard and shot planning',
-      'AI-assisted scene generation',
-      'Motion development and continuity',
-      'Audio-visual sync and timing',
-      'Post-production assembly and finishing',
-    ],
-    tools: ['AI image generation', 'Character stabilization workflows', 'Motion development', 'Post-production'],
-    results: [
-      'Complete commercial built from one photograph',
-      'Stable character representation across all scenes',
-      'Supporting cast generated with visual consistency',
-      'Production timeline that traditional methods could not match',
-      'Premium, memorable, and brand-appropriate output',
-    ],
-    pipelineSteps: [
-      { phase: 'Brief', description: 'Received client audio and single source photograph. Defined creative scope and visual direction.' },
-      { phase: 'Strategy', description: 'Mapped audio beats to narrative structure. Planned shot types and character requirements.' },
-      { phase: 'Production', description: 'Stabilized Keith as repeatable character. Generated supporting cast. Built scenes with AI-assisted workflows.' },
-      { phase: 'Delivery', description: 'Synced visuals to audio. Assembled final commercial with post-production polish.' },
-      { phase: 'Distribution', description: 'Delivered master files and social cuts optimized for podcast ad placements.' },
-    ],
+    outcomeLine: 'Over the top comedy commercial built from client supplied audio with AI-assisted production support from concepting through final cut delivery.',
+    deliverables: ['1 master commercial, widescreen', '1 master commercial, vertical cut for social', 'Export package optimized for podcast ad breaks', 'Thumbnail and still set for posting'],
+    pipelineSteps: defaultPipeline,
     proofLinks: [{ label: 'Watch Commercial', url: '#' }],
     media: [
       { id: 'keith-collins-master', type: 'video', src: '/case-studies/keith-collins-rugs/video/keith-collins-rugs-master.mov', poster: '/case-studies/keith-collins-rugs/posters/keith-collins-rugs-poster.jpg', alt: 'Keith Collins Rugs master commercial', caption: 'Master commercial: the complete AI-assisted production from one photograph.' },
@@ -280,6 +245,32 @@ export const caseStudies: CaseStudy[] = [
     ],
     credits: defaultCredits,
   },
+
+  {
+    id: 'prissy-vandross-original-ip',
+    slug: 'prissy-vandross-original-ip',
+    title: 'Pri$$y Vandro$$ Original IP System',
+    category: 'Original IP',
+    poster: '/case-studies/charlibereal-deathrow-campaign/together-cover.png',
+    cover: '/case-studies/charlibereal-deathrow-campaign/together-cover.png',
+    outcomeLine: 'Flagship Original IP built as a monetization-ready music universe with character systems, release pipeline, and visual album roadmap.',
+    heroTagline: 'Character, lore, music, and campaign architecture designed as one scalable IP stack.',
+    problem: 'Pri$$y Vandro$$ needed to launch as a complete world, not a single drop. The objective was to create a production-ready character identity, narrative backbone, and music workflow that could continuously generate release assets without losing voice consistency.',
+    approach: 'IPXS built a cross-tool pipeline using Higgsfield for character creation, world-building systems for canon and storyline development, and a music workflow moving from Reason and Pro Tools composition into AI-assisted voice and style modeling. Every stage was structured for speed, repeatability, and quality control.',
+    solution: 'Delivered a 7-song EP production pipeline, monetization-ready content architecture, press and campaign assets generated through AI-assisted workflows, and a visual album plan structured as one short-film style music video per song.',
+    deliverables: ['Character system and style guide in Higgsfield', 'Lore engine and world-building canon', 'Reason and Pro Tools composition workflow', 'Suno voice and style model pipeline', '7-song EP release framework', 'Visual album roadmap with one short film style video per song', 'AI-assisted press and campaign asset package'],
+    pipelineSteps: defaultPipeline,
+    proofLinks: [
+      { label: 'Live Experience', url: 'https://prissyv.space/' },
+      { label: 'Start a Similar Build', url: '/contact?subject=Original%20IP%20System' },
+    ],
+    media: [
+      { id: 'prissy-cover', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-cover.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-cover.png', alt: 'Pri$$y Vandro$$ flagship original IP identity frame', caption: 'Core character identity and launch visual language.' },
+      { id: 'prissy-treatment', type: 'image', src: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png', alt: 'Pri$$y Vandro$$ world and visual album planning board', caption: 'Visual album planning and world narrative mapping.' },
+    ],
+    credits: defaultCredits,
+  },
+
   {
     id: 'emory-capital',
     slug: 'emory-capital',

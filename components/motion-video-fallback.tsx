@@ -4,27 +4,29 @@ import { useRef, useState, useMemo } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
-  mp4Src: string
-  movSrc?: string
+  primarySrc: string
+  primaryType: string
+  secondarySrc?: string
+  secondaryType?: string
   poster: string
   alt: string
   className?: string
-  objectClassName?: string
-  priority?: boolean
-  objectPosition?: 'top' | 'center' | 'bottom'
   fit?: 'cover' | 'contain'
+  objectPosition?: 'top' | 'center' | 'bottom'
+  priority?: boolean
 }
 
 export function MotionVideoFallback({
-  mp4Src,
-  movSrc,
+  primarySrc,
+  primaryType,
+  secondarySrc,
+  secondaryType,
   poster,
   alt,
   className = '',
-  objectClassName,
-  priority = false,
+  fit = 'contain',
   objectPosition = 'top',
-  fit = 'cover',
+  priority = false,
 }: MotionVideoFallbackProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
@@ -50,6 +52,17 @@ export function MotionVideoFallback({
     }
   }
 
+  useEffect(() => {
+    if (isPlaying) {
+      setStallEvents(0)
+      return
+    }
+
+    if (stallEvents >= 3) {
+      setVideoFailed(true)
+    }
+  }, [stallEvents, isPlaying])
+
   return (
     <div className={`relative h-full w-full max-w-full overflow-hidden ${className}`}>
       <video
@@ -67,20 +80,20 @@ export function MotionVideoFallback({
         onError={() => setVideoFailed(true)}
         className={`h-full w-full ${computedObjectClass} ${videoFailed ? 'invisible' : 'visible'}`}
       >
-        <source src={mp4Src} type="video/mp4" />
-        {movSrc ? <source src={movSrc} type="video/quicktime" /> : null}
+        <source src={primarySrc} type={primaryType} />
+        {secondarySrc ? <source src={secondarySrc} type={secondaryType ?? ''} /> : null}
       </video>
 
-      {videoFailed && (
+      {videoFailed ? (
         <Image
           src={poster}
           alt={alt}
           fill
           priority={priority}
-          className={computedObjectClass}
+          className={objectClassName}
           sizes="100vw"
         />
-      )}
+      ) : null}
     </div>
   )
 }

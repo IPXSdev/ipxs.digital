@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { caseStudies, caseStudyCategories } from '@/content/case-studies'
 import { CaseStudyCard } from '@/components/case-study-card'
-import { MotionVideoFallback } from '@/components/motion-video-fallback'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { MotionVideoFallback } from '@/components/motion-video-fallback'
 
 export const metadata: Metadata = {
   title: 'Case Studies',
@@ -34,12 +34,15 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
               This is production work shipped for real teams, real timelines, and real outcomes.
               Each case study details the brief, the build, and the assets delivered to market.
+              AI-assisted workflows are integrated where they accelerate production without reducing craft.
             </p>
           </div>
           <div className="relative aspect-video w-full max-w-full overflow-hidden rounded-lg border border-border/50 bg-white">
             <MotionVideoFallback
-              mp4Src="/media/case-studies/character-motion-sheet-wide.mov"
-              movSrc="/media/case-studies/character-motion-sheet-wide.mov"
+              primarySrc="/media/case-studies/character-motion-sheet.mp4"
+              primaryType="video/mp4"
+              secondarySrc="/media/case-studies/character-motion-sheet.mov"
+              secondaryType="video/quicktime"
               poster="/media/case-studies/character-motion-sheet-fallback.png"
               alt="Character Motion Sheet"
               fit="cover"
