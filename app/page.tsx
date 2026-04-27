@@ -146,11 +146,9 @@ export default function HomePage() {
         <div className="mx-auto grid w-full max-w-7xl min-w-0 gap-8 px-4 lg:grid-cols-2 lg:items-center lg:px-8">
           <div className="relative mx-auto aspect-[9/16] w-full max-w-[420px] overflow-hidden rounded-2xl bg-black">
             <MotionVideoFallback
-              primarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mp4"
+              primarySrc="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-motion.mp4"
               primaryType="video/mp4"
-              secondarySrc="/media/case-studies/charlie-bereal-energy-motion-art.mov"
-              secondaryType="video/quicktime"
-              poster="/media/case-studies/charlie-bereal-energy-fallback.png"
+              poster="/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg"
               alt="Charlie Bereal Energy motion poster"
               fit="contain"
               objectPosition="center"
