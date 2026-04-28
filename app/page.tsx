@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
@@ -9,8 +10,8 @@ import { MotionVideoFallback } from '@/components/motion-video-fallback'
 const homepageFeaturedHeroSlug = 'keith-collins-rugs'
 const homepageSelectedWorkSlugs = [
   'pitch-decks',
-  'prissy-vandross-original-ip',
   'charlibereal-deathrow-campaign',
+  'emory-capital',
 ] as const
 
 const selectedWorkCards = homepageSelectedWorkSlugs

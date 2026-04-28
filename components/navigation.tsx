@@ -44,13 +44,13 @@ export function Navigation() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[88vw] max-w-sm border-border/40 bg-background/95 p-0 backdrop-blur-xl">
               <div className="p-5">
-                <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl border border-border/40 bg-card/70">
+                <div className="relative mb-6 aspect-square w-full max-w-[200px] mx-auto overflow-hidden rounded-2xl border border-border/40 bg-card/70">
                   <Image
-                    src="/icon.svg"
-                    alt="ipxs hero fallback"
+                    src="/images/ipxs-stacked-logo.jpeg"
+                    alt="ipxs.digital logo"
                     fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 90vw, 360px"
+                    className="object-contain p-2"
+                    sizes="200px"
                   />
                 </div>
                 <div className="flex flex-col gap-3">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useMemo } from 'react'
+import { useRef, useState, useMemo, useEffect } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
@@ -30,11 +30,13 @@ export function MotionVideoFallback({
 }: MotionVideoFallbackProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
+  const [stallEvents, setStallEvents] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
 
-  // Compute object classes based on props (objectClassName takes precedence if provided)
+  // Compute object classes based on props
   const computedObjectClass = useMemo(
-    () => objectClassName ?? `object-${fit} object-${objectPosition}`,
-    [objectClassName, fit, objectPosition]
+    () => `object-${fit} object-${objectPosition}`,
+    [fit, objectPosition]
   )
 
   const handlePlayable = () => {
@@ -76,7 +78,12 @@ export function MotionVideoFallback({
         aria-label={alt}
         onCanPlay={handlePlayable}
         onLoadedData={() => setVideoFailed(false)}
-        onPlaying={() => setVideoFailed(false)}
+        onPlaying={() => {
+          setVideoFailed(false)
+          setIsPlaying(true)
+        }}
+        onPause={() => setIsPlaying(false)}
+        onStalled={() => setStallEvents((prev) => prev + 1)}
         onError={() => setVideoFailed(true)}
         className={`h-full w-full ${computedObjectClass} ${videoFailed ? 'invisible' : 'visible'}`}
       >
@@ -90,7 +97,7 @@ export function MotionVideoFallback({
           alt={alt}
           fill
           priority={priority}
-          className={objectClassName}
+          className={computedObjectClass}
           sizes="100vw"
         />
       ) : null}
