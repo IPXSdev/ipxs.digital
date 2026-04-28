@@ -10,8 +10,8 @@ import { MotionVideoFallback } from '@/components/motion-video-fallback'
 const homepageFeaturedHeroSlug = 'keith-collins-rugs'
 const homepageSelectedWorkSlugs = [
   'pitch-decks',
-  'prissy-vandross',
   'charlibereal-deathrow-campaign',
+  'emory-capital',
 ] as const
 
 const selectedWorkCards = homepageSelectedWorkSlugs

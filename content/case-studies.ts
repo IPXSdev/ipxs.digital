@@ -131,7 +131,7 @@ export const caseStudies: CaseStudy[] = [
     category: 'Music Release Systems',
     poster: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
     cover: '/case-studies/charlibereal-deathrow-campaign/chocolate-woman-cover.jpg',
-    outcomeLine: 'End to end Death Row release campaign including primary artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
+    outcomeLine: 'End to end creative assets for the Charlie BeReal single release of the song Chocolate Woman on Death Row Records, including primary artwork, animated cover motion, and rollout assets tailored for streaming and social launch windows.',
     deliverables: ['Chocolate Woman cover art', 'Motion animation package', 'Social rollout assets'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
