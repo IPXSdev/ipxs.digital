@@ -30,6 +30,13 @@ export interface CaseStudyMedia {
   aspectRatio?: 'square' | 'video'
 }
 
+export interface CaseStudyAudioTrack {
+  id: string
+  title: string
+  src: string
+  description?: string
+}
+
 export interface CaseStudyCredits {
   studio: 'Powered by ipxs.digital'
   lead: 'Darion R. Harris (LightGod)'
@@ -54,6 +61,7 @@ export interface CaseStudy {
   pipelineSteps: PipelineStep[]
   proofLinks: ProofLink[]
   media: CaseStudyMedia[]
+  audioTracks?: CaseStudyAudioTrack[]
   credits: CaseStudyCredits
 }
 
@@ -319,6 +327,20 @@ export const caseStudies: CaseStudy[] = [
     proofLinks: [
       { label: 'prissyv.space', url: 'https://prissyv.space/' },
       { label: 'Listen to Alien Supernova', url: 'https://prissyv.space/#music' },
+    ],
+    audioTracks: [
+      {
+        id: 'searching-for-me',
+        title: 'Searching for Me',
+        src: '/audio/prissy-vandross/02-searching-for-me.mp3',
+        description: 'Featured EP track from Pri$$y Vandro$$, extending the Alien Supernova sound into a more reflective, emotional lane.',
+      },
+      {
+        id: 'keep-your-crown',
+        title: 'Keep Your Crown',
+        src: '/audio/prissy-vandross/07-keep-your-crown.mp3',
+        description: 'Featured EP track from Pri$$y Vandro$$ built around confidence, self-worth, and her cosmic entertainer identity.',
+      },
     ],
     media: [
       { id: 'prissy-headshot', type: 'image', src: '/case-studies/prissy-vandross/prissy-vandross-headshot.png', poster: '/case-studies/prissy-vandross/prissy-vandross-headshot.png', alt: 'Pri$$y Vandro$$ headshot portrait', caption: 'Portrait still from Pri$$y Vandro$$ campaign visuals.' },
