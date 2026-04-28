@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
@@ -20,6 +20,28 @@ interface MotionVideoFallbackProps {
   priority?: boolean
 }
 
+const mobileFitClassMap = {
+  cover: 'object-cover',
+  contain: 'object-contain',
+} as const
+
+const desktopFitClassMap = {
+  cover: 'sm:object-cover',
+  contain: 'sm:object-contain',
+} as const
+
+const mobilePositionClassMap = {
+  top: 'object-top',
+  center: 'object-center',
+  bottom: 'object-bottom',
+} as const
+
+const desktopPositionClassMap = {
+  top: 'sm:object-top',
+  center: 'sm:object-center',
+  bottom: 'sm:object-bottom',
+} as const
+
 export function MotionVideoFallback({
   primarySrc,
   primaryType,
@@ -38,28 +60,6 @@ export function MotionVideoFallback({
 }: MotionVideoFallbackProps) {
   const [videoFailed, setVideoFailed] = useState(false)
 
-  const mobileFitClassMap = {
-    cover: 'object-cover',
-    contain: 'object-contain',
-  } as const
-
-  const desktopFitClassMap = {
-    cover: 'sm:object-cover',
-    contain: 'sm:object-contain',
-  } as const
-
-  const mobilePositionClassMap = {
-    top: 'object-top',
-    center: 'object-center',
-    bottom: 'object-bottom',
-  } as const
-
-  const desktopPositionClassMap = {
-    top: 'sm:object-top',
-    center: 'sm:object-center',
-    bottom: 'sm:object-bottom',
-  } as const
-
   const resolvedMobileFit = mobileFit ?? fit
   const resolvedDesktopFit = desktopFit ?? fit
   const resolvedMobilePosition = mobileObjectPosition ?? objectPosition
@@ -72,14 +72,33 @@ export function MotionVideoFallback({
     desktopPositionClassMap[resolvedDesktopPosition],
   ].join(' ')
 
+  const handlePlayable = () => {
+    setVideoFailed(false)
+
+    const video = videoRef.current
+    if (!video) return
+
+    const playPromise = video.play()
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {
+        // Keep the poster/video visible. Only show fallback after a real media error.
+      })
+    }
+  }
+
   return (
-    <div className={`relative h-full w-full ${className}`}>
+    <div className={`relative h-full w-full max-w-full overflow-hidden ${className}`}>
       <video
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
         poster={poster}
+        aria-label={alt}
+        onCanPlay={handlePlayable}
+        onLoadedData={() => setVideoFailed(false)}
+        onPlaying={() => setVideoFailed(false)}
         onError={() => setVideoFailed(true)}
         className={`h-full w-full ${objectClassName} ${videoFailed ? 'invisible' : 'visible'}`}
       >
