@@ -37,15 +37,13 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
               AI-assisted workflows are integrated where they accelerate production without reducing craft.
             </p>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border/50 bg-black">
+          <div className="relative aspect-video w-full max-w-full overflow-hidden rounded-lg border border-border/50 bg-white">
             <MotionVideoFallback
-              primarySrc="/media/case-studies/character-motion-sheet.mp4"
-              primaryType="video/mp4"
-              secondarySrc="/media/case-studies/character-motion-sheet.mov"
-              secondaryType="video/quicktime"
-              poster="/media/case-studies/character-motion-sheet-fallback.png"
-              alt="Character Sheet poster fallback"
-              fit="contain"
+              primarySrc="/media/case-studies/character-motion-sheet-wide.mov"
+              primaryType="video/quicktime"
+              poster="/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png"
+              alt="Character Motion Sheet"
+              fit="cover"
               objectPosition="top"
               priority
             />
