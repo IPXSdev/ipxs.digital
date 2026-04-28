@@ -46,10 +46,10 @@ export function Navigation() {
               <div className="p-5">
                 <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl border border-border/40 bg-card/70">
                   <Image
-                    src="/icon.svg"
-                    alt="ipxs hero fallback"
+                    src="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
+                    alt="ipxs.digital logo"
                     fill
-                    className="object-cover object-top"
+                    className="object-cover object-center"
                     sizes="(max-width: 768px) 90vw, 360px"
                   />
                 </div>
