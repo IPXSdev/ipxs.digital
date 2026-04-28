@@ -71,7 +71,7 @@ export default function HomePage() {
   return (
     <div className="flex w-full max-w-full flex-col overflow-x-clip">
       <section className="w-full max-w-full overflow-x-clip pt-16">
-        <div className="relative h-[72svh] min-h-[420px] w-full max-w-full overflow-hidden bg-black sm:h-[calc(100svh-4rem)]">
+        <div className="relative aspect-video w-full max-w-full overflow-hidden bg-white sm:h-[calc(100svh-4rem)] sm:min-h-[420px] sm:aspect-auto sm:bg-black">
           <MotionVideoFallback
             primarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
             primaryType="video/mp4"
@@ -86,7 +86,7 @@ export default function HomePage() {
             priority
             className="absolute inset-0 h-full w-full max-w-full"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-background/25 to-transparent sm:block" />
         </div>
       </section>
 
