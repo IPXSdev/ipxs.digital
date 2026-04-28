@@ -10,7 +10,7 @@ import { MotionVideoFallback } from '@/components/motion-video-fallback'
 const homepageFeaturedHeroSlug = 'keith-collins-rugs'
 const homepageSelectedWorkSlugs = [
   'pitch-decks',
-  'prissy-vandross-original-ip',
+  'prissy-vandross',
   'charlibereal-deathrow-campaign',
 ] as const
 
@@ -69,9 +69,9 @@ const whyUs = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col">
-      <section className="pt-16">
-        <div className="relative h-[calc(100vh-4rem)] w-screen overflow-hidden bg-black">
+    <div className="flex w-full max-w-full flex-col overflow-x-clip">
+      <section className="w-full max-w-full overflow-x-clip pt-16">
+        <div className="relative h-[72svh] min-h-[420px] w-full max-w-full overflow-hidden bg-black sm:h-[calc(100svh-4rem)]">
           <MotionVideoFallback
             primarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
             primaryType="video/quicktime"
@@ -80,9 +80,9 @@ export default function HomePage() {
             poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
             alt="ipxs.digital motion logo"
             fit="cover"
-            objectPosition="top"
+            objectPosition="center"
             priority
-            className="absolute inset-0"
+            className="absolute inset-0 h-full w-full max-w-full"
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
         </div>

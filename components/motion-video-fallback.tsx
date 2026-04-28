@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
@@ -28,54 +28,30 @@ export function MotionVideoFallback({
   objectPosition = 'top',
   priority = false,
 }: MotionVideoFallbackProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [stallEvents, setStallEvents] = useState(0)
 
-  const objectClassName = useMemo(
-    () => `object-${fit} object-${objectPosition}`,
-    [fit, objectPosition],
-  )
+  const fitClassMap = {
+    cover: 'object-cover',
+    contain: 'object-contain',
+  } as const
 
-  useEffect(() => {
-    if (videoFailed || isPlaying) return
+  const positionClassMap = {
+    top: 'object-top',
+    center: 'object-center',
+    bottom: 'object-bottom',
+  } as const
 
-    const timeout = window.setTimeout(() => {
-      const video = videoRef.current
-      if (!video) return
-      if (video.paused && video.currentTime === 0) {
-        setVideoFailed(true)
-      }
-    }, 4500)
-
-    return () => window.clearTimeout(timeout)
-  }, [videoFailed, isPlaying])
-
-  useEffect(() => {
-    if (isPlaying) {
-      setStallEvents(0)
-      return
-    }
-
-    if (stallEvents >= 3) {
-      setVideoFailed(true)
-    }
-  }, [stallEvents, isPlaying])
+  const objectClassName = `${fitClassMap[fit]} ${positionClassMap[objectPosition]}`
 
   return (
     <div className={`relative h-full w-full ${className}`}>
       <video
-        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
         poster={poster}
         onError={() => setVideoFailed(true)}
-        onAbort={() => setVideoFailed(true)}
-        onStalled={() => setStallEvents((value) => value + 1)}
-        onPlaying={() => setIsPlaying(true)}
         className={`h-full w-full ${objectClassName} ${videoFailed ? 'invisible' : 'visible'}`}
       >
         <source src={primarySrc} type={primaryType} />
