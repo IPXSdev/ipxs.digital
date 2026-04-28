@@ -199,6 +199,39 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
       </section>
 
+      {caseStudy.audioTracks && caseStudy.audioTracks.length > 0 && (
+        <section className="section-fade py-12 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mb-8">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                Featured EP Tracks
+              </p>
+              <h2 className="font-serif text-xl font-medium md:text-2xl">Listen to the Sound</h2>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              {caseStudy.audioTracks.map((track) => (
+                <div
+                  key={track.id}
+                  className="rounded-2xl border border-border/50 bg-card/70 p-5 shadow-sm"
+                >
+                  <h3 className="mb-2 font-serif text-xl font-medium">{track.title}</h3>
+                  {track.description ? (
+                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                      {track.description}
+                    </p>
+                  ) : null}
+                  <audio controls preload="metadata" className="w-full">
+                    <source src={track.src} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-8">
