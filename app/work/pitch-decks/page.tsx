@@ -56,7 +56,7 @@ const decks = [
     hook: 'A live podcast and YouTube series deck centered on identity, memory, and sound.',
     tags: ['Live podcast', 'West Adams culture', 'Sponsorship ready'],
     cover: '/case-studies/pitch-decks/covers/let-the-record-play.png',
-    highlights: `This deck sells a live podcast and YouTube format by making the structure the hook. It is framed as a three act immersive experience: digging in the crates, the cultured cocktail, and the playback interview. The narrative emphasizes why the show matters for deep engagement across audio and video audiences, with clear sponsor alignment language and location credibility tied to Delicious Vinyl and West Adams.`,
+    highlights: `This deck sells a live podcast and YouTube format by making the structure the hook. It’s framed as a three act immersive experience. The narrative emphasizes why the show matters for deep engagement across audio and video audiences, with clear sponsor alignment language and location credibility tied to Delicious Vinyl and West Adams.`,
   },
   {
     id: 'dynamics-multiverse',
@@ -64,7 +64,10 @@ const decks = [
     hook: 'A web3 IP licensing and portal concept deck designed to translate utility into story and product.',
     tags: ['Web3 platform', 'IP licensing', 'Ecosystem pitch'],
     cover: '/case-studies/pitch-decks/covers/dynamics-multiverse.jpg',
-    highlights: `This deck presents IPXS as a proprietary licensing protocol that connects NFT IP ownership to smart licensing contracts, enabling licensing and print on demand commerce backed by on chain eligibility verification. It also introduces a community pitch portal concept, positioning the ecosystem as something that can onboard and hire from within while expanding into fashion, entertainment, and technology. The deck is built to translate technical utility into a clear end user flow and monetization narrative.`,
+    highlights: `DECK 04
+The Dynamics Multiverse
+
+This deck presents IPXS as a proprietary licensing protocol that connects IP ownership to smart licensing contracts, enabling licensing and on demand commerce backed by on chain eligibility verification. The deck is built to translate technical utility into a clear end user flow and monetization narrative.`,
   },
 ]
 
@@ -119,8 +122,9 @@ export default function PitchDecksPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         </div>
-
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 -mt-24 lg:px-8">
+      </section>
+      <section className="py-10">
+        <div className="relative mx-auto w-full max-w-7xl px-4 lg:px-8">
           <Link
             href="/work"
             className="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
