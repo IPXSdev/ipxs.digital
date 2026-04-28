@@ -12,7 +12,11 @@ interface MotionVideoFallbackProps {
   alt: string
   className?: string
   fit?: 'cover' | 'contain'
+  mobileFit?: 'cover' | 'contain'
+  desktopFit?: 'cover' | 'contain'
   objectPosition?: 'top' | 'center' | 'bottom'
+  mobileObjectPosition?: 'top' | 'center' | 'bottom'
+  desktopObjectPosition?: 'top' | 'center' | 'bottom'
   priority?: boolean
 }
 
@@ -25,23 +29,48 @@ export function MotionVideoFallback({
   alt,
   className = '',
   fit = 'contain',
+  mobileFit,
+  desktopFit,
   objectPosition = 'top',
+  mobileObjectPosition,
+  desktopObjectPosition,
   priority = false,
 }: MotionVideoFallbackProps) {
   const [videoFailed, setVideoFailed] = useState(false)
 
-  const fitClassMap = {
+  const mobileFitClassMap = {
     cover: 'object-cover',
     contain: 'object-contain',
   } as const
 
-  const positionClassMap = {
+  const desktopFitClassMap = {
+    cover: 'sm:object-cover',
+    contain: 'sm:object-contain',
+  } as const
+
+  const mobilePositionClassMap = {
     top: 'object-top',
     center: 'object-center',
     bottom: 'object-bottom',
   } as const
 
-  const objectClassName = `${fitClassMap[fit]} ${positionClassMap[objectPosition]}`
+  const desktopPositionClassMap = {
+    top: 'sm:object-top',
+    center: 'sm:object-center',
+    bottom: 'sm:object-bottom',
+  } as const
+
+  const resolvedMobileFit = mobileFit ?? fit
+  const resolvedDesktopFit = desktopFit ?? fit
+  const resolvedMobilePosition = mobileObjectPosition ?? objectPosition
+  const resolvedDesktopPosition = desktopObjectPosition ?? objectPosition
+
+  const objectClassName = [
+    mobileFitClassMap[resolvedMobileFit],
+    desktopFitClassMap[resolvedDesktopFit],
+    mobilePositionClassMap[resolvedMobilePosition],
+    desktopPositionClassMap[resolvedDesktopPosition],
+  ].join(' ')
 
   return (
     <div className={`relative h-full w-full ${className}`}>
