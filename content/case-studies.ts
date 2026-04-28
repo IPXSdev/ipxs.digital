@@ -247,31 +247,6 @@ export const caseStudies: CaseStudy[] = [
   },
 
   {
-    id: 'prissy-vandross-original-ip',
-    slug: 'prissy-vandross-original-ip',
-    title: 'Pri$$y Vandro$$ Original IP System',
-    category: 'Original IP',
-    poster: '/case-studies/prissy-vandross/headshot.jpeg',
-    cover: '/case-studies/prissy-vandross/headshot.jpeg',
-    outcomeLine: 'Flagship Original IP built as a monetization-ready music universe with character systems, release pipeline, and visual album roadmap.',
-    heroTagline: 'Character, lore, music, and campaign architecture designed as one scalable IP stack.',
-    problem: 'Pri$$y Vandro$$ needed to launch as a complete world, not a single drop. The objective was to create a production-ready character identity, narrative backbone, and music workflow that could continuously generate release assets without losing voice consistency.',
-    approach: 'IPXS built a cross-tool pipeline using Higgsfield for character creation, world-building systems for canon and storyline development, and a music workflow moving from Reason and Pro Tools composition into AI-assisted voice and style modeling. Every stage was structured for speed, repeatability, and quality control.',
-    solution: 'Delivered a 7-song EP production pipeline, monetization-ready content architecture, press and campaign assets generated through AI-assisted workflows, and a visual album plan structured as one short-film style music video per song.',
-    deliverables: ['Character system and style guide in Higgsfield', 'Lore engine and world-building canon', 'Reason and Pro Tools composition workflow', 'Suno voice and style model pipeline', '7-song EP release framework', 'Visual album roadmap with one short film style video per song', 'AI-assisted press and campaign asset package'],
-    pipelineSteps: defaultPipeline,
-    proofLinks: [
-      { label: 'Live Experience', url: 'https://prissyv.space/' },
-      { label: 'Start a Similar Build', url: '/contact?subject=Original%20IP%20System' },
-    ],
-    media: [
-      { id: 'prissy-cover', type: 'image', src: '/case-studies/prissy-vandross/hero.jpeg', poster: '/case-studies/prissy-vandross/hero.jpeg', alt: 'Pri$$y Vandro$$ flagship original IP identity frame', caption: 'Core character identity and launch visual language.' },
-      { id: 'prissy-treatment', type: 'image', src: '/case-studies/prissy-vandross/performing.png', poster: '/case-studies/prissy-vandross/performing.png', alt: 'Pri$$y Vandro$$ world and visual album planning board', caption: 'Visual album planning and world narrative mapping.' },
-    ],
-    credits: defaultCredits,
-  },
-
-  {
     id: 'emory-capital',
     slug: 'emory-capital',
     title: 'Emory Capital',
