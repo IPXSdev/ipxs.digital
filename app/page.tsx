@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { CaseStudyCard } from '@/components/case-study-card'
 import { ArrowRight, Zap, Layers, Shield } from 'lucide-react'
