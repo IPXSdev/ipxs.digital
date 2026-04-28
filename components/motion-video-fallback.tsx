@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useMemo, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 
 interface MotionVideoFallbackProps {
@@ -12,7 +12,11 @@ interface MotionVideoFallbackProps {
   alt: string
   className?: string
   fit?: 'cover' | 'contain'
+  mobileFit?: 'cover' | 'contain'
+  desktopFit?: 'cover' | 'contain'
   objectPosition?: 'top' | 'center' | 'bottom'
+  mobileObjectPosition?: 'top' | 'center' | 'bottom'
+  desktopObjectPosition?: 'top' | 'center' | 'bottom'
   priority?: boolean
 }
 
@@ -25,50 +29,52 @@ export function MotionVideoFallback({
   alt,
   className = '',
   fit = 'contain',
+  mobileFit,
+  desktopFit,
   objectPosition = 'top',
+  mobileObjectPosition,
+  desktopObjectPosition,
   priority = false,
 }: MotionVideoFallbackProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
-  const [stallEvents, setStallEvents] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
 
-  // Compute object classes based on props
-  const computedObjectClass = useMemo(
-    () => `object-${fit} object-${objectPosition}`,
-    [fit, objectPosition]
-  )
+  const mobileFitClassMap = {
+    cover: 'object-cover',
+    contain: 'object-contain',
+  } as const
 
-  const handlePlayable = () => {
-    setVideoFailed(false)
+  const desktopFitClassMap = {
+    cover: 'sm:object-cover',
+    contain: 'sm:object-contain',
+  } as const
 
-    const video = videoRef.current
-    if (!video) return
+  const mobilePositionClassMap = {
+    top: 'object-top',
+    center: 'object-center',
+    bottom: 'object-bottom',
+  } as const
 
-    const playPromise = video.play()
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {
-        // Keep the poster/video element visible. Do not force the fallback image
-        // unless the browser reports a real media error.
-      })
-    }
-  }
+  const desktopPositionClassMap = {
+    top: 'sm:object-top',
+    center: 'sm:object-center',
+    bottom: 'sm:object-bottom',
+  } as const
 
-  useEffect(() => {
-    if (isPlaying) {
-      setStallEvents(0)
-      return
-    }
+  const resolvedMobileFit = mobileFit ?? fit
+  const resolvedDesktopFit = desktopFit ?? fit
+  const resolvedMobilePosition = mobileObjectPosition ?? objectPosition
+  const resolvedDesktopPosition = desktopObjectPosition ?? objectPosition
 
-    if (stallEvents >= 3) {
-      setVideoFailed(true)
-    }
-  }, [stallEvents, isPlaying])
+  const objectClassName = [
+    mobileFitClassMap[resolvedMobileFit],
+    desktopFitClassMap[resolvedDesktopFit],
+    mobilePositionClassMap[resolvedMobilePosition],
+    desktopPositionClassMap[resolvedDesktopPosition],
+  ].join(' ')
 
   return (
     <div className={`relative h-full w-full max-w-full overflow-hidden ${className}`}>
       <video
-        ref={videoRef}
         autoPlay
         muted
         loop
@@ -85,7 +91,7 @@ export function MotionVideoFallback({
         onPause={() => setIsPlaying(false)}
         onStalled={() => setStallEvents((prev) => prev + 1)}
         onError={() => setVideoFailed(true)}
-        className={`h-full w-full ${computedObjectClass} ${videoFailed ? 'invisible' : 'visible'}`}
+        className={`h-full w-full ${objectClassName} ${videoFailed ? 'invisible' : 'visible'}`}
       >
         <source src={primarySrc} type={primaryType} />
         {secondarySrc ? <source src={secondarySrc} type={secondaryType ?? ''} /> : null}

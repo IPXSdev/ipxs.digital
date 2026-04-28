@@ -86,6 +86,26 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/40;

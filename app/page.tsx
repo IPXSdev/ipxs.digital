@@ -69,22 +69,24 @@ const whyUs = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col">
-      <section className="pt-16">
-        <div className="relative h-[calc(100vh-4rem)] w-screen overflow-hidden bg-black">
+    <div className="flex w-full max-w-full flex-col overflow-x-clip">
+      <section className="w-full max-w-full overflow-x-clip pt-16">
+        <div className="relative aspect-video w-full max-w-full overflow-hidden bg-white sm:h-[calc(100svh-4rem)] sm:min-h-[420px] sm:aspect-auto sm:bg-black">
           <MotionVideoFallback
-            primarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
-            primaryType="video/quicktime"
-            secondarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
-            secondaryType="video/mp4"
+            primarySrc="/media/hero/ipxsdigital-motion-logo-master.mp4"
+            primaryType="video/mp4"
+            secondarySrc="/media/hero/ipxsdigital-motion-logo-master.mov"
+            secondaryType="video/quicktime"
             poster="/media/hero/ipxsdigital-motion-logo-master-fallback.jpeg"
             alt="ipxs.digital motion logo"
-            fit="cover"
-            objectPosition="top"
+            mobileFit="contain"
+            desktopFit="cover"
+            mobileObjectPosition="center"
+            desktopObjectPosition="center"
             priority
-            className="absolute inset-0"
+            className="absolute inset-0 h-full w-full max-w-full"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/25 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 hidden bg-gradient-to-t from-background/25 to-transparent sm:block" />
         </div>
       </section>
 
