@@ -13,9 +13,9 @@ const highlights = [
   '20+ years of commercial creative and technical production experience',
   'Agency-represented creative director and technologist',
   'Death Row Records campaign art direction and visual systems',
-  'Platinum-certified release campaigns and motion design',
   'Institutional investor platforms and board-ready digital products',
   'AI-integrated production pipelines shipping at commercial scale',
+  'Flagship AI artist and original IP deployment through Pri$$y Vandro$$',
 ]
 
 const coreStrengths = [
@@ -39,14 +39,20 @@ const selectedWork = [
   {
     title: 'CharliBereal x Death Row Records',
     role: 'Creative Director',
-    period: '2024',
+    period: '2025',
     description: 'End-to-end creative art direction for Death Row Records single release. Primary cover artwork, animated cover motion, and rollout assets for streaming and social launch windows.',
   },
   {
     title: 'Major Label Campaigns',
     role: 'Creative Director / Motion Lead',
     period: 'Multiple Engagements',
-    description: 'Visual systems and motion campaigns for platinum-certified releases. Cover art, visualizers, social content packages, and campaign rollout architecture.',
+    description: 'Visual systems and motion campaigns for major releases. Cover art, visualizers, social content packages, and campaign rollout architecture.',
+  },
+  {
+    title: 'Pri$$y Vandro$$',
+    role: 'Flagship AI Artist / Original IP Deployment',
+    period: '2026',
+    description: 'Pri$$y Vandro$$ — flagship AI artist and original IP deployment under IPXS, combining music, character design, cinematic visual systems, web presence, and case-study-driven commercialization.',
   },
   {
     title: 'Institutional Platforms',
@@ -57,13 +63,13 @@ const selectedWork = [
   {
     title: 'Keith Collins Rugs',
     role: 'Creative Technologist',
-    period: '2024',
+    period: '2026',
     description: 'Interactive product visualization platform with AR integration. Transformed high-value collectible product presentation for digital-native audiences.',
   },
   {
     title: 'The Dynamics Multiverse',
     role: 'World Builder / Creative Director',
-    period: '2023 - Present',
+    period: '2025',
     description: 'Franchise-scale story universe engineered for expansion across film, series, games, and brand collaborations. Generative lore systems and character IP development.',
   },
 ]
@@ -91,7 +97,7 @@ const toolsAndStack = [
   },
   { 
     category: 'Audio & Music', 
-    tools: 'Pro Tools, Reason, Suno AI, Ableton Live',
+    tools: 'Pro Tools, Reason, Suno AI',
     description: 'Music production, audio engineering, mixing, sound design'
   },
   { 
@@ -192,8 +198,7 @@ export default function ResumePage() {
                 across entertainment, music, tech, and institutional verticals. I architect premium 
                 creative systems: from cover art and motion campaigns for major label releases, to 
                 investor platforms and AI-powered production tools that ship fast and perform at scale. 
-                Agency-represented with credits including Death Row Records visual campaigns and 
-                platinum-certified release artwork. Currently leading ipxs.digital, an entertainment-focused 
+                Agency-represented with credits including Death Row Records visual campaigns. Currently leading ipxs.digital, an entertainment-focused 
                 studio serving artists, labels, and brands with full-service creative technology solutions.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">

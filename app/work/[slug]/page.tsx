@@ -9,6 +9,7 @@ import {
   getCaseStudyBySlug,
 } from '@/content/case-studies'
 import { CaseStudyMediaView } from '@/components/work/case-study-media'
+import { CaseStudyAudioPlayer } from '@/components/case-study-audio-player'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -198,6 +199,21 @@ export default async function CaseStudyPage({ params }: PageProps) {
           )}
         </div>
       </section>
+
+      {caseStudy.audioTracks && caseStudy.audioTracks.length > 0 && (
+        <section className="section-fade py-12 lg:py-16">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mb-8">
+              <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                Featured EP Tracks
+              </p>
+              <h2 className="font-serif text-xl font-medium md:text-2xl">Listen to the Sound</h2>
+            </div>
+
+            <CaseStudyAudioPlayer tracks={caseStudy.audioTracks} />
+          </div>
+        </section>
+      )}
 
       <section className="section-fade py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">

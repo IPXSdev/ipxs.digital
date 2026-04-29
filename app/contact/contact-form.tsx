@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { ArrowRight, Copy, Mail, ExternalLink } from 'lucide-react'
+import { ArrowRight, Check, Copy, Mail, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -43,6 +43,8 @@ interface ContactDraft {
   phone: string
   projectType: string
   inquiryType: string
+  bestDayToCall: string
+  bestTimeToCall: string
   subject: string
   message: string
 }
@@ -54,9 +56,14 @@ const emptyDraft: ContactDraft = {
   phone: '',
   projectType: '',
   inquiryType: '',
+  bestDayToCall: '',
+  bestTimeToCall: '',
   subject: '',
   message: '',
 }
+
+const bestDaysToCall = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Flexible']
+const bestTimesToCall = ['Morning', 'Afternoon', 'Evening', 'Flexible']
 
 export function ContactForm() {
   const searchParams = useSearchParams()
@@ -92,6 +99,8 @@ export function ContactForm() {
       `Phone: ${form.phone}`,
       `Project Type: ${projectLabel}`,
       `Inquiry Type: ${inquiryLabel}`,
+      `Best Day to Call: ${form.bestDayToCall}`,
+      `Best Time to Call: ${form.bestTimeToCall}`,
       '',
       'Project Details:',
       form.message,
@@ -132,6 +141,8 @@ export function ContactForm() {
       form.phone,
       form.projectType,
       form.inquiryType,
+      form.bestDayToCall,
+      form.bestTimeToCall,
       form.subject,
       form.message,
     ]
@@ -149,34 +160,52 @@ export function ContactForm() {
     setForm((prev) => ({ ...prev, [key]: value }))
   }
 
+  const isValid = (key: keyof ContactDraft) => form[key].trim().length > 0
+  const inputStateClass = (key: keyof ContactDraft) =>
+    isValid(key) ? 'border-emerald-500/70 pr-10' : 'border-destructive/45 pr-10'
+  const selectStateClass = (key: keyof ContactDraft) =>
+    isValid(key) ? 'border-emerald-500/70 pr-10' : 'border-destructive/45 pr-10'
+
   return (
     <>
       <form onSubmit={openDialog} className="flex flex-col gap-8">
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="name">Name</FieldLabel>
-            <Input id="name" name="name" placeholder="Your full name" required className="rounded-lg bg-card" value={form.name} onChange={(event) => updateField('name', event.target.value)} />
+            <FieldLabel htmlFor="name">Name *</FieldLabel>
+            <div className="relative">
+              <Input id="name" name="name" placeholder="Your full name" required className={`rounded-lg bg-card ${inputStateClass('name')}`} value={form.name} onChange={(event) => updateField('name', event.target.value)} />
+              {isValid('name') ? <Check className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-500" /> : null}
+            </div>
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input id="email" name="email" type="email" placeholder="you@company.com" required className="rounded-lg bg-card" value={form.email} onChange={(event) => updateField('email', event.target.value)} />
+            <FieldLabel htmlFor="email">Email *</FieldLabel>
+            <div className="relative">
+              <Input id="email" name="email" type="email" placeholder="you@company.com" required className={`rounded-lg bg-card ${inputStateClass('email')}`} value={form.email} onChange={(event) => updateField('email', event.target.value)} />
+              {isValid('email') ? <Check className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-500" /> : null}
+            </div>
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="company">Company</FieldLabel>
-            <Input id="company" name="company" placeholder="Company or artist name" required className="rounded-lg bg-card" value={form.company} onChange={(event) => updateField('company', event.target.value)} />
+            <FieldLabel htmlFor="company">Company *</FieldLabel>
+            <div className="relative">
+              <Input id="company" name="company" placeholder="Company or artist name" required className={`rounded-lg bg-card ${inputStateClass('company')}`} value={form.company} onChange={(event) => updateField('company', event.target.value)} />
+              {isValid('company') ? <Check className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-500" /> : null}
+            </div>
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="phone">Phone</FieldLabel>
-            <Input id="phone" name="phone" placeholder="(555) 555-5555" required className="rounded-lg bg-card" value={form.phone} onChange={(event) => updateField('phone', event.target.value)} />
+            <FieldLabel htmlFor="phone">Phone *</FieldLabel>
+            <div className="relative">
+              <Input id="phone" name="phone" placeholder="(555) 555-5555" required className={`rounded-lg bg-card ${inputStateClass('phone')}`} value={form.phone} onChange={(event) => updateField('phone', event.target.value)} />
+              {isValid('phone') ? <Check className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-500" /> : null}
+            </div>
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="project-type">Project Type</FieldLabel>
+            <FieldLabel htmlFor="project-type">Project Type *</FieldLabel>
             <Select value={form.projectType} onValueChange={(value) => updateField('projectType', value)}>
-              <SelectTrigger id="project-type" className="rounded-lg bg-card">
+              <SelectTrigger id="project-type" className={`rounded-lg bg-card ${selectStateClass('projectType')}`}>
                 <SelectValue placeholder="Select project type" />
               </SelectTrigger>
               <SelectContent>
@@ -187,12 +216,13 @@ export function ContactForm() {
                 ))}
               </SelectContent>
             </Select>
+            {isValid('projectType') ? <Check className="pointer-events-none absolute right-3 top-10 h-4 w-4 text-emerald-500" /> : null}
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="inquiry-type">Inquiry Type</FieldLabel>
+            <FieldLabel htmlFor="inquiry-type">Inquiry Type *</FieldLabel>
             <Select value={form.inquiryType} onValueChange={(value) => updateField('inquiryType', value)}>
-              <SelectTrigger id="inquiry-type" className="rounded-lg bg-card">
+              <SelectTrigger id="inquiry-type" className={`rounded-lg bg-card ${selectStateClass('inquiryType')}`}>
                 <SelectValue placeholder="Select inquiry type" />
               </SelectTrigger>
               <SelectContent>
@@ -203,25 +233,64 @@ export function ContactForm() {
                 ))}
               </SelectContent>
             </Select>
+            {isValid('inquiryType') ? <Check className="pointer-events-none absolute right-3 top-10 h-4 w-4 text-emerald-500" /> : null}
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="subject">Subject</FieldLabel>
-            <Input id="subject" name="subject" placeholder="What are we building?" required className="rounded-lg bg-card" value={form.subject} onChange={(event) => updateField('subject', event.target.value)} />
+            <FieldLabel htmlFor="best-day-to-call">Best day to call *</FieldLabel>
+            <Select value={form.bestDayToCall} onValueChange={(value) => updateField('bestDayToCall', value)}>
+              <SelectTrigger id="best-day-to-call" className={`rounded-lg bg-card ${selectStateClass('bestDayToCall')}`}>
+                <SelectValue placeholder="Select best day" />
+              </SelectTrigger>
+              <SelectContent>
+                {bestDaysToCall.map((day) => (
+                  <SelectItem key={day} value={day}>
+                    {day}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {isValid('bestDayToCall') ? <Check className="pointer-events-none absolute right-3 top-10 h-4 w-4 text-emerald-500" /> : null}
           </Field>
 
           <Field>
-            <FieldLabel htmlFor="message">Project Details</FieldLabel>
+            <FieldLabel htmlFor="best-time-to-call">Best time to call *</FieldLabel>
+            <Select value={form.bestTimeToCall} onValueChange={(value) => updateField('bestTimeToCall', value)}>
+              <SelectTrigger id="best-time-to-call" className={`rounded-lg bg-card ${selectStateClass('bestTimeToCall')}`}>
+                <SelectValue placeholder="Select best time" />
+              </SelectTrigger>
+              <SelectContent>
+                {bestTimesToCall.map((time) => (
+                  <SelectItem key={time} value={time}>
+                    {time}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {isValid('bestTimeToCall') ? <Check className="pointer-events-none absolute right-3 top-10 h-4 w-4 text-emerald-500" /> : null}
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor="subject">Subject *</FieldLabel>
+            <div className="relative">
+              <Input id="subject" name="subject" placeholder="What are we building?" required className={`rounded-lg bg-card ${inputStateClass('subject')}`} value={form.subject} onChange={(event) => updateField('subject', event.target.value)} />
+              {isValid('subject') ? <Check className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-500" /> : null}
+            </div>
+          </Field>
+
+          <Field>
+            <FieldLabel htmlFor="message">Project Details *</FieldLabel>
             <Textarea
               id="message"
               name="message"
               placeholder="Share goals, timeline, budget range, and launch context."
               rows={6}
               required
-              className="resize-none rounded-lg bg-card"
+              className={`resize-none rounded-lg bg-card ${isValid('message') ? 'border-emerald-500/70' : 'border-destructive/45'}`}
               value={form.message}
               onChange={(event) => updateField('message', event.target.value)}
             />
+            {isValid('message') ? <Check className="pointer-events-none absolute right-3 top-10 h-4 w-4 text-emerald-500" /> : null}
           </Field>
         </FieldGroup>
 
