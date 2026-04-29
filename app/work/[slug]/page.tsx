@@ -9,6 +9,7 @@ import {
   getCaseStudyBySlug,
 } from '@/content/case-studies'
 import { CaseStudyMediaView } from '@/components/work/case-study-media'
+import { CaseStudyAudioPlayer } from '@/components/case-study-audio-player'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -209,25 +210,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <h2 className="font-serif text-xl font-medium md:text-2xl">Listen to the Sound</h2>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              {caseStudy.audioTracks.map((track) => (
-                <div
-                  key={track.id}
-                  className="rounded-2xl border border-border/50 bg-card/70 p-5 shadow-sm"
-                >
-                  <h3 className="mb-2 font-serif text-xl font-medium">{track.title}</h3>
-                  {track.description ? (
-                    <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                      {track.description}
-                    </p>
-                  ) : null}
-                  <audio controls preload="metadata" className="w-full">
-                    <source src={track.src} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
-                </div>
-              ))}
-            </div>
+            <CaseStudyAudioPlayer tracks={caseStudy.audioTracks} />
           </div>
         </section>
       )}

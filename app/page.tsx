@@ -208,13 +208,11 @@ export default function HomePage() {
           </div>
 
           {featuredHeroStudy ? (
-            <article className="relative mb-8 overflow-hidden rounded-2xl border border-border/40 bg-black">
+            <article className="mb-8 overflow-hidden rounded-2xl border border-border/40 bg-card/70">
               <div className="relative h-[58vh] min-h-[420px] w-full">
                 <Image src={featuredHeroStudy.cover} alt={featuredHeroStudy.title} fill className="object-cover object-top" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/45 to-transparent" />
               </div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-secondary/30" />
-              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+              <div className="p-6 md:p-8">
                 <p className="mb-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">Featured Header Case Study</p>
                 <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">{featuredHeroStudy.title}</h3>
                 <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">{featuredHeroStudy.outcomeLine}</p>

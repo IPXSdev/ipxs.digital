@@ -8,7 +8,6 @@ const primaryLinks = [
 ]
 
 const secondaryLinks = [
-  { href: '/deck', label: 'Deck' },
   { href: '/resume', label: 'Resume' },
 ]
 
