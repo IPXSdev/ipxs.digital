@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Menu } from 'lucide-react'
+import { useState } from 'react'
 
 const navItems = [
   { href: '/work', label: 'Case Studies' },
@@ -13,6 +14,8 @@ const navItems = [
 ]
 
 export function Navigation() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
   return (
     <header className="fixed top-0 z-50 w-full bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
@@ -36,7 +39,7 @@ export function Navigation() {
         </nav>
 
         <div className="md:hidden">
-          <Sheet>
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Open menu">
                 <Menu className="h-5 w-5" />
@@ -58,13 +61,14 @@ export function Navigation() {
                     <Link
                       key={item.href}
                       href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
                       className="rounded-xl border border-border/60 bg-card/70 px-4 py-3 text-sm text-foreground shadow-sm backdrop-blur transition-all hover:border-accent/60 hover:bg-accent/10"
                     >
                       {item.label}
                     </Link>
                   ))}
                   <Button asChild className="h-11 rounded-xl bg-gradient-to-r from-indigo-500/90 to-violet-500/90 shadow-[0_10px_26px_rgba(99,102,241,0.35)]">
-                    <Link href="/contact">Start a Project</Link>
+                    <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>Start a Project</Link>
                   </Button>
                 </div>
               </div>

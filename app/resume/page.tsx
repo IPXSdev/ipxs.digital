@@ -39,7 +39,7 @@ const selectedWork = [
   {
     title: 'CharliBereal x Death Row Records',
     role: 'Creative Director',
-    period: '2024',
+    period: '2025',
     description: 'End-to-end creative art direction for Death Row Records single release. Primary cover artwork, animated cover motion, and rollout assets for streaming and social launch windows.',
   },
   {
@@ -51,7 +51,7 @@ const selectedWork = [
   {
     title: 'Pri$$y Vandro$$',
     role: 'Flagship AI Artist / Original IP Deployment',
-    period: '2023 - Present',
+    period: '2026',
     description: 'Pri$$y Vandro$$ — flagship AI artist and original IP deployment under IPXS, combining music, character design, cinematic visual systems, web presence, and case-study-driven commercialization.',
   },
   {
@@ -63,7 +63,7 @@ const selectedWork = [
   {
     title: 'Keith Collins Rugs',
     role: 'Creative Technologist',
-    period: '2024',
+    period: '2026',
     description: 'Interactive product visualization platform with AR integration. Transformed high-value collectible product presentation for digital-native audiences.',
   },
   {
@@ -102,7 +102,7 @@ const toolsAndStack = [
   },
   { 
     category: 'Development', 
-    tools: 'React, Next.js, TypeScript, Node.js, Python, v0',
+    tools: 'React, Next.js, TypeScript, Node.js, Python',
     description: 'Full-stack applications, AI integrations, production systems'
   },
   { 
@@ -120,13 +120,13 @@ const toolsAndStack = [
 const achievements = [
   {
     icon: Award,
-    title: 'Death Row Records Campaign',
-    description: 'Art direction for official label release with global streaming distribution',
+    title: 'Major Recording Campaigns',
+    description: 'Creative direction and rollout assets across Death Row Records, Delicious Vinyl, Island Records, and label-facing release campaigns.',
   },
   {
     icon: Briefcase,
-    title: 'Agency Represented',
-    description: 'Commercial creative direction through established talent representation',
+    title: 'Flagship Original IP',
+    description: 'Pri$$y Vandro$$ anchors an IPXS-built artist system spanning music, lore, visuals, licensing, and AI-native platform deployment.',
   },
   {
     icon: Sparkles,
