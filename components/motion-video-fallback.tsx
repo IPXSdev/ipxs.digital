@@ -58,7 +58,6 @@ export function MotionVideoFallback({
   desktopObjectPosition,
   priority = false,
 }: MotionVideoFallbackProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
   const [videoFailed, setVideoFailed] = useState(false)
 
   const resolvedMobileFit = mobileFit ?? fit
@@ -90,7 +89,6 @@ export function MotionVideoFallback({
   return (
     <div className={`relative h-full w-full max-w-full overflow-hidden ${className}`}>
       <video
-        ref={videoRef}
         autoPlay
         muted
         loop
