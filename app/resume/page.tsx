@@ -120,13 +120,13 @@ const toolsAndStack = [
 const achievements = [
   {
     icon: Award,
-    title: 'Death Row Records Campaign',
-    description: 'Art direction for official label release with global streaming distribution',
+    title: 'Major Recording Campaigns',
+    description: 'Creative direction and rollout assets across Death Row Records, Delicious Vinyl, Island Records, and label-facing release campaigns.',
   },
   {
     icon: Briefcase,
-    title: 'Agency Represented',
-    description: 'Commercial creative direction through established talent representation',
+    title: 'Flagship Original IP',
+    description: 'Pri$$y Vandro$$ anchors an IPXS-built artist system spanning music, lore, visuals, licensing, and AI-native platform deployment.',
   },
   {
     icon: Sparkles,
