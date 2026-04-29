@@ -39,7 +39,7 @@ const selectedWork = [
   {
     title: 'CharliBereal x Death Row Records',
     role: 'Creative Director',
-    period: '2024',
+    period: '2025',
     description: 'End-to-end creative art direction for Death Row Records single release. Primary cover artwork, animated cover motion, and rollout assets for streaming and social launch windows.',
   },
   {
@@ -51,7 +51,7 @@ const selectedWork = [
   {
     title: 'Pri$$y Vandro$$',
     role: 'Flagship AI Artist / Original IP Deployment',
-    period: '2023 - Present',
+    period: '2026',
     description: 'Pri$$y Vandro$$ — flagship AI artist and original IP deployment under IPXS, combining music, character design, cinematic visual systems, web presence, and case-study-driven commercialization.',
   },
   {
@@ -63,7 +63,7 @@ const selectedWork = [
   {
     title: 'Keith Collins Rugs',
     role: 'Creative Technologist',
-    period: '2024',
+    period: '2026',
     description: 'Interactive product visualization platform with AR integration. Transformed high-value collectible product presentation for digital-native audiences.',
   },
   {
@@ -102,7 +102,7 @@ const toolsAndStack = [
   },
   { 
     category: 'Development', 
-    tools: 'React, Next.js, TypeScript, Node.js, Python, v0',
+    tools: 'React, Next.js, TypeScript, Node.js, Python',
     description: 'Full-stack applications, AI integrations, production systems'
   },
   { 
