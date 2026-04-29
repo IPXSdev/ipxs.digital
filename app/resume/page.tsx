@@ -6,27 +6,31 @@ import { Download, Mail, Linkedin, Globe, Award, Briefcase, Sparkles } from 'luc
 export const metadata: Metadata = {
   title: 'Resume',
   description:
-    'Darion R. Harris (LightGod). 20+ years in creative direction, motion design, and technical production. Agency-represented. Death Row Records, institutional platforms, and AI-powered creative systems.',
+    'Darion R. Harris (LightGod). Creative technologist, director, post-production lead, SSL-certified audio engineer, and AI production architect building entertainment, music, film, and original IP systems through ipxs.digital.',
 }
 
 const highlights = [
   '20+ years of commercial creative and technical production experience',
-  'Agency-represented creative director and technologist',
-  'Death Row Records campaign art direction and visual systems',
-  'Institutional investor platforms and board-ready digital products',
-  'AI-integrated production pipelines shipping at commercial scale',
+  'Agency-represented creative director, technologist, and post-production lead',
+  'Head of Post Production for HSS FEED with Adrian Miller',
+  'SSL-certified audio engineer',
+  'Commercially released TV/film work distributed through Tubi TV and Roku TV',
+  'Executive Producer, Consulting Producer, Writer, Director, and Supervising Editor credits',
+  'Major recording campaign systems across Death Row Records, Delicious Vinyl Island Records, and label-facing releases',
   'Flagship AI artist and original IP deployment through Pri$$y Vandro$$',
 ]
 
 const coreStrengths = [
-  'Creative direction and visual strategy for entertainment, music, and tech brands',
-  'Full-stack product design and development (web, mobile, AI applications)',
-  'Motion design, commercial production, and campaign architecture',
-  'Pitch deck strategy and investor-ready presentation design',
-  'AI-powered workflow design, custom tool development, and production automation',
-  'Cross-functional leadership across creative, engineering, and business teams',
-  'Visual release system architecture: cover art, motion, rollout assets, social content',
-  'Music production, audio engineering, mixing, and sound design',
+  'Creative direction and visual strategy for entertainment, music, film, and technology brands',
+  'Post-production leadership for podcast, music, commercial, and long-form content workflows',
+  'SSL-certified audio engineering, music production, mixing, and sound design',
+  'Executive production, writing, directing, and supervising editorial for commercially released screen projects',
+  'Full-stack product design and development for websites, platforms, AI tools, and digital experiences',
+  'Motion design, visual release systems, animated covers, commercial assets, and campaign architecture',
+  'Pitch deck strategy and investor-ready presentation systems for entertainment and institutional projects',
+  'AI-powered workflow design, custom GPT/product development, and production automation',
+  'Original IP architecture spanning character development, lore, music, visuals, licensing, and rollout strategy',
+  'Cross-functional leadership across creative, engineering, post-production, and business teams',
 ]
 
 const selectedWork = [
@@ -34,25 +38,37 @@ const selectedWork = [
     title: 'ipxs.digital',
     role: 'Founder & Lead Creative Technologist',
     period: '2020 - Present',
-    description: 'Entertainment-focused creative technology studio building AI-powered release ecosystems for artists, labels, and brands. Full-service visual systems from concept through distribution.',
+    description: 'Entertainment-focused creative technology studio building AI-powered release ecosystems, original IP systems, artist infrastructure, pitch architecture, websites, and campaign assets for artists, labels, brands, and institutional clients.',
+  },
+  {
+    title: 'HSS FEED',
+    role: 'Head of Post Production',
+    period: '2026',
+    description: 'Post-production leadership for a music industry podcast hosted by veteran music executive and A&R Adrian Miller, supporting editorial flow, audio/video finishing, delivery standards, and content readiness.',
   },
   {
     title: 'CharliBereal x Death Row Records',
     role: 'Creative Director',
     period: '2025',
-    description: 'End-to-end creative art direction for Death Row Records single release. Primary cover artwork, animated cover motion, and rollout assets for streaming and social launch windows.',
+    description: 'End-to-end creative art direction for commercially released music campaigns, including primary cover artwork, animated cover motion, rollout assets, and visual release systems tailored for streaming and social launch windows.',
   },
   {
-    title: 'Major Label Campaigns',
+    title: 'Major Recording Campaigns',
     role: 'Creative Director / Motion Lead',
     period: 'Multiple Engagements',
-    description: 'Visual systems and motion campaigns for major releases. Cover art, visualizers, social content packages, and campaign rollout architecture.',
+    description: 'Visual systems and motion campaigns across recording-industry releases, including Death Row Records, Delicious Vinyl Island Records, and other label-facing campaigns. Work includes cover art, visualizers, social content packages, and rollout architecture.',
   },
   {
     title: 'Pri$$y Vandro$$',
     role: 'Flagship AI Artist / Original IP Deployment',
     period: '2026',
-    description: 'Pri$$y Vandro$$ — flagship AI artist and original IP deployment under IPXS, combining music, character design, cinematic visual systems, web presence, and case-study-driven commercialization.',
+    description: 'Flagship AI artist and original IP deployment under IPXS, combining music production, character design, cinematic visual systems, lore, website infrastructure, licensing strategy, and case-study-driven commercialization.',
+  },
+  {
+    title: 'Commercially Released TV/Film Projects',
+    role: 'Executive Producer / Consulting Producer / Writer / Director / Supervising Editor',
+    period: 'Multiple Releases',
+    description: 'Screen production work distributed through Tubi TV and Roku TV, with credits spanning executive production, consulting production, writing, directing, and supervising editorial.',
   },
   {
     title: 'Institutional Platforms',
@@ -64,7 +80,7 @@ const selectedWork = [
     title: 'Keith Collins Rugs',
     role: 'Creative Technologist',
     period: '2026',
-    description: 'Interactive product visualization platform with AR integration. Transformed high-value collectible product presentation for digital-native audiences.',
+    description: 'AI-assisted commercial production and visual asset system built from client-supplied materials, transforming a niche product story into a cinematic, social-ready commercial campaign.',
   },
   {
     title: 'The Dynamics Multiverse',
@@ -97,8 +113,8 @@ const toolsAndStack = [
   },
   { 
     category: 'Audio & Music', 
-    tools: 'Pro Tools, Reason, Suno AI',
-    description: 'Music production, audio engineering, mixing, sound design'
+    tools: 'Pro Tools, Reason, SSL-certified audio engineering, Suno AI',
+    description: 'Music production, audio engineering, mixing, sound design, and AI-assisted vocal/music workflows'
   },
   { 
     category: 'Development', 
@@ -121,7 +137,7 @@ const achievements = [
   {
     icon: Award,
     title: 'Major Recording Campaigns',
-    description: 'Creative direction and rollout assets across Death Row Records, Delicious Vinyl, Island Records, and label-facing release campaigns.',
+    description: 'Creative direction and rollout assets across Death Row Records, Delicious Vinyl Island Records, and label-facing release campaigns.',
   },
   {
     icon: Briefcase,
@@ -131,7 +147,7 @@ const achievements = [
   {
     icon: Sparkles,
     title: 'AI Production Pioneer',
-    description: 'Early adopter integrating AI tools into professional creative workflows',
+    description: 'Early adopter integrating AI tools into professional creative, post-production, music, and release workflows.',
   },
 ]
 
@@ -194,12 +210,7 @@ export default function ResumePage() {
             </div>
             <div className="lg:col-span-2">
               <p className="text-base leading-relaxed text-foreground md:text-lg">
-                Senior creative technologist and director with over two decades of commercial experience 
-                across entertainment, music, tech, and institutional verticals. I architect premium 
-                creative systems: from cover art and motion campaigns for major label releases, to 
-                investor platforms and AI-powered production tools that ship fast and perform at scale. 
-                Agency-represented with credits including Death Row Records visual campaigns. Currently leading ipxs.digital, an entertainment-focused 
-                studio serving artists, labels, and brands with full-service creative technology solutions.
+                Senior creative technologist, director, post-production lead, and SSL-certified audio engineer with over two decades of commercial experience across music, film, television, technology, and original IP development. I build complete creative systems: release campaigns, cinematic assets, pitch architecture, AI-assisted production pipelines, websites, and platform-ready brand ecosystems. My work spans major recording campaigns, commercially released TV/film projects distributed through Tubi TV and Roku TV, and high-level production roles including Executive Producer, Consulting Producer, Writer, Director, and Supervising Editor. I currently lead ipxs.digital while serving as Head of Post Production for HSS FEED, a music industry podcast hosted by veteran music executive and A&R Adrian Miller. Pri$$y Vandro$$ is my flagship AI artist and original IP deployment, built to demonstrate how IPXS can create, package, and scale AI-native entertainment properties.
               </p>
               <div className="mt-8 flex flex-wrap gap-2">
                 {highlights.map((highlight, index) => (
