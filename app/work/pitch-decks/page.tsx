@@ -64,10 +64,7 @@ const decks = [
     hook: 'A web3 IP licensing and portal concept deck designed to translate utility into story and product.',
     tags: ['Web3 platform', 'IP licensing', 'Ecosystem pitch'],
     cover: '/case-studies/pitch-decks/covers/dynamics-multiverse.jpg',
-    highlights: `DECK 04
-The Dynamics Multiverse
-
-This deck presents IPXS as a proprietary licensing protocol that connects IP ownership to smart licensing contracts, enabling licensing and on demand commerce backed by on chain eligibility verification. The deck is built to translate technical utility into a clear end user flow and monetization narrative.`,
+    highlights: `The Dynamics Multiverse presents IPXS as a proprietary licensing protocol that connects IP ownership to smart licensing contracts, enabling licensing and on demand commerce backed by on chain eligibility verification. The deck is built to translate technical utility into a clear end user flow and monetization narrative.`,
   },
 ]
 
