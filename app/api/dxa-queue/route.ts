@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server'
 
-import { DXA_QUEUE_SEED_TASKS, isValidTaskOwner, isValidTaskStatus } from '@/lib/dxa-queue'
+import {
+  DXA_QUEUE_SEED_TASKS,
+  hasValidDxaAdminPin,
+  isActiveQueueProject,
+  isValidTaskOwner,
+  isValidTaskStatus,
+} from '@/lib/dxa-queue'
 import { isSupabaseConfigured, supabaseAdminFetch } from '@/lib/supabase/admin'
 
 async function ensureSeeded() {
@@ -17,7 +23,8 @@ export async function GET() {
   }
 
   await ensureSeeded()
-  const res = await supabaseAdminFetch('dxa_queue_tasks?select=*&order=sort_order.asc&order=updated_at.desc')
+  const activeProjectsFilter = DXA_QUEUE_SEED_TASKS.map((task) => task.project_title).join(',')
+  const res = await supabaseAdminFetch(`dxa_queue_tasks?select=*&project_title=in.(${activeProjectsFilter})&order=sort_order.asc&order=updated_at.desc`)
   if (!res.ok) return NextResponse.json({ error: 'Failed to load queue tasks' }, { status: 500 })
   const tasks = await res.json()
   return NextResponse.json({ tasks })
@@ -26,9 +33,10 @@ export async function GET() {
 export async function POST(req: Request) {
   if (!isSupabaseConfigured()) return NextResponse.json({ error: 'Supabase not configured' }, { status: 500 })
   const body = await req.json()
-  if (body.pin !== process.env.DXA_ADMIN_PIN) return NextResponse.json({ error: 'Invalid PIN. Update not saved.' }, { status: 401 })
+  if (!hasValidDxaAdminPin(body.pin)) return NextResponse.json({ error: 'Invalid PIN. Update not saved.' }, { status: 401 })
   if (!body.task?.trim()) return NextResponse.json({ error: 'Task is required' }, { status: 400 })
   if (!body.project_title?.trim()) return NextResponse.json({ error: 'Project title is required' }, { status: 400 })
+  if (!isActiveQueueProject(body.project_title)) return NextResponse.json({ error: 'Queue tasks are restricted to active DXA projects only.' }, { status: 400 })
   if (!isValidTaskOwner(body.owner_type)) return NextResponse.json({ error: 'Invalid owner type' }, { status: 400 })
   if (!isValidTaskStatus(body.status)) return NextResponse.json({ error: 'Invalid task status' }, { status: 400 })
 
