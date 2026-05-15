@@ -8,6 +8,13 @@ import {
 } from '@/lib/dxa-queue'
 import { isSupabaseConfigured, supabaseAdminFetch } from '@/lib/supabase/admin'
 
+function getQueueFailureMessage(status: number, body: string, fallback: string) {
+  if (status === 404 || body.includes('dxa_queue_tasks')) {
+    return 'DXA queue table is not connected yet. Create the dxa_queue_tasks table in Supabase before saving queue edits.'
+  }
+  return fallback
+}
+
 export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!isSupabaseConfigured()) return NextResponse.json({ error: 'Supabase not configured' }, { status: 500 })
   const body = await req.json()
@@ -24,8 +31,12 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     headers: { Prefer: 'return=representation' },
     body: JSON.stringify(payload),
   })
-  if (!res.ok) return NextResponse.json({ error: 'Update failed' }, { status: 500 })
-  return NextResponse.json({ task: (await res.json())[0] })
+  if (!res.ok) {
+    const errorBody = await res.text().catch(() => '')
+    return NextResponse.json({ error: getQueueFailureMessage(res.status, errorBody, 'Update failed') }, { status: 500 })
+  }
+  const updated = await res.json().catch(() => [])
+  return NextResponse.json({ task: Array.isArray(updated) ? updated[0] : updated })
 }
 
 export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -35,6 +46,9 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
 
   const { id } = await params
   const res = await supabaseAdminFetch(`dxa_queue_tasks?id=eq.${id}`, { method: 'DELETE' })
-  if (!res.ok) return NextResponse.json({ error: 'Delete failed' }, { status: 500 })
+  if (!res.ok) {
+    const errorBody = await res.text().catch(() => '')
+    return NextResponse.json({ error: getQueueFailureMessage(res.status, errorBody, 'Delete failed') }, { status: 500 })
+  }
   return NextResponse.json({ success: true })
 }
