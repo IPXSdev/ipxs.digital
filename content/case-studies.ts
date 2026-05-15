@@ -30,6 +30,13 @@ export interface CaseStudyMedia {
   aspectRatio?: 'square' | 'video'
 }
 
+export interface CaseStudyAudioTrack {
+  id: string
+  title: string
+  src: string
+  description?: string
+}
+
 export interface CaseStudyCredits {
   studio: 'Powered by ipxs.digital'
   lead: 'Darion R. Harris (LightGod)'
@@ -54,6 +61,7 @@ export interface CaseStudy {
   pipelineSteps: PipelineStep[]
   proofLinks: ProofLink[]
   media: CaseStudyMedia[]
+  audioTracks?: CaseStudyAudioTrack[]
   credits: CaseStudyCredits
 }
 
@@ -152,7 +160,7 @@ export const caseStudies: CaseStudy[] = [
     category: 'Motion and Social Ads',
     poster: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
     cover: '/case-studies/charlibereal-deathrow-campaign/together-video-treatment.png',
-    outcomeLine: 'Animated music video treatment for Together with original character design, storyboard direction, and visual development prepared for production alignment.',
+    outcomeLine: 'Animated music video treatment for Together with original character design, storyboard direction, and visual development prepared for production alignment. IPXS also created the album artwork for Charlie Bereal’s single “Together,” extending the release identity from static cover art into treatment-driven visual direction for the campaign.',
     deliverables: ['Video treatment pitch deck', 'Custom character design', 'Character pose sheet', 'Visual style guide', 'Animation direction'],
     pipelineSteps: defaultPipeline,
     proofLinks: [
@@ -210,41 +218,7 @@ export const caseStudies: CaseStudy[] = [
   },
 
 
-  {
-    id: 'dynamics-multiverse',
-    slug: 'dynamics-multiverse',
-    title: 'The Dynamics Multiverse',
-    category: 'World Building',
-    poster: '/case-studies/dynamics-multiverse/cover.jpg',
-    cover: '/case-studies/dynamics-multiverse/cover.jpg',
-    outcomeLine: 'Built a scalable story bible and franchise framework designed to support generative lore, character arcs, and multi-format rollout.',
-    heroTagline: 'A narrative universe engineered for collectibles, licensing, and screen-ready expansion.',
-    problem: 'The goal was to establish a complete narrative foundation for a new IP that could live across multiple mediums without losing coherence. The world needed clear rules, a believable origin, and character and faction structure strong enough to support future scripts, visuals, collectibles, and licensing. It also needed a framework where new stories could be generated consistently while staying inside canon.',
-    approach: 'I treated the universe like a production pipeline, not just a document. That meant building a canon backbone first, then mapping factions, characters, and story mechanics to future deliverables. The system was designed to be expandable, so future chapters, episodes, and collectible releases can be added without rewriting the foundation. The narrative structure was paired with rollout logic so each creative asset has a reason to exist in the world.',
-    solution: 'The Dynamics Multiverse was developed as a structured story world with a defined creation myth and core conflict, a catalog of factions and character archetypes that can carry multiple storylines, a lore engine approach that supports generative expansion while protecting canon, and a franchise roadmap designed to connect narrative, collectibles, and cinematic execution.',
-    deliverables: ['World Bible and Canon Foundation', 'Faction and Character Framework', 'Narrative Mechanics and Rules of the World', 'Franchise Expansion Blueprint', 'Release-ready story structure for future scripts and pitch assets'],
-    pipeline: ['Discovery and tone alignment, define the promise of the world', 'Canon backbone, origin, rules, and constraints', 'Faction architecture and character archetypes', 'Conflict mapping, story engines, and episodic scalability', 'Franchise blueprint, how the world expands across formats', 'Packaging, editing, and presentation for future pitches and production teams'],
-    tools: ['Story architecture and writing systems', 'Visual planning and layout tools for documentation', 'AI-assisted iteration where appropriate, with canon control'],
-    results: ['Delivered a structured world building foundation built for expansion', 'Established clear canon rules to prevent drift across future chapters', 'Created a franchise-ready blueprint that can support decks, scripts, and production planning'],
-    pipelineSteps: defaultPipeline,
-    proofLinks: [
-      { label: 'Book a Discovery Call', url: '/contact?subject=World%20Building%20Walkthrough' },
-      { label: 'Request Full PDF', url: '/contact?subject=Request%20Dynamics%20Multiverse%20PDF' },
-    ],
-    media: [
-      { id: 'dynamics-cover', type: 'image', src: '/case-studies/dynamics-multiverse/cover.jpg', poster: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Ultraviolet Multiverse overview showing character portraits and cosmic visuals', caption: 'Franchise overview: 333 traits, 22 classifications, and a complete multiversal vernacular index.' },
-      { id: 'dynamics-thysporinite', type: 'image', src: '/case-studies/dynamics-multiverse/still-01.png', poster: '/case-studies/dynamics-multiverse/still-01.png', alt: 'Dynamic Trait Class 1: Thysporinite 963, the rarest substance in the multiverse', caption: 'Trait Class 1: Thysporinite 963, the Elder DNA and rarest substance in the Multiverse.' },
-      { id: 'dynamics-lux', type: 'image', src: '/case-studies/dynamics-multiverse/still-02.jpg', poster: '/case-studies/dynamics-multiverse/still-02.jpg', alt: 'Dynamic Trait Class 3: Lux, the light that Dynamic beings naturally produce', caption: 'Trait Class 3: Lux, the visual signifier of congenital powers in Dynamic beings.' },
-      { id: 'dynamics-damu', type: 'image', src: '/case-studies/dynamics-multiverse/still-03.jpg', poster: '/case-studies/dynamics-multiverse/still-03.jpg', alt: 'Dynamic Trait Class 4: Damu, the blood of the galaxy and Divine Antibodies', caption: 'Trait Class 4: Damu, the Divine Antibodies unique to each galaxy.' },
-      { id: 'dynamics-travel', type: 'image', src: '/case-studies/dynamics-multiverse/still-04.png', poster: '/case-studies/dynamics-multiverse/still-04.png', alt: 'Ultraviolet Trait Class 2: Mode of Travel with futuristic motorcycle', caption: 'Trait Class 2: Mode of Travel, featuring Multiversal conveyance and wormhole networks.' },
-      { id: 'dynamics-galaxies', type: 'image', src: '/case-studies/dynamics-multiverse/still-05.png', poster: '/case-studies/dynamics-multiverse/still-05.png', alt: 'Dynamic Trait Class 7: Via Lactea, the 11 Primary Galaxies', caption: 'Trait Class 7: Via Lactea, the 11 Primary Galaxies home to 33 Dynamic Planets.' },
-      { id: 'dynamics-lore', type: 'image', src: '/case-studies/dynamics-multiverse/still-06.png', poster: '/case-studies/dynamics-multiverse/still-06.png', alt: 'The Generative Lore system for interactive character backstory generation', caption: 'Generative Lore: the interactive character backstory system for community collaboration.' },
-      { id: 'dynamics-character-1', type: 'image', src: '/case-studies/dynamics-multiverse/still-07.png', poster: '/case-studies/dynamics-multiverse/still-07.png', alt: 'Dynamic character with ornate armor and floral elements', caption: 'Character design: ornate armor systems with organic and metallic fusion.' },
-      { id: 'dynamics-character-2', type: 'image', src: '/case-studies/dynamics-multiverse/still-08.png', poster: '/case-studies/dynamics-multiverse/still-08.png', alt: 'Dynamic character with floral chest armor', caption: 'Character design: botanical integration with advanced technology.' },
-      { id: 'dynamics-character-3', type: 'image', src: '/case-studies/dynamics-multiverse/still-09.png', poster: '/case-studies/dynamics-multiverse/still-09.png', alt: 'Dynamic character with jeweled armor and celestial markings', caption: 'Character design: celestial markings and jeweled armor systems.' },
-    ],
-    credits: defaultCredits,
-  },
+
 
   {
     id: 'emory-capital',
@@ -271,8 +245,8 @@ export const caseStudies: CaseStudy[] = [
     slug: 'prissy-vandross',
     title: 'Pri$$y Vandro$$',
     category: 'Original IP',
-    poster: '/case-studies/prissy-vandross/hero.jpeg',
-    cover: '/case-studies/prissy-vandross/hero.jpeg',
+    poster: '/case-studies/prissy-vandross/prissy-vandross-site-hero-image.png',
+    cover: '/case-studies/prissy-vandross/prissy-vandross-site-hero-image.png',
     outcomeLine: 'From concept to monetizable IP. A galactic entertainer developed through hybrid creative workflows spanning character design, studio music production, AI-assisted vocal expansion, and visual world-building.',
     heroTagline: 'Building a Galactic Entertainer from Concept to Monetizable IP',
     problem: 'How do you create a believable, ownable, monetizable entertainment act from the ground up, not just visually, but sonically, narratively, and strategically? Pri$$y Vandro$$ needed to be more than a character sketch or a music experiment. She needed to be a fully realized entertainer with a branded voice, image system, lore, and rollout strategy. The goal was to prove that a single creative operator, equipped with the right tools and workflows, could build something that traditionally requires a full label, management team, and production apparatus.',
@@ -320,14 +294,63 @@ export const caseStudies: CaseStudy[] = [
       { label: 'prissyv.space', url: 'https://prissyv.space/' },
       { label: 'Listen to Alien Supernova', url: 'https://prissyv.space/#music' },
     ],
+    audioTracks: [
+      {
+        id: 'searching-for-me',
+        title: 'Searching for Me',
+        src: '/audio/prissy-vandross/02-searching-for-me.mp3',
+        description: 'Featured EP track from Pri$$y Vandro$$, extending the Alien Supernova sound into a more reflective, emotional lane.',
+      },
+      {
+        id: 'keep-your-crown',
+        title: 'Keep Your Crown',
+        src: '/audio/prissy-vandross/07-keep-your-crown.mp3',
+        description: 'Featured EP track from Pri$$y Vandro$$ built around confidence, self-worth, and her cosmic entertainer identity.',
+      },
+    ],
     media: [
-      { id: 'prissy-hero', type: 'image', src: '/case-studies/prissy-vandross/hero.jpeg', poster: '/case-studies/prissy-vandross/hero.jpeg', alt: 'Pri$$y Vandro$$ floating in space near Saturn with cosmic armor', caption: 'Character design: Pri$$y Vandro$$, the first breakout star of the Ultraviolet Multiverse.' },
-      { id: 'prissy-headshot', type: 'image', src: '/case-studies/prissy-vandross/headshot.jpeg', poster: '/case-studies/prissy-vandross/headshot.jpeg', alt: 'Pri$$y Vandro$$ headshot with galaxy bodysuit in cosmic setting', caption: 'Visual identity: branded image system with celestial presence and chrome futurism.' },
-      { id: 'prissy-performing', type: 'image', src: '/case-studies/prissy-vandross/performing.png', poster: '/case-studies/prissy-vandross/performing.png', alt: 'Pri$$y Vandro$$ performing on stage with backup dancers', caption: 'Performance system: stage presence designed for live and visual album rollout.' },
-      { id: 'prissy-video-ig', type: 'image', src: '/case-studies/prissy-vandross/video-still-ig.jpeg', poster: '/case-studies/prissy-vandross/video-still-ig.jpeg', alt: 'Pri$$y Vandro$$ in chrome holographic bodysuit in geometric glass environment', caption: 'Visual album: cinematic world-building across music video production.' },
-      { id: 'prissy-ultraviolet', type: 'image', src: '/case-studies/prissy-vandross/ultraviolet-chemistry.jpeg', poster: '/case-studies/prissy-vandross/ultraviolet-chemistry.jpeg', alt: 'Pri$$y Vandro$$ in cosmic bedroom with flowing dress and galaxy backdrop', caption: 'Ultraviolet Chemistry: visual narrative from the debut EP.' },
-      { id: 'prissy-ad', type: 'image', src: '/case-studies/prissy-vandross/ad.png', poster: '/case-studies/prissy-vandross/ad.png', alt: 'Pri$$y Vandro$$ squad performance with PRI$$Y BITCH neon text', caption: 'Campaign asset: promotional content for social and streaming launch.' },
-      { id: 'prissy-music-video', type: 'image', src: '/case-studies/prissy-vandross/music-video-still.jpeg', poster: '/case-studies/prissy-vandross/music-video-still.jpeg', alt: 'Pri$$y Vandro$$ in gothic space cathedral with chrome bodysuit', caption: 'Music video still: cinematic visual language for franchise-scale storytelling.' },
+      { id: 'prissy-headshot', type: 'image', src: '/case-studies/prissy-vandross/prissy-vandross-headshot.png', poster: '/case-studies/prissy-vandross/prissy-vandross-headshot.png', alt: 'Pri$$y Vandro$$ headshot portrait', caption: 'Portrait still from Pri$$y Vandro$$ campaign visuals.' },
+      { id: 'prissy-performing', type: 'image', src: '/case-studies/prissy-vandross/prissy-vandross-performing.png', poster: '/case-studies/prissy-vandross/prissy-vandross-performing.png', alt: 'Pri$$y Vandro$$ performing', caption: 'Performance visual showing stage energy and character direction.' },
+      { id: 'prissy-music-video-still', type: 'image', src: '/case-studies/prissy-vandross/prissy-vandross-music-video-still.png', poster: '/case-studies/prissy-vandross/prissy-vandross-music-video-still.png', alt: 'Pri$$y Vandro$$ music video still', caption: 'Music video still from the Pri$$y Vandro$$ visual rollout.' },
+      { id: 'prissy-ultraviolet-chemistry', type: 'image', src: '/case-studies/prissy-vandross/prissy-vandross-ultraviolet-chemistry-video-still.png', poster: '/case-studies/prissy-vandross/prissy-vandross-ultraviolet-chemistry-video-still.png', alt: 'Pri$$y Vandro$$ Ultraviolet Chemistry video still', caption: 'Ultraviolet Chemistry visual treatment still.' },
+      { id: 'prissy-ig-video-still', type: 'image', src: '/case-studies/prissy-vandross/prissy-vandross-video-still-for-ig.png', poster: '/case-studies/prissy-vandross/prissy-vandross-video-still-for-ig.png', alt: 'Pri$$y Vandro$$ video still for Instagram', caption: 'Social-first still used for platform rollout.' },
+      { id: 'prissy-ad', type: 'image', src: '/case-studies/prissy-vandross/prissy-vandross-ad.png', poster: '/case-studies/prissy-vandross/prissy-vandross-ad.png', alt: 'Pri$$y Vandro$$ campaign ad visual', caption: 'Promotional ad frame from the Pri$$y Vandro$$ campaign.' },
+    ],
+    credits: defaultCredits,
+  },
+
+  {
+    id: 'dynamics-multiverse',
+    slug: 'dynamics-multiverse',
+    title: 'The Dynamics Multiverse',
+    category: 'World Building',
+    poster: '/case-studies/dynamics-multiverse/cover.jpg',
+    cover: '/case-studies/dynamics-multiverse/cover.jpg',
+    outcomeLine: 'Built a scalable story bible and franchise framework designed to support generative lore, character arcs, and multi-format rollout.',
+    heroTagline: 'A narrative universe engineered for collectibles, licensing, and screen-ready expansion.',
+    problem: 'The goal was to establish a complete narrative foundation for a new IP that could live across multiple mediums without losing coherence. The world needed clear rules, a believable origin, and character and faction structure strong enough to support future scripts, visuals, collectibles, and licensing. It also needed a framework where new stories could be generated consistently while staying inside canon.',
+    approach: 'I treated the universe like a production pipeline, not just a document. That meant building a canon backbone first, then mapping factions, characters, and story mechanics to future deliverables. The system was designed to be expandable, so future chapters, episodes, and collectible releases can be added without rewriting the foundation. The narrative structure was paired with rollout logic so each creative asset has a reason to exist in the world.',
+    solution: 'The Dynamics Multiverse was developed as a structured story world with a defined creation myth and core conflict, a catalog of factions and character archetypes that can carry multiple storylines, a lore engine approach that supports generative expansion while protecting canon, and a franchise roadmap designed to connect narrative, collectibles, and cinematic execution.',
+    deliverables: ['World Bible and Canon Foundation', 'Faction and Character Framework', 'Narrative Mechanics and Rules of the World', 'Franchise Expansion Blueprint', 'Release-ready story structure for future scripts and pitch assets'],
+    pipeline: ['Discovery and tone alignment, define the promise of the world', 'Canon backbone, origin, rules, and constraints', 'Faction architecture and character archetypes', 'Conflict mapping, story engines, and episodic scalability', 'Franchise blueprint, how the world expands across formats', 'Packaging, editing, and presentation for future pitches and production teams'],
+    tools: ['Story architecture and writing systems', 'Visual planning and layout tools for documentation', 'AI-assisted iteration where appropriate, with canon control'],
+    results: ['Delivered a structured world building foundation built for expansion', 'Established clear canon rules to prevent drift across future chapters', 'Created a franchise-ready blueprint that can support decks, scripts, and production planning'],
+    pipelineSteps: defaultPipeline,
+    proofLinks: [
+      { label: 'Book a Discovery Call', url: '/contact?subject=World%20Building%20Walkthrough' },
+      { label: 'Request Full PDF', url: '/contact?subject=Request%20Dynamics%20Multiverse%20PDF' },
+    ],
+    media: [
+      { id: 'dynamics-cover', type: 'image', src: '/case-studies/dynamics-multiverse/cover.jpg', poster: '/case-studies/dynamics-multiverse/cover.jpg', alt: 'The Ultraviolet Multiverse overview showing character portraits and cosmic visuals', caption: 'Franchise overview: 333 traits, 22 classifications, and a complete multiversal vernacular index.' },
+      { id: 'dynamics-thysporinite', type: 'image', src: '/case-studies/dynamics-multiverse/still-01.png', poster: '/case-studies/dynamics-multiverse/still-01.png', alt: 'Dynamic Trait Class 1: Thysporinite 963, the rarest substance in the multiverse', caption: 'Trait Class 1: Thysporinite 963, the Elder DNA and rarest substance in the Multiverse.' },
+      { id: 'dynamics-lux', type: 'image', src: '/case-studies/dynamics-multiverse/still-02.jpg', poster: '/case-studies/dynamics-multiverse/still-02.jpg', alt: 'Dynamic Trait Class 3: Lux, the light that Dynamic beings naturally produce', caption: 'Trait Class 3: Lux, the visual signifier of congenital powers in Dynamic beings.' },
+      { id: 'dynamics-damu', type: 'image', src: '/case-studies/dynamics-multiverse/still-03.jpg', poster: '/case-studies/dynamics-multiverse/still-03.jpg', alt: 'Dynamic Trait Class 4: Damu, the blood of the galaxy and Divine Antibodies', caption: 'Trait Class 4: Damu, the Divine Antibodies unique to each galaxy.' },
+      { id: 'dynamics-travel', type: 'image', src: '/case-studies/dynamics-multiverse/still-04.png', poster: '/case-studies/dynamics-multiverse/still-04.png', alt: 'Ultraviolet Trait Class 2: Mode of Travel with futuristic motorcycle', caption: 'Trait Class 2: Mode of Travel, featuring Multiversal conveyance and wormhole networks.' },
+      { id: 'dynamics-galaxies', type: 'image', src: '/case-studies/dynamics-multiverse/still-05.png', poster: '/case-studies/dynamics-multiverse/still-05.png', alt: 'Dynamic Trait Class 7: Via Lactea, the 11 Primary Galaxies', caption: 'Trait Class 7: Via Lactea, the 11 Primary Galaxies home to 33 Dynamic Planets.' },
+      { id: 'dynamics-lore', type: 'image', src: '/case-studies/dynamics-multiverse/still-06.png', poster: '/case-studies/dynamics-multiverse/still-06.png', alt: 'The Generative Lore system for interactive character backstory generation', caption: 'Generative Lore: the interactive character backstory system for community collaboration.' },
+      { id: 'dynamics-character-1', type: 'image', src: '/case-studies/dynamics-multiverse/still-07.png', poster: '/case-studies/dynamics-multiverse/still-07.png', alt: 'Dynamic character with ornate armor and floral elements', caption: 'Character design: ornate armor systems with organic and metallic fusion.' },
+      { id: 'dynamics-character-2', type: 'image', src: '/case-studies/dynamics-multiverse/still-08.png', poster: '/case-studies/dynamics-multiverse/still-08.png', alt: 'Dynamic character with floral chest armor', caption: 'Character design: botanical integration with advanced technology.' },
+      { id: 'dynamics-character-3', type: 'image', src: '/case-studies/dynamics-multiverse/still-09.png', poster: '/case-studies/dynamics-multiverse/still-09.png', alt: 'Dynamic character with jeweled armor and celestial markings', caption: 'Character design: celestial markings and jeweled armor systems.' },
     ],
     credits: defaultCredits,
   },

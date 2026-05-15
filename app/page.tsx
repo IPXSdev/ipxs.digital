@@ -194,24 +194,6 @@ export default function HomePage() {
 
       <section className="section-fade bg-secondary/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          {featuredHeroStudy ? (
-            <article className="relative overflow-hidden rounded-2xl border border-border/40 bg-black">
-              <div className="relative h-[58vh] min-h-[420px] w-full">
-                <Image src={featuredHeroStudy.cover} alt={featuredHeroStudy.title} fill className="object-cover object-top" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/45 to-transparent" />
-              </div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-secondary/30" />
-              <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-                <p className="mb-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">Featured Header Case Study</p>
-                <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">{featuredHeroStudy.title}</h3>
-                <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">{featuredHeroStudy.outcomeLine}</p>
-                <Button asChild className="mt-5 rounded-full px-6">
-                  <Link href={`/work/${featuredHeroStudy.slug}`}>View Case Study</Link>
-                </Button>
-              </div>
-            </article>
-          ) : null}
-
           <div className="mt-12 mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">Featured Case Studies</p>
@@ -222,6 +204,22 @@ export default function HomePage() {
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
+
+          {featuredHeroStudy ? (
+            <article className="mb-8 overflow-hidden rounded-2xl border border-border/40 bg-card/70">
+              <div className="relative h-[58vh] min-h-[420px] w-full">
+                <Image src={featuredHeroStudy.cover} alt={featuredHeroStudy.title} fill className="object-cover object-top" />
+              </div>
+              <div className="p-6 md:p-8">
+                <p className="mb-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">Featured Header Case Study</p>
+                <h3 className="font-serif text-2xl font-medium text-foreground md:text-3xl">{featuredHeroStudy.title}</h3>
+                <p className="mt-3 max-w-2xl text-sm text-muted-foreground md:text-base">{featuredHeroStudy.outcomeLine}</p>
+                <Button asChild className="mt-5 rounded-full px-6">
+                  <Link href={`/work/${featuredHeroStudy.slug}`}>View Case Study</Link>
+                </Button>
+              </div>
+            </article>
+          ) : null}
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {selectedWorkCards.map((study) => (
