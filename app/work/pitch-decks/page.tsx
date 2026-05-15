@@ -120,6 +120,7 @@ export default function PitchDecksPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
         </div>
       </section>
+
       <section className="py-10">
         <div className="relative mx-auto w-full max-w-7xl px-4 lg:px-8">
           <Link
@@ -130,31 +131,30 @@ export default function PitchDecksPage() {
             Back to Case Studies
           </Link>
 
-            <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-              Pitch Deck Architecture
-            </p>
+          <p className="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+            Pitch Deck Architecture
+          </p>
 
-            <h1 className="mb-4 max-w-4xl font-serif text-3xl font-medium gradient-text-neon md:text-4xl lg:text-5xl">
-              Decks That Raise Capital and Sell the Vision
-            </h1>
+          <h1 className="mb-4 max-w-4xl font-serif text-3xl font-medium gradient-text-neon md:text-4xl lg:text-5xl">
+            Decks That Raise Capital and Sell the Vision
+          </h1>
 
-            <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              I build pitch decks that do more than explain. They position. They persuade. They turn complex ideas into a clear narrative investors, partners, and audiences can act on.
-            </p>
+          <p className="mb-8 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            I build pitch decks that do more than explain. They position. They persuade. They turn complex ideas into a clear narrative investors, partners, and audiences can act on.
+          </p>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full px-8">
-                <Link href="/contact">
-                  Book a Discovery Call
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full px-8">
-                <Link href={getDeckWalkthroughUrl('All Decks')}>
-                  Request Full Deck Walkthrough
-                </Link>
-              </Button>
-            </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button asChild size="lg" className="rounded-full px-8">
+              <Link href="/contact">
+                Book a Discovery Call
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="rounded-full px-8">
+              <Link href={getDeckWalkthroughUrl('All Decks')}>
+                Request Full Deck Walkthrough
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
