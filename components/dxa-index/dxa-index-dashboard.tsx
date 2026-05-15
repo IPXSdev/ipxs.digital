@@ -5,7 +5,7 @@ import { AlertCircle, ArrowRight, ExternalLink, Plus, Zap } from 'lucide-react'
 import { ProjectCard } from '@/components/dxa-index/project-card'
 import { ProjectEditorModal } from '@/components/dxa-index/project-editor-modal'
 import { Button } from '@/components/ui/button'
-import type { DxaProject } from '@/lib/dxa-projects'
+import { DKLA_CAMPAIGN_MVP_URL, type DxaProject } from '@/lib/dxa-projects'
 
 const filterOptions = ['All', 'Active', 'Needs Assets', 'Needs Review', 'MVP Preview', 'Reference', 'Delivered', 'Completed', 'Campaign', 'Website', 'Music', 'Live Show', 'Legacy', 'AI Assets']
 
@@ -21,6 +21,7 @@ const priorityLanes = [
 const mvpPreviews = [
   ['HSS Feed Landing Page', 'Live show landing page for music submissions, platform links, episodes, and official show positioning.', 'https://v0-hss-feed-landing-page.vercel.app/', 'Open HSS Feed Preview'],
   ['DVI Travel Hotline MVP', 'Interactive campaign MVP for the DVI Travel Hotline, Jamaica trip hook, virtual hotline experience, playlist, and entry flow.', 'https://v0-delicious-vinyl-mvp.vercel.app/', 'Open DVI Travel Preview'],
+  ['DKLA / Throw That Thang Campaign', 'MVP campaign site for the DKLA Throw That Thang rollout, campaign framing, release energy, and event-driven marketing push.', DKLA_CAMPAIGN_MVP_URL, 'Open DKLA Campaign Preview'],
 ]
 
 const archiveBuckets = [
@@ -65,6 +66,22 @@ function StatusPill({ status }: { status: string }) {
   return <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusColors[status] ?? statusColors.Reference}`}>{status}</span>
 }
 
+function hydrateCanonicalProjectLinks(projects: DxaProject[]) {
+  return projects.map((project) => {
+    const title = project.title?.toLowerCase() || ''
+    const isDkla = title.includes('dkla') || title.includes('throw that thang')
+
+    if (!isDkla) return project
+
+    const type = project.type?.includes('MVP Preview') ? project.type : [...(project.type || []), 'MVP Preview']
+    return {
+      ...project,
+      preview_url: project.preview_url || DKLA_CAMPAIGN_MVP_URL,
+      type,
+    }
+  })
+}
+
 export function DxaIndexDashboard() {
   const [projects, setProjects] = useState<DxaProject[]>([])
   const [activeFilter, setActiveFilter] = useState('All')
@@ -78,7 +95,7 @@ export function DxaIndexDashboard() {
     try {
       const response = await fetch('/api/dxa-projects', { cache: 'no-store' })
       const data = await response.json()
-      setProjects(data.projects || [])
+      setProjects(hydrateCanonicalProjectLinks(data.projects || []))
       setWarning(data.warning || '')
     } catch {
       setWarning('DXA project data could not be loaded. Check the API connection.')
@@ -159,7 +176,7 @@ function InfoGrid({ title, description, items }: { title: string; description: s
   return <section className="border-t border-zinc-800 bg-zinc-900/30 py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-2 text-2xl font-bold text-white">{title}</h2><p className="mb-8 max-w-3xl text-sm text-zinc-500">{description}</p><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{items.map(([itemTitle, itemDescription]) => <div key={itemTitle} className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5 backdrop-blur-sm transition-colors hover:border-zinc-700"><div className="mb-3 h-10 w-10 rounded-lg bg-red-500/10" /><h3 className="mb-2 font-semibold text-white">{itemTitle}</h3><p className="text-sm leading-relaxed text-zinc-500">{itemDescription}</p></div>)}</div></div></section>
 }
 
-function MvpSection() { return <section id="mvp-links" className="border-t border-zinc-800 py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-2 text-2xl font-bold text-white">Live MVP Previews</h2><p className="mb-8 max-w-3xl text-sm text-zinc-500">These previews are connected to active projects and should remain easy to access from the internal index.</p><div className="grid gap-4 md:grid-cols-2">{mvpPreviews.map(([title, description, url, buttonText]) => <div key={title} className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-6 transition-colors hover:border-red-500/30"><div className="absolute right-0 top-0 h-32 w-32 translate-x-8 translate-y-[-50%] rounded-full bg-red-500/10 blur-3xl" /><h3 className="mb-2 text-lg font-semibold text-white">{title}</h3><p className="mb-4 text-sm text-zinc-500">{description}</p><a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700">{buttonText}<ExternalLink className="h-4 w-4" /></a></div>)}</div></div></section> }
+function MvpSection() { return <section id="mvp-links" className="border-t border-zinc-800 py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-2 text-2xl font-bold text-white">Live MVP Previews</h2><p className="mb-8 max-w-3xl text-sm text-zinc-500">These previews are connected to active projects and should remain easy to access from the internal index.</p><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{mvpPreviews.map(([title, description, url, buttonText]) => <div key={title} className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-950 p-6 transition-colors hover:border-red-500/30"><div className="absolute right-0 top-0 h-32 w-32 translate-x-8 translate-y-[-50%] rounded-full bg-red-500/10 blur-3xl" /><h3 className="mb-2 text-lg font-semibold text-white">{title}</h3><p className="mb-4 text-sm text-zinc-500">{description}</p><a href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700">{buttonText}<ExternalLink className="h-4 w-4" /></a></div>)}</div></div></section> }
 
 function ArchiveSection() { return <section className="border-t border-zinc-800 bg-zinc-900/30 py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-2 text-2xl font-bold text-white">Reference Archive</h2><p className="mb-8 max-w-3xl text-sm text-zinc-500">Not every item in the DXA Index is active. Some projects, names, brands, conversations, and cultural references are stored here because they may shape future copy, campaigns, decks, visuals, or partnership opportunities.</p><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{archiveBuckets.map(([title, items]) => <div key={title} className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5"><h3 className="mb-3 font-semibold text-white">{title}</h3><ul className="space-y-1.5">{items.map((item) => <li key={item} className="flex items-center gap-2 text-sm text-zinc-500"><span className="h-1 w-1 shrink-0 rounded-full bg-red-500" />{item}</li>)}</ul></div>)}</div></div></section> }
 
