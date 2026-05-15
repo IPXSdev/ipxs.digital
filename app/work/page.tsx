@@ -41,10 +41,12 @@ export default async function WorkPage({ searchParams }: WorkPageProps) {
             <MotionVideoFallback
               primarySrc="/media/case-studies/character-motion-sheet-wide.mov"
               primaryType="video/quicktime"
-              poster="/case-studies/charlibereal-deathrow-campaign/charlibereal-character-sheet.png"
+              secondarySrc="/media/case-studies/character-motion-sheet.mov"
+              secondaryType="video/quicktime"
+              poster="/media/case-studies/character-motion-sheet-fallback.png"
               alt="Character Motion Sheet"
               fit="cover"
-              objectPosition="top"
+              objectPosition="center"
               priority
             />
           </div>

@@ -109,17 +109,18 @@ export default function PitchDecksPage() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="relative h-[40vh] min-h-[300px] w-full">
+        <div className="relative h-[50vh] min-h-[400px] w-full">
           <Image
             src="/case-studies/pitch-decks/covers/xia.jpg"
             alt="Pitch Deck Architecture"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
         </div>
       </section>
+
       <section className="py-10">
         <div className="relative mx-auto w-full max-w-7xl px-4 lg:px-8">
           <Link
