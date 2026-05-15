@@ -28,6 +28,18 @@ export interface Project {
   notes: string
 }
 
+export interface QueueTask {
+  id: string
+  projectTitle: string
+  task: string
+  ownerType: 'Me' | 'Adrian' | 'Other'
+  status: 'Open' | 'In Progress' | 'Blocked' | 'Done'
+  notes: string | null
+  sortOrder: number
+  createdAt: string
+  updatedAt: string
+}
+
 // ============================================================================
 // STATIC DATA (Reference sections - not from database)
 // ============================================================================
@@ -505,10 +517,12 @@ function EditModal({ project, onClose, onSave }: EditModalProps) {
 
 interface DXAIndexClientProps {
   projects: Project[]
+  queueTasks: QueueTask[]
 }
 
-export function DXAIndexClient({ projects: initialProjects }: DXAIndexClientProps) {
+export function DXAIndexClient({ projects: initialProjects, queueTasks: initialQueueTasks }: DXAIndexClientProps) {
   const [projects, setProjects] = useState<Project[]>(initialProjects)
+  const [queueTasks, setQueueTasks] = useState<QueueTask[]>(initialQueueTasks)
   const [activeFilter, setActiveFilter] = useState<string>('All')
   const [editingProject, setEditingProject] = useState<Project | null>(null)
 
@@ -550,14 +564,8 @@ export function DXAIndexClient({ projects: initialProjects }: DXAIndexClientProp
   const mvpCount = projects.filter((p) => p.status === 'MVP Preview').length
   const referenceCount = projects.filter((p) => p.status === 'Reference').length
 
-  // Get MVP previews for the dedicated section
+// Get MVP previews for the dedicated section
   const mvpPreviews = projects.filter((p) => p.status === 'MVP Preview' && p.previewUrl)
-
-  // Generate next actions from active projects
-  const nextActions = projects
-    .filter((p) => p.nextAction && (p.status === 'Active' || p.status === 'MVP Preview'))
-    .map((p) => p.nextAction)
-    .slice(0, 7)
 
   return (
     <div className="min-h-screen bg-zinc-950">
@@ -771,24 +779,35 @@ export function DXAIndexClient({ projects: initialProjects }: DXAIndexClientProp
         </div>
       </section>
 
-      {/* ================================================================== */}
+{/* ================================================================== */}
       {/* NEXT ACTIONS QUEUE */}
       {/* ================================================================== */}
-      {nextActions.length > 0 && (
+      {queueTasks.length > 0 && (
         <section className="border-t border-zinc-800 bg-zinc-900/30">
           <div className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
             <h2 className="mb-2 text-xl font-semibold text-white">Next Actions Queue</h2>
             <p className="mb-8 text-sm text-zinc-500">Immediate priorities pulled from active projects.</p>
             <div className="space-y-2">
-              {nextActions.map((action, idx) => (
+              {queueTasks.filter(t => t.status !== 'Done').map((task, idx) => (
                 <div
-                  key={idx}
+                  key={task.id}
                   className="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/50 p-4"
                 >
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-xs font-semibold text-red-400">
+                  <span className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
+                    task.status === 'Blocked' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400'
+                  }`}>
                     {idx + 1}
                   </span>
-                  <p className="text-sm text-zinc-300">{action}</p>
+                  <div className="flex-1">
+                    <p className="text-sm text-zinc-300">{task.task}</p>
+                    <p className="text-xs text-zinc-500">{task.projectTitle} · {task.ownerType}</p>
+                  </div>
+                  {task.status === 'Blocked' && (
+                    <span className="rounded-full bg-yellow-500/20 px-2 py-0.5 text-xs text-yellow-400">Blocked</span>
+                  )}
+                  {task.status === 'In Progress' && (
+                    <span className="rounded-full bg-blue-500/20 px-2 py-0.5 text-xs text-blue-400">In Progress</span>
+                  )}
                 </div>
               ))}
             </div>

@@ -2,21 +2,23 @@ import { DXAIndexClient } from './client'
 
 // Server component that fetches data via internal API route
 export default async function DXAIndexPage() {
-  // Fetch projects via the secure API route
+  // Fetch projects and queue tasks via the secure API routes
   const baseUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
   try {
-    const response = await fetch(`${baseUrl}/api/dxa-projects`, {
-      cache: 'no-store',
-    })
+    const [projectsResponse, queueResponse] = await Promise.all([
+      fetch(`${baseUrl}/api/dxa-projects`, { cache: 'no-store' }),
+      fetch(`${baseUrl}/api/dxa-queue-tasks`, { cache: 'no-store' }),
+    ])
 
-    if (!response.ok) {
+    if (!projectsResponse.ok) {
       throw new Error('Failed to fetch projects')
     }
 
-    const projects = await response.json()
+    const projects = await projectsResponse.json()
+    const queueTasks = queueResponse.ok ? await queueResponse.json() : []
 
     // Transform database records to match the expected interface
     const transformedProjects = (projects || []).map((p: {
@@ -47,7 +49,7 @@ export default async function DXAIndexPage() {
       notes: p.notes || '',
     }))
 
-    return <DXAIndexClient projects={transformedProjects} />
+    return <DXAIndexClient projects={transformedProjects} queueTasks={queueTasks} />
   } catch (error) {
     console.error('[DXA Index] Fetch error:', error)
     return (
