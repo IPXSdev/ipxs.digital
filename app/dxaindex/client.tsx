@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ExternalLink, ChevronRight, AlertCircle, Zap, Radio, Music, Globe, Film, Briefcase, Sparkles } from 'lucide-react'
+import { ExternalLink, ChevronRight, AlertCircle, Zap, Radio, Music, Globe, Film, Briefcase, Sparkles, Pencil, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+
+const ADMIN_PIN = '2084'
 
 // ============================================================================
 // TYPES
@@ -147,7 +149,7 @@ function PriorityPill({ priority }: { priority: Priority }) {
   )
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, onEdit }: { project: Project; onEdit: (project: Project) => void }) {
   const [expanded, setExpanded] = useState(false)
 
   return (
@@ -163,6 +165,13 @@ function ProjectCard({ project }: { project: Project }) {
             <p className="text-xs text-zinc-500">{project.lane}</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => onEdit(project)}
+              className="rounded-lg bg-zinc-800 p-1.5 text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
+              title="Edit project"
+            >
+              <Pencil className="h-3.5 w-3.5" />
+            </button>
             <PriorityPill priority={project.priority} />
             <StatusPill status={project.status} />
           </div>
@@ -237,6 +246,261 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 // ============================================================================
+// EDIT MODAL COMPONENT
+// ============================================================================
+
+interface EditModalProps {
+  project: Project
+  onClose: () => void
+  onSave: (project: Project) => void
+}
+
+function EditModal({ project, onClose, onSave }: EditModalProps) {
+  const [formData, setFormData] = useState<Project>({ ...project })
+  const [pin, setPin] = useState('')
+  const [pinError, setPinError] = useState('')
+  const [isSaving, setIsSaving] = useState(false)
+
+  const handleChange = (field: keyof Project, value: string | string[]) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+  }
+
+  const handleSave = async () => {
+    if (pin !== ADMIN_PIN) {
+      setPinError('Invalid PIN. Access denied.')
+      return
+    }
+    setPinError('')
+    setIsSaving(true)
+    await onSave(formData)
+    setIsSaving(false)
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
+      <div className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-zinc-800 bg-zinc-950 p-6 shadow-2xl">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 rounded-lg bg-zinc-800 p-2 text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-white"
+          title="Close"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        {/* Header */}
+        <div className="mb-6 border-b border-zinc-800 pb-4">
+          <p className="mb-1 text-xs font-semibold uppercase tracking-[0.25em] text-red-500">
+            DXA INDEX EDITOR
+          </p>
+          <h2 className="text-2xl font-bold text-white">Edit Project Card</h2>
+          <p className="mt-1 text-sm text-zinc-500">
+            Update the live internal card without changing the page design or pushing code.
+          </p>
+        </div>
+
+        {/* Form */}
+        <div className="grid gap-4 md:grid-cols-2">
+          {/* Title */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Title
+            </label>
+            <input
+              type="text"
+              value={formData.title}
+              onChange={(e) => handleChange('title', e.target.value)}
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Lane */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Lane
+            </label>
+            <input
+              type="text"
+              value={formData.lane}
+              onChange={(e) => handleChange('lane', e.target.value)}
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Status */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Status
+            </label>
+            <select
+              value={formData.status}
+              onChange={(e) => handleChange('status', e.target.value)}
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white focus:border-red-500 focus:outline-none"
+            >
+              <option value="Active">Active</option>
+              <option value="Needs Assets">Needs Assets</option>
+              <option value="Needs Review">Needs Review</option>
+              <option value="MVP Preview">MVP Preview</option>
+              <option value="Reference">Reference</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Expansion Opportunity">Expansion Opportunity</option>
+            </select>
+          </div>
+
+          {/* Priority */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Priority
+            </label>
+            <select
+              value={formData.priority}
+              onChange={(e) => handleChange('priority', e.target.value)}
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white focus:border-red-500 focus:outline-none"
+            >
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+
+          {/* Tags / Type */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Tags / Type
+            </label>
+            <input
+              type="text"
+              value={formData.type.join(', ')}
+              onChange={(e) => handleChange('type', e.target.value.split(',').map((t) => t.trim()).filter(Boolean))}
+              placeholder="Campaign, Website, Music"
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Preview URL */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Preview URL
+            </label>
+            <input
+              type="text"
+              value={formData.previewUrl}
+              onChange={(e) => handleChange('previewUrl', e.target.value)}
+              placeholder="https://..."
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Summary */}
+          <div className="md:col-span-2">
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Summary
+            </label>
+            <textarea
+              value={formData.summary}
+              onChange={(e) => handleChange('summary', e.target.value)}
+              rows={3}
+              className="w-full resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Current Need */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Current Need
+            </label>
+            <textarea
+              value={formData.currentNeed}
+              onChange={(e) => handleChange('currentNeed', e.target.value)}
+              rows={3}
+              className="w-full resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Next Action */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Next Action
+            </label>
+            <textarea
+              value={formData.nextAction}
+              onChange={(e) => handleChange('nextAction', e.target.value)}
+              rows={3}
+              className="w-full resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Assets Needed */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Assets Needed
+            </label>
+            <textarea
+              value={formData.assetsNeeded}
+              onChange={(e) => handleChange('assetsNeeded', e.target.value)}
+              rows={3}
+              className="w-full resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Notes */}
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Notes
+            </label>
+            <textarea
+              value={formData.notes}
+              onChange={(e) => handleChange('notes', e.target.value)}
+              rows={3}
+              className="w-full resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        {/* PIN + Save */}
+        <div className="mt-6 border-t border-zinc-800 pt-6">
+          <div className="mb-4">
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              PIN Required to Save
+            </label>
+            <input
+              type="password"
+              value={pin}
+              onChange={(e) => {
+                setPin(e.target.value)
+                setPinError('')
+              }}
+              placeholder="Enter 4-digit PIN"
+              className="w-full max-w-xs rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-red-500 focus:outline-none"
+            />
+            {pinError && (
+              <p className="mt-2 text-sm text-red-400">{pinError}</p>
+            )}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Button
+              onClick={handleSave}
+              disabled={isSaving}
+              className="rounded-full bg-red-600 px-8 hover:bg-red-700 disabled:opacity-50"
+            >
+              {isSaving ? 'Saving...' : 'Save Changes'}
+            </Button>
+            <Button
+              onClick={onClose}
+              variant="outline"
+              className="rounded-full border-zinc-700 text-zinc-300 hover:border-zinc-600 hover:text-white"
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ============================================================================
 // MAIN CLIENT COMPONENT
 // ============================================================================
 
@@ -244,8 +508,33 @@ interface DXAIndexClientProps {
   projects: Project[]
 }
 
-export function DXAIndexClient({ projects }: DXAIndexClientProps) {
+export function DXAIndexClient({ projects: initialProjects }: DXAIndexClientProps) {
+  const [projects, setProjects] = useState<Project[]>(initialProjects)
   const [activeFilter, setActiveFilter] = useState<string>('All')
+  const [editingProject, setEditingProject] = useState<Project | null>(null)
+
+  const handleSave = async (updatedProject: Project) => {
+    try {
+      const response = await fetch('/api/dxa/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedProject),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to update project')
+      }
+
+      // Update local state
+      setProjects((prev) =>
+        prev.map((p) => (p.id === updatedProject.id ? updatedProject : p))
+      )
+      setEditingProject(null)
+    } catch (error) {
+      console.error('[v0] Error saving project:', error)
+      alert('Failed to save changes. Please try again.')
+    }
+  }
 
   const filteredProjects = projects.filter((project) => {
     if (activeFilter === 'All') return true
@@ -365,7 +654,7 @@ export function DXAIndexClient({ projects }: DXAIndexClientProps) {
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} onEdit={setEditingProject} />
           ))}
         </div>
         {filteredProjects.length === 0 && (
@@ -520,6 +809,17 @@ export function DXAIndexClient({ projects }: DXAIndexClientProps) {
           </div>
         </div>
       </section>
+
+      {/* ================================================================== */}
+      {/* EDIT MODAL */}
+      {/* ================================================================== */}
+      {editingProject && (
+        <EditModal
+          project={editingProject}
+          onClose={() => setEditingProject(null)}
+          onSave={handleSave}
+        />
+      )}
     </div>
   )
 }
