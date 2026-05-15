@@ -1,8 +1,10 @@
 export const DXA_TASK_OWNERS = ['Me', 'Adrian', 'Client / Partner'] as const
 export const DXA_TASK_STATUSES = ['Open', 'Waiting', 'Completed'] as const
+export const DXA_ACTIVE_QUEUE_PROJECTS = ['HSS Feed', 'DVI Travel Hotline', 'DKLA / Throw That Thang'] as const
 
 export type DxaTaskOwner = (typeof DXA_TASK_OWNERS)[number]
 export type DxaTaskStatus = (typeof DXA_TASK_STATUSES)[number]
+export type DxaActiveQueueProject = (typeof DXA_ACTIVE_QUEUE_PROJECTS)[number]
 
 export interface DxaQueueTask {
   id: string
@@ -51,4 +53,12 @@ export function isValidTaskOwner(owner: string): owner is DxaTaskOwner {
 
 export function isValidTaskStatus(status: string): status is DxaTaskStatus {
   return DXA_TASK_STATUSES.includes(status as DxaTaskStatus)
+}
+
+export function isActiveQueueProject(projectTitle: string): projectTitle is DxaActiveQueueProject {
+  return DXA_ACTIVE_QUEUE_PROJECTS.includes(projectTitle as DxaActiveQueueProject)
+}
+
+export function hasValidDxaAdminPin(candidate: unknown) {
+  return Boolean(process.env.DXA_ADMIN_PIN) && candidate === process.env.DXA_ADMIN_PIN
 }
