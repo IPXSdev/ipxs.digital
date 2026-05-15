@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { AlertCircle, ArrowRight, ExternalLink, Plus, Zap } from 'lucide-react'
+import { DxaQueueSection } from '@/components/dxa-index/dxa-queue-section'
 import { ProjectCard } from '@/components/dxa-index/project-card'
 import { ProjectEditorModal } from '@/components/dxa-index/project-editor-modal'
 import { Button } from '@/components/ui/button'
@@ -40,16 +41,6 @@ const statusDefinitions = [
   ['Delivered', 'Completed or substantially delivered, but still useful as proof of execution.'],
   ['Completed', 'Completed and archived in the active operating history.'],
   ['Expansion Opportunity', 'A project that could become a larger platform, campaign, product, or monetization lane.'],
-]
-
-const nextActions = [
-  'Finalize HSS Feed official links and assets.',
-  'Prepare polish handoff for the HSS Feed landing page.',
-  'Refine DVI Travel design, background system, and virtual phone experience.',
-  'Build DKLA campaign copy into a full rollout calendar.',
-  'Create Higgsfield prompt sets for DKLA, HSS Feed, and DVI Travel assets.',
-  'Organize Charlie Bereal creative assets and unresolved follow-up notes.',
-  'Keep Larry Parker’s Diner deck and copy available as a legacy reference.',
 ]
 
 function StatusPill({ status }: { status: string }) {
@@ -155,7 +146,7 @@ export function DxaIndexDashboard() {
 
       <section className="border-b border-zinc-800 bg-zinc-950 py-8"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-2 text-lg font-semibold text-white">Navigate the Pipeline</h2><p className="mb-4 text-sm text-zinc-500">Filter projects by status, discipline, project lane, or next action to quickly see what needs attention.</p><div className="flex flex-wrap gap-2">{filterOptions.map((filter) => <button key={filter} onClick={() => setActiveFilter(filter)} className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${activeFilter === filter ? 'border-red-500 bg-red-500/10 text-red-400' : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-white'}`}>{filter}</button>)}</div></div></section>
 
-      <NextActions />
+      <DxaQueueSection />
 
       <section id="active-projects" className="py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><h2 className="mb-2 text-2xl font-bold text-white">Active Project Dashboard</h2><p className="max-w-3xl text-sm text-zinc-500">Current projects and live opportunities connected to IPXS, Adrian Miller, and the broader referral pipeline. Each card should make the project status, current need, and next action clear at a glance.</p></div><button onClick={() => { setSelectedProject(null); setIsModalOpen(true) }} className="inline-flex items-center justify-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm font-medium text-red-300 transition-colors hover:bg-red-500/20"><Plus className="h-4 w-4" />Add New Project</button></div><div className="grid gap-4 md:grid-cols-2">{filteredProjects.map((project) => <ProjectCard key={project.id} project={project} onEdit={(p) => { setSelectedProject(p); setIsModalOpen(true) }} onComplete={markCompleted} />)}</div>{!isLoading && filteredProjects.length === 0 ? <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-8 text-center"><p className="text-zinc-500">No projects match the selected filter.</p></div> : null}</div></section>
 
@@ -183,5 +174,3 @@ function MvpSection() { return <section id="mvp-links" className="border-t borde
 function ArchiveSection() { return <section className="border-t border-zinc-800 bg-zinc-900/30 py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-2 text-2xl font-bold text-white">Reference Archive</h2><p className="mb-8 max-w-3xl text-sm text-zinc-500">Not every item in the DXA Index is active. Some projects, names, brands, conversations, and cultural references are stored here because they may shape future copy, campaigns, decks, visuals, or partnership opportunities.</p><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{archiveBuckets.map(([title, items]) => <div key={title} className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5"><h3 className="mb-3 font-semibold text-white">{title}</h3><ul className="space-y-1.5">{items.map((item) => <li key={item} className="flex items-center gap-2 text-sm text-zinc-500"><span className="h-1 w-1 shrink-0 rounded-full bg-red-500" />{item}</li>)}</ul></div>)}</div></div></section> }
 
 function StatusKey() { return <section className="border-t border-zinc-800 py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-6 text-2xl font-bold text-white">Status Key</h2><div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{statusDefinitions.map(([status, description]) => <div key={status} className="flex items-start gap-3 rounded-lg border border-zinc-800 bg-zinc-900/50 p-4"><StatusPill status={status} /><p className="text-sm text-zinc-500">{description}</p></div>)}</div></div></section> }
-
-function NextActions() { return <section id="next-actions" className="border-b border-zinc-800 bg-zinc-900/30 py-12"><div className="mx-auto max-w-7xl px-4 lg:px-8"><h2 className="mb-2 text-2xl font-bold text-white">Next Actions Queue</h2><p className="mb-6 max-w-3xl text-sm text-zinc-500">The DXA Index should always make the next move visible. These are the items that need action before the pipeline can move forward.</p><div className="grid gap-2 md:grid-cols-2">{nextActions.map((action, index) => <div key={action} className="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/50 px-4 py-3"><span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-500/10 text-xs font-semibold text-red-500">{index + 1}</span><p className="text-sm text-zinc-300">{action}</p></div>)}</div></div></section> }
