@@ -16,28 +16,6 @@ interface MotionVideoFallbackProps {
   priority?: boolean
 }
 
-const mobileFitClassMap = {
-  cover: 'object-cover',
-  contain: 'object-contain',
-} as const
-
-const desktopFitClassMap = {
-  cover: 'sm:object-cover',
-  contain: 'sm:object-contain',
-} as const
-
-const mobilePositionClassMap = {
-  top: 'object-top',
-  center: 'object-center',
-  bottom: 'object-bottom',
-} as const
-
-const desktopPositionClassMap = {
-  top: 'sm:object-top',
-  center: 'sm:object-center',
-  bottom: 'sm:object-bottom',
-} as const
-
 export function MotionVideoFallback({
   primarySrc,
   primaryType,
@@ -55,7 +33,6 @@ export function MotionVideoFallback({
   const [stallEvents, setStallEvents] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // Compute object classes based on props
   const computedObjectClass = useMemo(
     () => `object-${fit} object-${objectPosition}`,
     [fit, objectPosition]
@@ -86,20 +63,6 @@ export function MotionVideoFallback({
       setVideoFailed(true)
     }
   }, [stallEvents, isPlaying])
-
-  const handlePlayable = () => {
-    setVideoFailed(false)
-
-    const video = videoRef.current
-    if (!video) return
-
-    const playPromise = video.play()
-    if (playPromise && typeof playPromise.catch === 'function') {
-      playPromise.catch(() => {
-        // Keep the poster/video visible. Only show fallback after a real media error.
-      })
-    }
-  }
 
   return (
     <div className={`relative h-full w-full max-w-full overflow-hidden ${className}`}>
