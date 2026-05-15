@@ -35,10 +35,19 @@ export interface DxaProject {
 
 export type DxaProjectInput = Partial<Omit<DxaProject, 'id' | 'created_at' | 'updated_at'>>
 
+export const DKLA_CAMPAIGN_MVP_URL = 'https://v0-dkla-campaign-site.vercel.app/'
+
 export const DXA_SEED_PROJECTS: DxaProjectInput[] = [
   { title: 'HSS Feed', lane: 'Live Show + Website MVP', status: 'Active', priority: 'High', type: ['Live Show', 'Website', 'Music', 'MVP Preview'] },
   { title: 'DVI Travel Hotline', lane: 'Campaign Site + Virtual Hotline', status: 'Active', priority: 'High', type: ['Campaign', 'Website', 'MVP Preview', 'Music'] },
-  { title: 'DKLA / Throw That Thang', lane: 'Music Campaign + Event Rollout', status: 'Active', priority: 'High', type: ['Campaign', 'Music', 'AI Assets'] },
+  {
+    title: 'DKLA / Throw That Thang',
+    lane: 'Music Campaign + Event Rollout',
+    status: 'Active',
+    priority: 'High',
+    type: ['Campaign', 'Music', 'AI Assets', 'MVP Preview'],
+    preview_url: DKLA_CAMPAIGN_MVP_URL,
+  },
   { title: "Larry Parker's Diner", lane: 'Legacy Documentary + Brand Revival', status: 'Reference', priority: 'Medium', type: ['Legacy'] },
   { title: 'Emory Capital', lane: 'Investor-Facing Digital Build', status: 'Delivered', priority: 'Medium', type: ['Website', 'MVP Preview'] },
   { title: 'Charlie Bereal / Death Row-Connected Creative', lane: 'Music Visuals + Artist Campaign Assets', status: 'Reference', priority: 'Medium', type: ['Music', 'Campaign'] },
