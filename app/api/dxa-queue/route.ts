@@ -10,17 +10,29 @@ import {
 } from '@/lib/dxa-queue'
 import { isSupabaseConfigured, supabaseAdminFetch } from '@/lib/supabase/admin'
 
-async function ensureSeeded() {
-  const countRes = await supabaseAdminFetch('dxa_queue_tasks?select=id&limit=1')
+const canonicalQueueTasks = DXA_QUEUE_SEED_TASKS.map((task) => task.task).filter(Boolean) as string[]
+
+async function ensureCanonicalQueueTasks() {
+  const countRes = await supabaseAdminFetch('dxa_queue_tasks?select=id,project_title,task')
   if (!countRes.ok) return false
   const existing = await countRes.json()
-  if (Array.isArray(existing) && existing.length > 0) return true
-  const seedRes = await supabaseAdminFetch('dxa_queue_tasks', {
-    method: 'POST',
-    headers: { Prefer: 'return=representation' },
-    body: JSON.stringify(DXA_QUEUE_SEED_TASKS),
-  })
-  return seedRes.ok
+  const tasks = Array.isArray(existing) ? existing : []
+  const existingTaskNames = tasks.map((task) => task.task)
+  const hasUnexpectedRows = tasks.some((task) => !DXA_ACTIVE_QUEUE_PROJECTS.includes(task.project_title) || !canonicalQueueTasks.includes(task.task))
+  const isMissingCanonicalRows = canonicalQueueTasks.some((task) => !existingTaskNames.includes(task))
+  const shouldRepair = hasUnexpectedRows || isMissingCanonicalRows
+
+  if (shouldRepair) {
+    await supabaseAdminFetch('dxa_queue_tasks?id=not.is.null', { method: 'DELETE' })
+    const seedRes = await supabaseAdminFetch('dxa_queue_tasks', {
+      method: 'POST',
+      headers: { Prefer: 'return=representation' },
+      body: JSON.stringify(DXA_QUEUE_SEED_TASKS),
+    })
+    return seedRes.ok
+  }
+
+  return true
 }
 
 function getQueueFailureMessage(status: number, body: string) {
@@ -35,7 +47,7 @@ export async function GET() {
     return NextResponse.json({ tasks: DXA_QUEUE_SEED_TASKS, warning: 'DXA queue database is not connected yet. Queue edits will require Supabase environment variables.' })
   }
 
-  await ensureSeeded()
+  await ensureCanonicalQueueTasks()
   const activeProjectsFilter = DXA_ACTIVE_QUEUE_PROJECTS.join(',')
   const res = await supabaseAdminFetch(`dxa_queue_tasks?select=*&project_title=in.(${activeProjectsFilter})&order=sort_order.asc&order=updated_at.desc`)
   if (!res.ok) return NextResponse.json({ error: 'Failed to load queue tasks' }, { status: 500 })
