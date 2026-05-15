@@ -103,80 +103,80 @@ export const DXA_SEED_PROJECTS: DxaProjectInput[] = [
   {
     title: "Larry Parker's Diner",
     lane: 'Legacy Documentary + Brand Revival',
-    status: 'Reference',
+    status: 'Completed',
     priority: 'Medium',
     type: ['Legacy', 'Deck', 'Documentary', 'Brand'],
     preview_url: null,
     summary:
-      'A documentary and brand revival project centered on Larry Parker’s Diner as a Los Angeles cultural landmark where celebrity history, nightlife, food, television, music, and nostalgia intersect.',
+      'A completed documentary and brand revival reference centered on Larry Parker’s Diner as a Los Angeles cultural landmark where celebrity history, nightlife, food, television, music, and nostalgia intersect.',
     current_need:
-      'Keep the documentary deck, collaboration language, brand revival framing, and archival references available for future pitch updates and partner-facing copy.',
+      'No active queue item. Keep the completed deck, collaboration language, brand revival framing, and archival references available for future reuse.',
     next_action:
-      'Use the existing deck material when creating new partnership copy, merch concepts, documentary pitch language, and cultural legacy positioning.',
+      'Archive as completed unless a new partner, update, or deck revision is requested.',
     assets_needed:
-      'Final PDF, archival photos, press references, menu references, collaboration target list, brand history notes, and approved slogans or archival phrases.',
+      'No current active asset need. Completed reference materials should stay available for future copy or pitch use.',
     notes:
-      'Use phrases like Where Fame Met Fries and The Hip Hop Shake Shop as headline-style hooks when building future deck or campaign copy.',
+      'Completed project reference. Use phrases like Where Fame Met Fries and The Hip Hop Shake Shop as headline-style hooks when building future deck or campaign copy.',
     is_pinned: false,
     sort_order: 40,
   },
   {
     title: 'Emory Capital',
     lane: 'Investor-Facing Digital Build',
-    status: 'Delivered',
+    status: 'Completed',
     priority: 'Medium',
     type: ['Website', 'MVP Preview', 'Investor Materials'],
     preview_url: null,
     summary:
-      'An investor-facing digital proof point showing IPXS capability in institutional web presentation, MVP architecture, executive polish, financial brand structure, and high-trust digital infrastructure.',
+      'A completed investor-facing digital proof point showing IPXS capability in institutional web presentation, MVP architecture, executive polish, financial brand structure, and high-trust digital infrastructure.',
     current_need:
-      'Keep this organized as a credibility marker and portfolio proof point for future investor-facing, finance, and executive digital builds.',
+      'No active queue item. Keep this organized as a credibility marker and portfolio proof point for future investor-facing, finance, and executive digital builds.',
     next_action:
-      'Add screenshots, approved links, demo notes, and a client-safe case-study summary when the final public reference is ready.',
+      'Archive as completed unless a new revision, screenshot set, or public case-study summary is requested.',
     assets_needed:
-      'Screenshots, approved live link, demo account notes, final approved summary, and any public-safe client reference details.',
+      'No current active asset need. Keep approved screenshots, demo notes, and client-safe summary materials available if cleared.',
     notes:
-      'Use Emory Capital to support trust when pitching executive-facing websites, investor demos, financial MVPs, and polished business infrastructure.',
+      'Completed project reference. Use Emory Capital to support trust when pitching executive-facing websites, investor demos, financial MVPs, and polished business infrastructure.',
     is_pinned: false,
     sort_order: 50,
   },
   {
     title: 'Charlie Bereal / Death Row-Connected Creative',
     lane: 'Music Visuals + Artist Campaign Assets',
-    status: 'Reference',
+    status: 'Completed',
     priority: 'Medium',
     type: ['Music', 'Campaign', 'Motion'],
     preview_url: null,
     summary:
-      'Creative work and reference material tied to Charlie Bereal and Death Row-connected opportunities, including album artwork, motion art, visualizers, release assets, and social campaign pieces.',
+      'Completed creative work and reference material tied to Charlie Bereal and Death Row-connected opportunities, including album artwork, motion art, visualizers, release assets, and social campaign pieces.',
     current_need:
-      'Separate completed deliverables from unresolved follow-up items so this lane can function as both a creative archive and relationship reference.',
+      'No active queue item. Keep completed deliverables available as relationship and creative reference material.',
     next_action:
-      'Organize artwork, motion assets, release links, social post references, payout notes, and approved artist/label references.',
+      'Archive as completed unless new artist, label, or campaign follow-up work is requested.',
     assets_needed:
-      'Cover art, motion art, release links, social post links, payment notes, artist references, approved copy, and any Death Row-connected context that is cleared for internal use.',
+      'No current active asset need. Keep cover art, motion art, release links, social post links, payment notes, artist references, and approved copy available internally.',
     notes:
-      'Keep this lane clean because it can support future music campaign credibility, artist-asset packaging, and Adrian-connected label opportunities.',
+      'Completed project reference. Keep this lane clean because it can support future music campaign credibility, artist-asset packaging, and Adrian-connected label opportunities.',
     is_pinned: false,
     sort_order: 60,
   },
   {
     title: 'x|a / xIa Ecosystem',
     lane: 'Strategic Platform + Pitch Deck',
-    status: 'Reference',
+    status: 'Completed',
     priority: 'Medium',
     type: ['Deck', 'Platform', 'Music Business', 'AI'],
     preview_url: null,
     summary:
-      'A strategic music and AI ecosystem lane connected to pitch deck work, management education, artist tools, board references, and platform ideas tied to Adrian’s broader business network.',
+      'Completed strategic music and AI ecosystem reference connected to pitch deck work, management education, artist tools, board references, and platform ideas tied to Adrian’s broader business network.',
     current_need:
-      'Clarify which materials are public, internal, investor-facing, or reference-only so the ecosystem stays clean and usable for future pitches.',
+      'No active queue item. Keep materials separated by public, internal, investor-facing, and reference-only use.',
     next_action:
-      'Sort references into pitch deck, platform copy, AI tools, management education, board materials, and client-safe language.',
+      'Archive as completed unless a new platform update, pitch deck, board material, or client-safe language request comes back into scope.',
     assets_needed:
-      'Decks, screenshots, notes, platform references, approved names, public-facing language, and source material that can be used in future handoffs.',
+      'No current active asset need. Keep decks, screenshots, notes, platform references, approved names, public-facing language, and source material available for future handoffs.',
     notes:
-      'Use this as a long-term reference lane for Adrian Miller-connected platform strategy, management education, AI-native entertainment tools, and pitch architecture.',
+      'Completed project reference for Adrian Miller-connected platform strategy, management education, AI-native entertainment tools, and pitch architecture.',
     is_pinned: false,
     sort_order: 70,
   },
