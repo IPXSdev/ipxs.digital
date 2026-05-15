@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { ExternalLink, ChevronRight, AlertCircle, Zap, Radio, Music, Globe, Film, Briefcase, Sparkles, Pencil, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-const ADMIN_PIN = '2084'
-
 // ============================================================================
 // TYPES
 // ============================================================================
@@ -252,7 +250,7 @@ function ProjectCard({ project, onEdit }: { project: Project; onEdit: (project: 
 interface EditModalProps {
   project: Project
   onClose: () => void
-  onSave: (project: Project) => void
+  onSave: (project: Project, pin: string) => Promise<void>
 }
 
 function EditModal({ project, onClose, onSave }: EditModalProps) {
@@ -266,13 +264,14 @@ function EditModal({ project, onClose, onSave }: EditModalProps) {
   }
 
   const handleSave = async () => {
-    if (pin !== ADMIN_PIN) {
-      setPinError('Invalid PIN. Access denied.')
+    if (!pin) {
+      setPinError('PIN is required.')
       return
     }
     setPinError('')
     setIsSaving(true)
-    await onSave(formData)
+    // PIN is sent to server for validation - not validated client-side
+    await onSave(formData, pin)
     setIsSaving(false)
   }
 
@@ -513,13 +512,17 @@ export function DXAIndexClient({ projects: initialProjects }: DXAIndexClientProp
   const [activeFilter, setActiveFilter] = useState<string>('All')
   const [editingProject, setEditingProject] = useState<Project | null>(null)
 
-  const handleSave = async (updatedProject: Project) => {
+  const handleSave = async (updatedProject: Project, pin: string) => {
     try {
-      const response = await fetch('/api/dxa/update', {
-        method: 'POST',
+      const response = await fetch(`/api/dxa-projects/${updatedProject.id}`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedProject),
+        body: JSON.stringify({ ...updatedProject, pin }),
       })
+
+      if (response.status === 401) {
+        throw new Error('Invalid PIN')
+      }
 
       if (!response.ok) {
         throw new Error('Failed to update project')
